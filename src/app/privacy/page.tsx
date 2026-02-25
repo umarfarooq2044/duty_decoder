@@ -57,7 +57,7 @@ export default function PrivacyPage() {
             <section style={sectionStyle}>
                 <h2 style={headingStyle}>5. Your Rights</h2>
                 <p style={paraStyle}>
-                    You have the right to: (a) access the data we hold about you, (b) request deletion of your personal data, (c) opt out of non-essential data collection, and (d) request a copy of your data in a portable format. To exercise these rights, contact us at privacy@duty-decoder.com.
+                    You have the right to: (a) access the data we hold about you, (b) request deletion of your personal data, (c) opt out of non-essential data collection, and (d) request a copy of your data in a portable format. To exercise these rights, contact us at contact@dutydecoder.com.
                 </p>
             </section>
 

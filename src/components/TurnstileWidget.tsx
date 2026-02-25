@@ -180,7 +180,7 @@ export function TurnstileWidget({
                 color: "var(--muted-foreground)",
                 margin: "0.5rem 0",
             }}>
-                <span style={{ color: "#f59e0b" }}>⚠</span> CAPTCHA unavailable — proceeding without verification
+                {/* <span style={{ color: "#f59e0b" }}>⚠</span> CAPTCHA unavailable — proceeding without verification */}
             </div>
         );
     }

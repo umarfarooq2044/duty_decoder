@@ -58,7 +58,7 @@ export default function TermsPage() {
             <section style={sectionStyle}>
                 <h2 style={headingStyle}>6. Limitation of Liability</h2>
                 <p style={paraStyle}>
-                    IN NO EVENT SHALL GLOBALTRADE DECODER, ITS OPERATORS, OR AFFILIATES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING FROM YOUR USE OF THE SERVICE. This includes, without limitation, damages from incorrect duty calculations, misclassified HS codes, or reliance on any information provided by the Service.
+                    IN NO EVENT SHALL DUTY DECODER, ITS OPERATORS, OR AFFILIATES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING FROM YOUR USE OF THE SERVICE. This includes, without limitation, damages from incorrect duty calculations, misclassified HS codes, or reliance on any information provided by the Service.
                 </p>
             </section>
 

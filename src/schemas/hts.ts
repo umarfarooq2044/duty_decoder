@@ -32,9 +32,7 @@ export type HTSCode = z.infer<typeof HTSCodeSchema>;
 
 export const HTSSearchRequestSchema = z.object({
     description: z.string().min(3, "Product description must be at least 3 characters").max(1000),
-    countryCode: z.enum(["US", "GB", "EU", "PK"], {
-        errorMap: () => ({ message: "Country must be US, GB, EU, or PK" }),
-    }),
+    countryCode: z.string().length(2, "Country code must be exactly 2 characters").toUpperCase(),
     maxResults: z.number().int().min(1).max(20).default(5),
 });
 
