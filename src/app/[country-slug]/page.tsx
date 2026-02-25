@@ -294,7 +294,7 @@ export default async function CountryHubPage({ params }: PageProps) {
                             fontSize: "0.85rem",
                             color: "var(--muted-foreground)",
                         }}>
-                            ← Global Landed Cost Calculator
+                            ← Global Import Duty Calculator
                         </Link>
                     </aside>
                 </div>

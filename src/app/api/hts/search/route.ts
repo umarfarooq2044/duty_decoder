@@ -120,25 +120,21 @@ export async function POST(request: Request) {
             );
         }
 
-        // 2. IP rate limiting (10 requests per 60 seconds)
+        // 2. Temporarily bypassed IP rate limiting
+        /*
         const rateResult = hsFinderLimiter.check(clientIP);
         if (!rateResult.allowed) {
             return NextResponse.json(
                 { results: [], error: `Rate limit exceeded. Please wait ${Math.ceil(rateResult.retryAfterMs / 1000)} seconds.` },
-                {
-                    status: 429,
-                    headers: {
-                        "Retry-After": String(Math.ceil(rateResult.retryAfterMs / 1000)),
-                        "X-RateLimit-Limit": String(rateResult.total),
-                        "X-RateLimit-Remaining": "0",
-                    },
-                }
+                { status: 429, headers: { "Retry-After": String(Math.ceil(rateResult.retryAfterMs / 1000)) } }
             );
         }
+        */
 
         const body: unknown = await request.json();
 
-        // 3. Turnstile CAPTCHA verification
+        // 3. Temporarily bypassed Turnstile CAPTCHA
+        /*
         const bodyObj = body as Record<string, unknown>;
         const turnstileToken = (bodyObj?.turnstileToken as string) || "";
         const turnstileResult = await verifyTurnstileToken(turnstileToken, clientIP);
@@ -148,6 +144,7 @@ export async function POST(request: Request) {
                 { status: 403 }
             );
         }
+        */
 
         const parsed = HTSSearchRequestSchema.parse(body);
 

@@ -52,8 +52,11 @@ setInterval(() => {
 export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
-    // Only rate-limit API routes
+    // Temporarily disabled rate limiting for live deployment
     if (pathname.startsWith("/api/")) {
+        return NextResponse.next();
+
+        /*
         const key = getRateLimitKey(request);
         const { allowed, remaining, resetAt } = checkRateLimit(key);
 
@@ -84,6 +87,7 @@ export function middleware(request: NextRequest) {
         response.headers.set("X-RateLimit-Reset", String(Math.ceil(resetAt / 1000)));
 
         return response;
+        */
     }
 
     // AEO & SEO Redirects on calculation pages

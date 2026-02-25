@@ -173,6 +173,12 @@ export function CountryCalculatorForm({ defaultDestination, countryName }: Count
                         value={destCountry}
                         onChange={(e) => setDestCountry(e.target.value)}
                     >
+                        {/* <div className="captcha-container" style={{ marginBottom: "1.5rem" }}>
+                            <TurnstileWidget
+                                onVerify={(token) => setTurnstileToken(token)}
+                                onError={(err) => setCaptchaError(err)}
+                            />
+                        </div> */}
                         {DEST_COUNTRIES.map(c => (
                             <option key={c.code} value={c.code}>{c.name} ({c.code})</option>
                         ))}
