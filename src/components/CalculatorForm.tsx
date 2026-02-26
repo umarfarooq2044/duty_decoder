@@ -315,7 +315,6 @@ export function CalculatorForm() {
             )}
 
             <div className="form-submit-container">
-                <TurnstileWidget onToken={handleTurnstileToken} />
                 <button type="submit" className="submit-btn" disabled={isLoading} style={{ position: "relative", overflow: "hidden" }}>
                     {isLoading ? (
                         <>

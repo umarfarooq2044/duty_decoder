@@ -247,9 +247,6 @@ export function HSCodeFinderWidget() {
                         )}
                     </button>
                 </div>
-                <div style={{ marginTop: "1rem" }}>
-                    {/* <TurnstileWidget onToken={handleTurnstileToken} /> */}
-                </div>
             </form>
 
             {error && (
