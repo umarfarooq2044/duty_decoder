@@ -12,33 +12,48 @@ interface PageProps {
     params: Promise<{ slug: string }>;
 }
 
+// Safe country name lookup — never throws
+function getCountryName(code: string | undefined): string {
+    if (!code) return "Unknown";
+    try {
+        return new Intl.DisplayNames(['en'], { type: 'region' }).of(code.toUpperCase()) || code;
+    } catch {
+        return code;
+    }
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-    const { slug } = await params;
-    const data = await getCachedLandedCostBySlug(slug) as any;
+    try {
+        const { slug } = await params;
+        const data = await getCachedLandedCostBySlug(slug) as any;
 
-    if (!data) return {};
+        if (!data) return {};
 
-    const originName = new Intl.DisplayNames(['en'], { type: 'region' }).of(data.origin_country?.toUpperCase()) || data.origin_country;
-    const destName = new Intl.DisplayNames(['en'], { type: 'region' }).of(data.destination_country?.toUpperCase()) || data.destination_country;
+        const originName = getCountryName(data.origin_country);
+        const destName = getCountryName(data.destination_country);
 
-    return {
-        title: data.seo_title || `Import Duty & Landed Cost: ${data.product_description}`,
-        description: data.seo_description || `Calculate landed cost and customs duty for importing ${data.product_description} from ${originName} to ${destName}.`,
-        alternates: { canonical: `/calculate/${slug}/` },
-        keywords: [
-            `${data.product_description} import duty`,
-            `HS code for ${data.product_description}`,
-            `calculate duty from ${originName} to ${destName}`,
-            `${destName} import tax`,
-            "landed cost calculator"
-        ],
-        openGraph: {
+        return {
             title: data.seo_title || `Import Duty & Landed Cost: ${data.product_description}`,
             description: data.seo_description || `Calculate landed cost and customs duty for importing ${data.product_description} from ${originName} to ${destName}.`,
-            url: `/calculate/${slug}`,
-            type: "article",
-        }
-    };
+            alternates: { canonical: `/calculate/${slug}/` },
+            keywords: [
+                `${data.product_description} import duty`,
+                `HS code for ${data.product_description}`,
+                `calculate duty from ${originName} to ${destName}`,
+                `${destName} import tax`,
+                "landed cost calculator"
+            ],
+            openGraph: {
+                title: data.seo_title || `Import Duty & Landed Cost: ${data.product_description}`,
+                description: data.seo_description || `Calculate landed cost and customs duty for importing ${data.product_description} from ${originName} to ${destName}.`,
+                url: `/calculate/${slug}`,
+                type: "article",
+            }
+        };
+    } catch (err) {
+        console.error("[generateMetadata] Error:", err);
+        return {};
+    }
 }
 
 export default async function CalculatePage({ params }: PageProps) {
@@ -133,8 +148,8 @@ export default async function CalculatePage({ params }: PageProps) {
         });
     }
 
-    const originLabel = new Intl.DisplayNames(['en'], { type: 'region' }).of(calculation.origin_country?.toUpperCase()) || calculation.origin_country;
-    const countryLabel = new Intl.DisplayNames(['en'], { type: 'region' }).of(calculation.destination_country?.toUpperCase()) || calculation.destination_country;
+    const originLabel = getCountryName(calculation.origin_country);
+    const countryLabel = getCountryName(calculation.destination_country);
 
     const breadcrumbJsonLd = {
         "@context": "https://schema.org",
