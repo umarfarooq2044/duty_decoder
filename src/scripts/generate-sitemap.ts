@@ -59,7 +59,7 @@ function xmlEntry(url: string, lastmod: string, changefreq: string, priority: nu
 }
 
 async function main() {
-    const now = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+    const now = new Date().toISOString().split("T")[0]!; // YYYY-MM-DD
     const entries: string[] = [];
 
     // ── 1. Static global routes ──
@@ -123,7 +123,7 @@ async function main() {
         if (!pages || pages.length === 0) break;
 
         for (const p of pages) {
-            const lastmod = new Date(p.created_at).toISOString().split("T")[0];
+            const lastmod = new Date(p.created_at).toISOString().split("T")[0]!;
             entries.push(xmlEntry(`${BASE_URL}/calculate/${p.slug}/`, lastmod, "monthly", 0.7));
             totalDynamic++;
         }
