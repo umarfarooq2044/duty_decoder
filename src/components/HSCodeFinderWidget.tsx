@@ -102,7 +102,7 @@ export function HSCodeFinderWidget() {
         setSearched(true);
 
         try {
-            const res = await fetch("/api/hts/search", {
+            const res = await fetch("/api/hts/search/", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

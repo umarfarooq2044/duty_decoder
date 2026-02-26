@@ -72,7 +72,7 @@ export function CalculatorForm() {
         };
 
         try {
-            const res = await fetch("/api/landed-cost/calculate", {
+            const res = await fetch("/api/landed-cost/calculate/", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
