@@ -55,7 +55,7 @@ export function CountrySupportPage({ slug, pageType, data }: SupportPageProps) {
                     marginBottom: "2rem",
                 }}>
                     <nav aria-label="Breadcrumb" style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.75rem", flexWrap: "wrap" }}>
-                        <Link href={`/${slug}`} style={{ fontSize: "0.8rem", color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>
+                        <Link href={`/${slug}/`} style={{ fontSize: "0.8rem", color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>
                             {country.name}
                         </Link>
                         <span aria-hidden="true" style={{ color: "var(--muted-foreground)", fontSize: "0.8rem" }}>›</span>

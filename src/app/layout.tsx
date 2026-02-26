@@ -7,8 +7,8 @@ import "./globals.css";
 export const metadata: Metadata = {
     metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com"),
     title: {
-        default: "Duty Decoder — Free Import Duty & Landed Cost Calculator 2026",
-        template: "%s | Duty Decoder",
+        default: "DutyDecoder — Free Import Duty & Landed Cost Calculator 2026",
+        template: "%s | DutyDecoder",
     },
     description:
         "Calculate landed costs, classify HS codes, and decode customs duties for 50+ countries. Free AI-powered tariff classification with real-time 2026 duty calculations.",
@@ -27,13 +27,13 @@ export const metadata: Metadata = {
     openGraph: {
         type: "website",
         locale: "en_US",
-        siteName: "Duty Decoder",
-        title: "Duty Decoder — Free Import Duty & Landed Cost Calculator",
+        siteName: "DutyDecoder",
+        title: "DutyDecoder — Free Import Duty & Landed Cost Calculator",
         description: "Calculate import duties, VAT, and total landed costs for 50+ countries. Free AI-powered tariff classification.",
     },
     twitter: {
         card: "summary_large_image",
-        title: "Duty Decoder — Free Import Duty Calculator",
+        title: "DutyDecoder — Free Import Duty Calculator",
         description: "AI-powered import duty calculator covering 50+ countries with 2026 tariff data.",
     },
     robots: {

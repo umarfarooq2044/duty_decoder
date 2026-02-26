@@ -24,7 +24,7 @@ export function Footer() {
                             <rect x="5" y="80" width="20" height="20" rx="6" fill="#1e293b" />
                             <circle cx="55" cy="50" r="10" fill="#4ade80" />
                         </svg>
-                        <strong style={{ color: "#fff", fontSize: "1rem" }}>Duty Decoder</strong>
+                        <strong style={{ color: "#fff", fontSize: "1rem" }}>DutyDecoder</strong>
                     </div>
                     <p style={{ fontSize: "0.85rem", color: "var(--muted-foreground)", lineHeight: 1.6, marginBottom: "1rem" }}>
                         AI-powered import duty calculator and customs compliance engine. Calculate landed costs for 50+ countries with real-time 2026 tariff data.
@@ -110,7 +110,7 @@ export function Footer() {
                 flexWrap: "wrap", gap: "1rem",
             }}>
                 <p style={{ fontSize: "0.8rem", color: "var(--muted-foreground)", margin: 0 }}>
-                    © {new Date().getFullYear()} Duty Decoder. All rights reserved.
+                    © {new Date().getFullYear()} DutyDecoder. All rights reserved.
                 </p>
                 <div style={{ display: "flex", gap: "1.5rem" }}>
                     <a href="/privacy/" style={{ fontSize: "0.8rem", color: "var(--muted-foreground)", textDecoration: "none" }}>Privacy</a>

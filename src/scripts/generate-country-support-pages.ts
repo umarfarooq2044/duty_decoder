@@ -127,7 +127,7 @@ Important: Do NOT use the word "calculator" in the title or description.
 
 Return JSON:
 {
-  "title": "55-60 char meta title | Duty Decoder",
+  "title": "55-60 char meta title | DutyDecoder",
   "meta_description": "140-155 char meta description summarizing the page value",
   "seo_h1": "Compelling H1 headline under 80 chars",
   "breadcrumb": ["Home", "${country.name}", "${pageType.context.split(',')[0]}"]

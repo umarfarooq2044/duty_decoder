@@ -47,8 +47,8 @@ export async function GlobalPillarPage({ slug }: GlobalPillarPageProps) {
         "@type": "Article",
         "headline": data.seo_title || data.h1,
         "description": data.meta_description,
-        "author": { "@type": "Organization", "name": "Duty Decoder" },
-        "publisher": { "@type": "Organization", "name": "Duty Decoder" },
+        "author": { "@type": "Organization", "name": "DutyDecoder" },
+        "publisher": { "@type": "Organization", "name": "DutyDecoder" },
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": `${process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com"}/${slug}`

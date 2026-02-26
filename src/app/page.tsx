@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 export const revalidate = 3600; // Refresh every hour for freshness
 
 export const metadata: Metadata = {
-    title: "Import Duty Calculator 2026 — Free Customs & Tax Estimator | Duty Decoder",
+    title: "Calculate Import Duty, Tax & Total Landed Cost | DutyDecoder",
     description: "Calculate import duties, customs taxes, VAT, and total landed costs for 50+ countries instantly. Free AI-powered calculator with 5,000+ trade routes.",
     keywords: [
         "import duty calculator",
@@ -64,7 +64,7 @@ export default async function HomePage() {
     const softwareSchema = {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "Duty Decoder Calculator",
+        "name": "DutyDecoder Calculator",
         "url": process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web",
@@ -347,7 +347,7 @@ export default async function HomePage() {
                         { flag: "🇫🇷", name: "France", slug: "france" },
                         { flag: "🇸🇬", name: "Singapore", slug: "singapore" },
                     ].map(c => (
-                        <a key={c.slug} href={`/${c.slug}/import-duty-calculator`} style={{
+                        <a key={c.slug} href={`/${c.slug}/import-duty-calculator/`} style={{
                             display: "inline-flex", alignItems: "center", gap: "0.4rem",
                             background: cardBg, border: cardBorder, borderRadius: "8px",
                             padding: "0.6rem 1rem", fontSize: "0.85rem", color: headingColor,

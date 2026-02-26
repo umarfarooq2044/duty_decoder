@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "HS Code Lookup — Understand & Search Harmonized System Codes 2026 | Duty Decoder",
+    title: "HS Code Lookup — Understand & Search Harmonized System Codes 2026 | DutyDecoder",
     description: "Everything you need to know about HS code lookup: code structure, GRI classification rules, country-specific extensions, common mistakes, and free lookup tools. Updated for 2026.",
     alternates: { canonical: "/hs-code-lookup/" },
     keywords: [
@@ -218,8 +218,8 @@ export default function HSCodeLookupPage() {
         "@type": "Article",
         "headline": "HS Code Lookup — Complete Guide to Harmonized System Classification",
         "description": metadata.description,
-        "author": { "@type": "Organization", "name": "Duty Decoder" },
-        "publisher": { "@type": "Organization", "name": "Duty Decoder" },
+        "author": { "@type": "Organization", "name": "DutyDecoder" },
+        "publisher": { "@type": "Organization", "name": "DutyDecoder" },
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": `${process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com"}/hs-code-lookup`

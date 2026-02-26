@@ -156,7 +156,7 @@ export function MegaMenu() {
         }}>
             <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 1rem", height: "64px" }}>
                 {/* Brand */}
-                <Link href="/" aria-label="Duty Decoder Home" style={{ display: "flex", alignItems: "center", gap: "0.5rem", textDecoration: "none" }}>
+                <Link href="/" aria-label="DutyDecoder Home" style={{ display: "flex", alignItems: "center", gap: "0.5rem", textDecoration: "none" }}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="28" height="28" style={{ display: 'block' }}>
                         <path d="M 25 10 L 50 10 A 40 40 0 0 1 50 90 L 25 90" fill="none" stroke="#4ade80" strokeWidth="20" strokeLinecap="round" strokeLinejoin="round" />
                         <rect x="5" y="0" width="20" height="20" rx="6" fill="#1e293b" />
@@ -281,7 +281,7 @@ export function MegaMenu() {
                             <h3 style={colHeadingStyle}>Country Calculators</h3>
                             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                                 {POPULAR_COUNTRIES.map(c => (
-                                    <li key={c.slug}><a href={`/${c.slug}/import-duty-calculator`} style={linkStyle}>{c.flag} {c.name} Import Duty Calculator</a></li>
+                                    <li key={c.slug}><a href={`/${c.slug}/import-duty-calculator/`} style={linkStyle}>{c.flag} {c.name} Import Duty Calculator</a></li>
                                 ))}
                             </ul>
                         </div>
@@ -355,12 +355,12 @@ export function MegaMenu() {
                             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                                 {POPULAR_COUNTRIES.map(c => (
                                     <li key={c.slug} style={{ marginBottom: "0.5rem" }}>
-                                        <a href={`/${c.slug}`} style={{ ...linkStyle, fontWeight: 600 }}>
+                                        <a href={`/${c.slug}/`} style={{ ...linkStyle, fontWeight: 600 }}>
                                             {c.flag} {c.name}
                                         </a>
                                         <div style={{ display: "flex", gap: "0.75rem", paddingLeft: "1.5rem" }}>
-                                            <a href={`/${c.slug}/import-duty-calculator`} style={{ fontSize: "0.75rem", color: "var(--accent)", textDecoration: "none" }}>Calculator</a>
-                                            <a href={`/${c.slug}/import-tax`} style={{ fontSize: "0.75rem", color: "var(--accent)", textDecoration: "none" }}>Import Tax</a>
+                                            <a href={`/${c.slug}/import-duty-calculator/`} style={{ fontSize: "0.75rem", color: "var(--accent)", textDecoration: "none" }}>Calculator</a>
+                                            <a href={`/${c.slug}/import-tax/`} style={{ fontSize: "0.75rem", color: "var(--accent)", textDecoration: "none" }}>Import Tax</a>
                                         </div>
                                     </li>
                                 ))}
@@ -375,7 +375,7 @@ export function MegaMenu() {
                                 maxHeight: "400px", overflowY: "auto",
                             }}>
                                 {filteredCountries.map(c => (
-                                    <a key={c.slug} href={`/${c.slug}`} style={{ ...linkStyle, fontSize: "0.85rem", display: "flex", alignItems: "center", gap: "0.35rem" }}>
+                                    <a key={c.slug} href={`/${c.slug}/`} style={{ ...linkStyle, fontSize: "0.85rem", display: "flex", alignItems: "center", gap: "0.35rem" }}>
                                         <span style={{ fontSize: "0.9rem" }}>{c.flag}</span> {c.name}
                                     </a>
                                 ))}

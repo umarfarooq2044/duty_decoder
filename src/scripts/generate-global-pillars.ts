@@ -116,7 +116,7 @@ async function generateMetadata(pillar: any): Promise<any> {
         
 Return JSON:
 {
-  "title_tag": "55-60 char meta title | Duty Decoder",
+  "title_tag": "55-60 char meta title | DutyDecoder",
   "meta_description": "140-155 char meta description summarizing the page",
   "h1": "Compelling H1 headline under 80 chars",
   "schema_notes": "FAQPage + Article schema recommended format"
@@ -190,7 +190,7 @@ async function processPillar(pillar: any) {
 
     const finalData = {
         slug: pillar.slug,
-        title_tag: meta.title_tag || `${pillar.topic} | Duty Decoder`,
+        title_tag: meta.title_tag || `${pillar.topic} | DutyDecoder`,
         meta_description: meta.meta_description || `Complete global guide to ${pillar.topic.toLowerCase()}.`,
         h1: meta.h1 || pillar.topic,
         primary_keywords: kw.primary_keywords || [],

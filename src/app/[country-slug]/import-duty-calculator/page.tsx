@@ -256,7 +256,7 @@ export default async function CountryCalculatorPage({ params }: PageProps) {
                             Home
                         </Link>
                         <span aria-hidden="true" style={{ color: "var(--muted-foreground)", fontSize: "0.8rem" }}>›</span>
-                        <Link href={`/${slug}` as any} style={{ fontSize: "0.8rem", color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>
+                        <Link href={`/${slug}/` as any} style={{ fontSize: "0.8rem", color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>
                             {country.name}
                         </Link>
                         <span aria-hidden="true" style={{ color: "var(--muted-foreground)", fontSize: "0.8rem" }}>›</span>
@@ -324,7 +324,7 @@ export default async function CountryCalculatorPage({ params }: PageProps) {
                         </section>
 
                         {/* Hub Link */}
-                        <Link href={`/${slug}` as any} aria-label={`${country.name} full import guide`} style={{
+                        <Link href={`/${slug}/` as any} aria-label={`${country.name} full import guide`} style={{
                             display: "block",
                             background: "linear-gradient(135deg, var(--accent), #6366f1)",
                             borderRadius: "12px",
@@ -367,14 +367,14 @@ export default async function CountryCalculatorPage({ params }: PageProps) {
                                 More {country.name} Guides
                             </h3>
                             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.4rem" }}>
-                                <li><Link href={`/${slug}/import-duty` as any} style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>Import Duties</Link></li>
-                                <li><Link href={`/${slug}/import-tax` as any} style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>{country.vatLabel} on Imports</Link></li>
-                                <li><Link href={`/${slug}/hs-code-lookup` as any} style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>HS Code Lookup</Link></li>
-                                <li><Link href={`/${slug}/duty-free-threshold` as any} style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>De Minimis Threshold</Link></li>
-                                <li><Link href={`/${slug}/customs-clearance` as any} style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>Customs Clearance</Link></li>
-                                <li><Link href={`/${slug}/import-restrictions` as any} style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>Import Restrictions</Link></li>
-                                <li><Link href={`/${slug}/import-documents` as any} style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>Required Documents</Link></li>
-                                <li><Link href={`/${slug}/shipping-customs-fees` as any} style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>Shipping & Customs Fees</Link></li>
+                                <li><Link href={`/${slug}/import-duty/` as any} style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>Import Duties</Link></li>
+                                <li><Link href={`/${slug}/import-tax/` as any} style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>{country.vatLabel} on Imports</Link></li>
+                                <li><Link href={`/${slug}/hs-code-lookup/` as any} style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>HS Code Lookup</Link></li>
+                                <li><Link href={`/${slug}/duty-free-threshold/` as any} style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>De Minimis Threshold</Link></li>
+                                <li><Link href={`/${slug}/customs-clearance/` as any} style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>Customs Clearance</Link></li>
+                                <li><Link href={`/${slug}/import-restrictions/` as any} style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>Import Restrictions</Link></li>
+                                <li><Link href={`/${slug}/import-documents/` as any} style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>Required Documents</Link></li>
+                                <li><Link href={`/${slug}/shipping-customs-fees/` as any} style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>Shipping & Customs Fees</Link></li>
                             </ul>
                         </nav>
                     </aside>

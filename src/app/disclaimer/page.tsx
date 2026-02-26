@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Disclaimer | Duty Decoder",
-    description: "Important disclaimers regarding the use of Duty Decoder's import duty calculator, HS code classification, and landed cost estimates.",
+    title: "Disclaimer | DutyDecoder",
+    description: "Important disclaimers regarding the use of DutyDecoder's import duty calculator, HS code classification, and landed cost estimates.",
     alternates: { canonical: "/disclaimer/" }
 };
 
@@ -25,7 +25,7 @@ export default function DisclaimerPage() {
                 borderRadius: "12px", padding: "1.5rem 2rem", marginBottom: "2.5rem",
             }}>
                 <p style={{ ...paraStyle, color: "var(--foreground)", fontWeight: 600, margin: 0 }}>
-                    ⚠️ The calculations and information provided by Duty Decoder are estimates for informational purposes only. They should not be treated as official customs assessments. Always verify with a licensed customs broker or your country&apos;s customs authority before making import decisions.
+                    ⚠️ The calculations and information provided by DutyDecoder are estimates for informational purposes only. They should not be treated as official customs assessments. Always verify with a licensed customs broker or your country&apos;s customs authority before making import decisions.
                 </p>
             </div>
 
@@ -46,7 +46,7 @@ export default function DisclaimerPage() {
             <section style={sectionStyle}>
                 <h2 style={headingStyle}>No Professional Advice</h2>
                 <p style={paraStyle}>
-                    Duty Decoder does not provide legal, financial, or customs brokerage advice. The information and tools on this platform are intended for educational and estimation purposes. For binding rulings or professional customs advice, consult a licensed customs broker, trade attorney, or your national customs authority (e.g., <a href="https://www.cbp.gov/trade" target="_blank" rel="dofollow" style={{ color: "var(--accent)" }}>US CBP</a>, <a href="https://www.gov.uk/government/organisations/hm-revenue-customs" target="_blank" rel="dofollow" style={{ color: "var(--accent)" }}>UK HMRC</a>, <a href="https://taxation-customs.ec.europa.eu/" target="_blank" rel="dofollow" style={{ color: "var(--accent)" }}>EU Commission DG TAXUD</a>).
+                    DutyDecoder does not provide legal, financial, or customs brokerage advice. The information and tools on this platform are intended for educational and estimation purposes. For binding rulings or professional customs advice, consult a licensed customs broker, trade attorney, or your national customs authority (e.g., <a href="https://www.cbp.gov/trade" target="_blank" rel="dofollow" style={{ color: "var(--accent)" }}>US CBP</a>, <a href="https://www.gov.uk/government/organisations/hm-revenue-customs" target="_blank" rel="dofollow" style={{ color: "var(--accent)" }}>UK HMRC</a>, <a href="https://taxation-customs.ec.europa.eu/" target="_blank" rel="dofollow" style={{ color: "var(--accent)" }}>EU Commission DG TAXUD</a>).
                 </p>
             </section>
 
@@ -60,7 +60,7 @@ export default function DisclaimerPage() {
             <section style={sectionStyle}>
                 <h2 style={headingStyle}>Limitation of Liability</h2>
                 <p style={paraStyle}>
-                    Duty Decoder shall not be held liable for any losses, penalties, customs fines, or financial damages resulting from reliance on calculations, classifications, or information provided by this platform. Users assume all risk associated with using these estimates for commercial decisions.
+                    DutyDecoder shall not be held liable for any losses, penalties, customs fines, or financial damages resulting from reliance on calculations, classifications, or information provided by this platform. Users assume all risk associated with using these estimates for commercial decisions.
                 </p>
             </section>
         </main>

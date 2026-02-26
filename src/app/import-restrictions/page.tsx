@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Import Restrictions — Prohibited Goods, Quotas & Licensing 2026 | Duty Decoder",
+    title: "Import Restrictions — Prohibited Goods, Quotas & Licensing 2026 | DutyDecoder",
     description: "Understand import restrictions: prohibited goods, restricted items requiring licenses, quotas, embargoes, dual-use controls, and country-specific import bans for 2026.",
     alternates: { canonical: "/import-restrictions/" },
     keywords: ["import restrictions", "prohibited imports", "restricted goods", "import quota", "import license", "trade embargo", "dual-use goods", "import ban", "customs restrictions 2026"],

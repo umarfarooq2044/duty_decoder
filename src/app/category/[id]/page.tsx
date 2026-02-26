@@ -36,7 +36,7 @@ const CATEGORY_META: Record<string, {
         icon: "🏥",
         desc: "Navigate complex regulatory frameworks for importing class I-III medical devices, surgical instruments, and PPE. Ensure your supply chain meets international health standards.",
         keywords: ["surgery", "medical", "dental", "x-ray", "syringe", "implant", "stethoscope", "catheter", "prosthetic", "wheelchair", "bandage", "pharmaceutical", "vaccine", "diagnostic", "scalpel"],
-        seoTitle: "Medical & Dental Import Duty Calculator | Duty Decoder",
+        seoTitle: "Medical & Dental Import Duty Calculator | DutyDecoder",
         seoDescription: "Calculate import duties and landed costs for medical devices, dental equipment, and healthcare products. FDA, CE Mark, and WHO compliance tools."
     },
     electronics: {
@@ -45,7 +45,7 @@ const CATEGORY_META: Record<string, {
         icon: "⚡",
         desc: "Understand the intricate compliance landscape for consumer hardware, from lithium-ion transport requirements to e-waste directives across the US and EU.",
         keywords: ["computer", "phone", "laptop", "circuit", "battery", "led", "screen", "camera", "headphone", "earbuds", "charger", "cable", "tablet", "monitor", "keyboard", "mouse", "printer", "router"],
-        seoTitle: "Electronics Import Duty Calculator | Duty Decoder",
+        seoTitle: "Electronics Import Duty Calculator | DutyDecoder",
         seoDescription: "Calculate import duties for electronics, phones, laptops, and IT hardware. FCC, RoHS, and WEEE compliance covered."
     },
     energy: {
@@ -54,7 +54,7 @@ const CATEGORY_META: Record<string, {
         icon: "☀️",
         desc: "Manage the volatile tariff landscape surrounding solar panels, inverters, and heavy energy infrastructure. Stay ahead of Anti-Dumping and Countervailing Duties.",
         keywords: ["solar", "inverter", "turbine", "generator", "panel", "wind", "transformer", "motor", "pump", "compressor", "photovoltaic"],
-        seoTitle: "Solar & Energy Import Duty Calculator | Duty Decoder",
+        seoTitle: "Solar & Energy Import Duty Calculator | DutyDecoder",
         seoDescription: "Calculate import duties for solar panels, inverters, turbines, and energy equipment. Section 301 and AD/CVD compliance tools."
     },
     textiles: {
@@ -63,7 +63,7 @@ const CATEGORY_META: Record<string, {
         icon: "👕",
         desc: "Master the complexities of fabric classification, origin marking requirements, and safety standards for wearing apparel in global markets.",
         keywords: ["shirt", "shoe", "cotton", "leather", "silk", "jacket", "dress", "jeans", "fabric", "wool", "polyester", "trouser", "coat", "sweater", "sock", "underwear", "scarf", "glove", "hat", "bag", "handbag"],
-        seoTitle: "Textiles & Apparel Import Duty Calculator | Duty Decoder",
+        seoTitle: "Textiles & Apparel Import Duty Calculator | DutyDecoder",
         seoDescription: "Calculate import duties for clothing, shoes, leather goods, and fabrics. Quota limits and CPSC compliance included."
     },
     food: {
@@ -72,7 +72,7 @@ const CATEGORY_META: Record<string, {
         icon: "🌾",
         desc: "Navigate food safety regulations, phytosanitary certificates, and agricultural trade barriers. Calculate exact duties for raw commodities, processed foods, and beverages.",
         keywords: ["food", "grain", "rice", "wheat", "fruit", "vegetable", "meat", "fish", "dairy", "cheese", "milk", "chocolate", "coffee", "tea", "spice", "sugar", "flour", "oil", "honey", "wine", "beer", "juice", "seed", "fertilizer"],
-        seoTitle: "Food & Agriculture Import Duty Calculator | Duty Decoder",
+        seoTitle: "Food & Agriculture Import Duty Calculator | DutyDecoder",
         seoDescription: "Calculate import duties for food products, agricultural goods, and beverages. USDA and phytosanitary compliance covered."
     },
     automotive: {
@@ -81,7 +81,7 @@ const CATEGORY_META: Record<string, {
         icon: "🚗",
         desc: "Calculate import duties for vehicles, spare parts, and automotive components. Understand emissions standards, safety certifications, and country-specific vehicle import rules.",
         keywords: ["car", "vehicle", "tire", "brake", "engine", "automotive", "truck", "motorcycle", "bicycle", "wheel", "exhaust", "bumper", "windshield", "spark plug", "transmission", "clutch"],
-        seoTitle: "Automotive Import Duty Calculator | Duty Decoder",
+        seoTitle: "Automotive Import Duty Calculator | DutyDecoder",
         seoDescription: "Calculate import duties for cars, auto parts, tires, and vehicle components. NHTSA and EU type approval compliance."
     },
     industrial: {
@@ -90,7 +90,7 @@ const CATEGORY_META: Record<string, {
         icon: "⚙️",
         desc: "Calculate exact import costs for heavy machinery, industrial tools, metal products, and manufacturing equipment. Understand certification requirements across global markets.",
         keywords: ["machine", "machinery", "valve", "pipe", "steel", "iron", "metal", "aluminum", "copper", "bearing", "bolt", "nut", "screw", "welding", "crane", "forklift", "conveyor", "hydraulic", "pneumatic", "tool"],
-        seoTitle: "Industrial Machinery Import Duty Calculator | Duty Decoder",
+        seoTitle: "Industrial Machinery Import Duty Calculator | DutyDecoder",
         seoDescription: "Calculate import duties for industrial machinery, steel, metals, and manufacturing equipment. CE marking and UL certification covered."
     },
     chemicals: {
@@ -99,7 +99,7 @@ const CATEGORY_META: Record<string, {
         icon: "🧪",
         desc: "Navigate hazardous materials regulations, REACH registration, and cosmetics safety data for chemical imports. Calculate duties for polymers, resins, paints, and specialty chemicals.",
         keywords: ["chemical", "plastic", "resin", "polymer", "adhesive", "paint", "coating", "solvent", "acid", "rubber", "silicone", "pigment", "ink", "detergent", "soap", "cosmetic", "fragrance", "perfume"],
-        seoTitle: "Chemicals & Plastics Import Duty Calculator | Duty Decoder",
+        seoTitle: "Chemicals & Plastics Import Duty Calculator | DutyDecoder",
         seoDescription: "Calculate import duties for chemicals, plastics, resins, and cosmetics. REACH and TSCA compliance tools."
     }
 };

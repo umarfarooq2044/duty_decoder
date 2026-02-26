@@ -4,7 +4,7 @@ import { HSCodeFinderWidget } from "@/components/HSCodeFinderWidget";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "HS Code Finder — Free AI Harmonized System Search 2026 | Duty Decoder",
+    title: "HS Code Finder — Free AI Harmonized System Search 2026 | DutyDecoder",
     description: "Instantly find the correct HS code for any product with our free AI-powered classification engine. Get accurate tariff codes, confidence scores, and 2026 duty rates.",
     alternates: { canonical: "/hs-code-finder/" },
     keywords: [

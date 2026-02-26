@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Privacy Policy | Duty Decoder",
-    description: "Privacy Policy for Duty Decoder — how we collect, use, and protect your data when using our import duty calculator and trade compliance tools.",
+    title: "Privacy Policy | DutyDecoder",
+    description: "Privacy Policy for DutyDecoder — how we collect, use, and protect your data when using our import duty calculator and trade compliance tools.",
     alternates: { canonical: "/privacy/" }
 };
 
@@ -23,7 +23,7 @@ export default function PrivacyPage() {
             <section style={sectionStyle}>
                 <h2 style={headingStyle}>1. Information We Collect</h2>
                 <p style={paraStyle}>
-                    <strong>Usage Data:</strong> When you use Duty Decoder, we collect information about the product descriptions, origin countries, and destination countries you enter into our calculators. This information is used to provide accurate landed cost calculations and is stored to generate result pages that help other users.
+                    <strong>Usage Data:</strong> When you use DutyDecoder, we collect information about the product descriptions, origin countries, and destination countries you enter into our calculators. This information is used to provide accurate landed cost calculations and is stored to generate result pages that help other users.
                 </p>
                 <p style={paraStyle}>
                     <strong>Technical Data:</strong> We automatically collect your IP address, browser type, operating system, referring URLs, and pages visited. This data is used solely for analytics and service improvement.

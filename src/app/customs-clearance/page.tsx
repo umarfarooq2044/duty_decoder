@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Customs Clearance Explained — Process, Documents & Timelines 2026 | Duty Decoder",
+    title: "Customs Clearance Explained — Process, Documents & Timelines 2026 | DutyDecoder",
     description: "Step-by-step customs clearance guide: how goods clear customs, required documents, customs broker role, inspection procedures, and how to avoid costly delays at the border.",
     alternates: { canonical: "/customs-clearance/" },
     keywords: ["customs clearance", "customs clearance process", "how to clear customs", "customs broker", "customs inspection", "customs declaration", "import clearance", "border clearance 2026"],

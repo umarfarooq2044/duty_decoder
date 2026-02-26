@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Terms of Service | Duty Decoder",
-    description: "Terms of Service for Duty Decoder — rules and conditions governing your use of our import duty calculator and trade compliance platform.",
+    title: "Terms of Service | DutyDecoder",
+    description: "Terms of Service for DutyDecoder — rules and conditions governing your use of our import duty calculator and trade compliance platform.",
     alternates: { canonical: "/terms/" }
 };
 
@@ -23,21 +23,21 @@ export default function TermsPage() {
             <section style={sectionStyle}>
                 <h2 style={headingStyle}>1. Acceptance of Terms</h2>
                 <p style={paraStyle}>
-                    By accessing or using Duty Decoder (&ldquo;the Service&rdquo;), you agree to be bound by these Terms of Service. If you do not agree to these terms, you may not use the Service. These terms apply to all visitors, users, and others who access our import duty calculators, HS code classification tools, and trade compliance content.
+                    By accessing or using DutyDecoder (&ldquo;the Service&rdquo;), you agree to be bound by these Terms of Service. If you do not agree to these terms, you may not use the Service. These terms apply to all visitors, users, and others who access our import duty calculators, HS code classification tools, and trade compliance content.
                 </p>
             </section>
 
             <section style={sectionStyle}>
                 <h2 style={headingStyle}>2. Service Description</h2>
                 <p style={paraStyle}>
-                    Duty Decoder provides AI-powered import duty calculations, HS code classification, and landed cost estimates. Our tools are designed for informational purposes only. While we strive for accuracy using current tariff schedules and trade regulations, our calculations are <strong>estimates and should not be treated as official customs assessments</strong>.
+                    DutyDecoder provides AI-powered import duty calculations, HS code classification, and landed cost estimates. Our tools are designed for informational purposes only. While we strive for accuracy using current tariff schedules and trade regulations, our calculations are <strong>estimates and should not be treated as official customs assessments</strong>.
                 </p>
             </section>
 
             <section style={sectionStyle}>
                 <h2 style={headingStyle}>3. Accuracy & Limitations</h2>
                 <p style={paraStyle}>
-                    Import duty rates, HS code classifications, and compliance regulations are subject to frequent changes by government authorities. Duty Decoder makes no warranty or guarantee that the information provided is current, complete, or accurate. Users should always verify duty calculations with a licensed customs broker or the relevant government customs authority before making financial decisions.
+                    Import duty rates, HS code classifications, and compliance regulations are subject to frequent changes by government authorities. DutyDecoder makes no warranty or guarantee that the information provided is current, complete, or accurate. Users should always verify duty calculations with a licensed customs broker or the relevant government customs authority before making financial decisions.
                 </p>
             </section>
 
@@ -51,14 +51,14 @@ export default function TermsPage() {
             <section style={sectionStyle}>
                 <h2 style={headingStyle}>5. Intellectual Property</h2>
                 <p style={paraStyle}>
-                    All content on Duty Decoder, including text, calculations, guides, classifications, UI design, and codebase, is the property of Duty Decoder or its licensors. You may not reproduce, distribute, or create derivative works from our content without explicit written permission.
+                    All content on DutyDecoder, including text, calculations, guides, classifications, UI design, and codebase, is the property of DutyDecoder or its licensors. You may not reproduce, distribute, or create derivative works from our content without explicit written permission.
                 </p>
             </section>
 
             <section style={sectionStyle}>
                 <h2 style={headingStyle}>6. Limitation of Liability</h2>
                 <p style={paraStyle}>
-                    IN NO EVENT SHALL DUTY DECODER, ITS OPERATORS, OR AFFILIATES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING FROM YOUR USE OF THE SERVICE. This includes, without limitation, damages from incorrect duty calculations, misclassified HS codes, or reliance on any information provided by the Service.
+                    IN NO EVENT SHALL DutyDecoder, ITS OPERATORS, OR AFFILIATES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING FROM YOUR USE OF THE SERVICE. This includes, without limitation, damages from incorrect duty calculations, misclassified HS codes, or reliance on any information provided by the Service.
                 </p>
             </section>
 

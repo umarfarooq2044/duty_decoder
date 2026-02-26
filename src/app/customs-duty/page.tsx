@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Customs Duty Explained — Assessment, Tariff Schedules & Binding Rulings 2026 | Duty Decoder",
+    title: "Customs Duty Explained — Assessment, Tariff Schedules & Binding Rulings 2026 | DutyDecoder",
     description: "How customs duty is assessed: tariff schedules, customs valuation methods, binding rulings, anti-dumping duties, and the full duty assessment lifecycle from classification to payment.",
     alternates: { canonical: "/customs-duty/" },
     keywords: ["customs duty", "customs duty assessment", "tariff schedule", "binding tariff ruling", "customs valuation", "anti-dumping duty", "countervailing duty", "customs duty 2026"],
