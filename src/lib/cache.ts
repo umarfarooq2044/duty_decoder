@@ -123,7 +123,7 @@ export const getCachedLandedCostBySlug = unstable_cache(
     },
     ["landed-cost-slug"],
     {
-        revalidate: 604800, // 7 days
+        revalidate: 300, // 5 minutes — allows background AI content to appear quickly
         tags: ["landed-costs"],
     }
 );

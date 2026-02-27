@@ -1141,7 +1141,33 @@ select.form-control {
     display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    white-space: nowrap;
+    white-space: normal;
+    font-size: 0.85rem;
+  }
+
+  /* Pillar page article content: prevent overflow */
+  .content-sidebar-grid article {
+    overflow-x: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .content-sidebar-grid article section {
+    overflow-x: hidden;
+  }
+
+  /* Inline HTML content: constrain widths */
+  .content-sidebar-grid article div,
+  .content-sidebar-grid article ul,
+  .content-sidebar-grid article p {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  /* Border-left sections: reduce padding on mobile */
+  .content-sidebar-grid article div[style*="border-left"] {
+    padding-left: 1rem !important;
   }
 
   /* Print button hide on mobile */
@@ -1161,10 +1187,17 @@ select.form-control {
     padding-top: 64px !important;
   }
 
+  /* Prevent any horizontal overflow */
+  body {
+    overflow-x: hidden;
+  }
+
   /* Tighten padding */
   main {
     padding-left: 0.75rem !important;
     padding-right: 0.75rem !important;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 
   /* Hero headings scale down */
@@ -1172,6 +1205,43 @@ select.form-control {
     font-size: clamp(1.25rem, 5vw, 2rem) !important;
     word-wrap: break-word;
     overflow-wrap: break-word;
+  }
+
+  h2 {
+    font-size: clamp(1.1rem, 4vw, 1.5rem) !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  h3 {
+    font-size: clamp(0.95rem, 3.5vw, 1.15rem) !important;
+  }
+
+  /* Pillar page sections: tighter spacing */
+  .content-sidebar-grid article section {
+    padding-bottom: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Header card responsive */
+  header[style*="border-radius"] {
+    padding: 1.25rem 1rem !important;
+    border-radius: 12px !important;
+  }
+
+  /* CTA banner responsive */
+  div[role="banner"] {
+    padding: 1.5rem 1rem !important;
+    border-radius: 12px !important;
+  }
+
+  div[role="banner"] h2 {
+    font-size: 1.25rem !important;
+  }
+
+  div[role="banner"] a {
+    padding: 0.75rem 1.5rem !important;
+    font-size: 1rem !important;
   }
 
   /* Submit button full width */
@@ -1207,6 +1277,15 @@ select.form-control {
   /* FAQ details: reduce padding */
   details {
     padding: 0.75rem 1rem !important;
+  }
+
+  /* Tables: make cells wrap text */
+  td,
+  th {
+    white-space: normal !important;
+    word-wrap: break-word;
+    padding: 0.5rem !important;
+    font-size: 0.8rem !important;
   }
 }
 
