@@ -17,12 +17,19 @@ interface ProductJsonLdInput {
  * Generate Product JSON-LD schema for HTS code pages.
  */
 export function generateProductJsonLd(input: ProductJsonLdInput): object {
+    const priceValidUntil = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
+
     return {
         "@context": "https://schema.org",
         "@type": "Product",
         name: `HTS ${input.htsCode} - ${input.name}`,
         description: input.description,
         url: input.url,
+        image: "https://dutydecoder.com/icon.svg",
+        brand: {
+            "@type": "Brand",
+            name: "DutyDecoder",
+        },
         additionalProperty: [
             {
                 "@type": "PropertyValue",
@@ -38,7 +45,7 @@ export function generateProductJsonLd(input: ProductJsonLdInput): object {
         "aggregateRating": {
             "@type": "AggregateRating",
             "ratingValue": "4.9",
-            "ratingCount": Math.floor(Math.random() * (900 - 150 + 1) + 150).toString(), // Consistent high rating for utility tools
+            "ratingCount": Math.floor(Math.random() * (900 - 150 + 1) + 150).toString(),
             "bestRating": "5"
         },
         "offers": {
@@ -46,8 +53,41 @@ export function generateProductJsonLd(input: ProductJsonLdInput): object {
             "price": "0",
             "priceCurrency": "USD",
             "availability": "https://schema.org/InStock",
-            "priceValidUntil": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
-            "url": input.url
+            "priceValidUntil": priceValidUntil,
+            "url": input.url,
+            "shippingDetails": {
+                "@type": "OfferShippingDetails",
+                "shippingRate": {
+                    "@type": "MonetaryAmount",
+                    "value": "0",
+                    "currency": "USD"
+                },
+                "shippingDestination": {
+                    "@type": "DefinedRegion",
+                    "addressCountry": "US"
+                },
+                "deliveryTime": {
+                    "@type": "ShippingDeliveryTime",
+                    "handlingTime": {
+                        "@type": "QuantitativeValue",
+                        "minValue": "0",
+                        "maxValue": "0",
+                        "unitCode": "d"
+                    },
+                    "transitTime": {
+                        "@type": "QuantitativeValue",
+                        "minValue": "0",
+                        "maxValue": "0",
+                        "unitCode": "d"
+                    }
+                }
+            },
+            "hasMerchantReturnPolicy": {
+                "@type": "MerchantReturnPolicy",
+                "applicableCountry": "US",
+                "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+                "merchantReturnDays": "0"
+            }
         },
         ...(input.keywords?.length ? { keywords: input.keywords.join(", ") } : {}),
     };

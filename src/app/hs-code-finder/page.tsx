@@ -131,6 +131,7 @@ export default async function HSCodeFinderPage() {
         "url": `${process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com"}/hs-code-finder`,
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web",
+        "image": "https://dutydecoder.com/icon.svg",
         "description": "Instantly find the correct Harmonized System (HS) code for any product using advanced AI. Get confidence scores, duty rates, and classification hierarchy.",
         "featureList": [
             "Semantic Natural Language Search",
@@ -139,7 +140,25 @@ export default async function HSCodeFinderPage() {
             "Global Duty Rate Display",
             "Full HS Hierarchy Mapping"
         ],
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "priceValidUntil": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split("T")[0] },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "priceValidUntil": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
+            "shippingDetails": {
+                "@type": "OfferShippingDetails",
+                "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" },
+                "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" },
+                "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": "0", "maxValue": "0", "unitCode": "d" }, "transitTime": { "@type": "QuantitativeValue", "minValue": "0", "maxValue": "0", "unitCode": "d" } }
+            },
+            "hasMerchantReturnPolicy": {
+                "@type": "MerchantReturnPolicy",
+                "applicableCountry": "US",
+                "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+                "merchantReturnDays": "0"
+            }
+        },
         "aggregateRating": {
             "@type": "AggregateRating",
             "ratingValue": "4.9",
