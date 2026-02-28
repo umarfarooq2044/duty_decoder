@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { randomUUID as uuidv4 } from "crypto";
 import Decimal from "decimal.js";
 import { LandedCostRequestSchema } from "@/schemas/landed-cost";
@@ -557,8 +557,15 @@ Return ONLY JSON. No explanation.`
         if (saveError) {
             console.error("[Landed Cost] Save error:", saveError);
         } else if (saved) {
-            // TRIGGER BACKGROUND AI SEEDING (Fire-and-forget, non-blocking)
-            generateSEOInBackground(saved.id, shortProductName, originName, destName).catch(console.error);
+            // TRIGGER BACKGROUND AI SEEDING
+            // Use after() so Vercel keeps the function alive after responding
+            after(async () => {
+                try {
+                    await generateSEOInBackground(saved.id, shortProductName, originName, destName);
+                } catch (err) {
+                    console.error('[Background AI] after() error:', err);
+                }
+            });
         }
 
         return NextResponse.json({
