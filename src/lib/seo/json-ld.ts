@@ -46,6 +46,7 @@ export function generateProductJsonLd(input: ProductJsonLdInput): object {
             "price": "0",
             "priceCurrency": "USD",
             "availability": "https://schema.org/InStock",
+            "priceValidUntil": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
             "url": input.url
         },
         ...(input.keywords?.length ? { keywords: input.keywords.join(", ") } : {}),

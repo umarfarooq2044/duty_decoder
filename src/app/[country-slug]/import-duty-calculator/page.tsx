@@ -218,7 +218,7 @@ export default async function CountryCalculatorPage({ params }: PageProps) {
             "De Minimis Threshold Checks",
             "Real-time Currency Conversion"
         ],
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "priceValidUntil": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split("T")[0] },
     };
 
     const faqJsonLd = uniqueFaqs.length > 0 ? {

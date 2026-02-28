@@ -76,7 +76,7 @@ export default async function HomePage() {
             "Global VAT/GST Rates",
             "Permanent Shareable Reports"
         ],
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "priceValidUntil": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split("T")[0] },
         "aggregateRating": {
             "@type": "AggregateRating",
             "ratingValue": "4.9",

@@ -254,7 +254,7 @@ Every calculation generates a shareable URL, a printer-friendly report, and a pe
             "Shipping & Insurance Cost Inclusion",
             `${totalRoutes.toLocaleString()}+ Pre-Calculated Trade Routes`,
         ],
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "priceValidUntil": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split("T")[0] },
         "aggregateRating": {
             "@type": "AggregateRating",
             "ratingValue": "4.8",

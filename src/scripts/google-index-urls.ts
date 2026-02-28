@@ -20,7 +20,7 @@ const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET!;
 const REDIRECT_URI = "http://localhost:3939/oauth2callback";
 const BASE_URL = "https://dutydecoder.com";
 
-const SKIP = 210;       // Already submitted yesterday
+const SKIP = 429;       // Already submitted (210 + 200 + 19)
 const DAILY_LIMIT = 200; // Google Indexing API daily quota
 
 // ── Collect all static URLs ──
