@@ -164,7 +164,7 @@ export default function ImportDutyPage() {
                         <div role="banner" style={{ margin: "3rem 0", background: "linear-gradient(135deg, var(--accent), #6366f1)", borderRadius: "16px", padding: "2.5rem", textAlign: "center", boxShadow: "0 10px 30px rgba(99,102,241,0.15)" }}>
                             <h2 style={{ fontSize: "1.75rem", fontWeight: 800, color: "#fff", margin: "0 0 0.75rem" }}>Calculate Your Import Duty Now</h2>
                             <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.85)", margin: "0 0 1.5rem" }}>Get an exact breakdown of duties, taxes, and fees for any product across 50+ countries.</p>
-                            <Link href="/calculate/" style={{ display: "inline-block", background: "#fff", color: "var(--accent)", fontWeight: 700, padding: "1rem 2.5rem", borderRadius: "8px", textDecoration: "none", fontSize: "1.1rem" }}>Open Calculator →</Link>
+                            <Link href="/calculate/" style={{ display: "inline-block", background: "white", color: "black", fontWeight: 700, padding: "1rem 2.5rem", borderRadius: "8px", textDecoration: "none", fontSize: "1.1rem" }}>Open Calculator →</Link>
                         </div>
 
                         <section id="faq" aria-label="FAQ" style={{ marginBottom: "3rem" }}>

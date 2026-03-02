@@ -291,8 +291,8 @@ export default async function HSCodeFinderPage() {
                             </p>
                             <Link href="/calculate/" aria-label="Open global landed cost calculator" style={{
                                 display: "inline-block",
-                                background: "#fff",
-                                color: "var(--accent)",
+                                background: "white",
+                                color: "black",
                                 fontWeight: 700,
                                 padding: "1rem 2.5rem",
                                 borderRadius: "8px",
