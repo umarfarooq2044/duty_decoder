@@ -187,7 +187,6 @@ export default function MethodologyPage() {
                         <li><strong>Rate Updates:</strong> Tariff schedules are refreshed continuously. Major trade partners (US, EU, UK, Pakistan) receive rate updates within 48 hours of any gazette publication, SRO, or Federal Register notice. Other jurisdictions update on a weekly cadence.</li>
                         <li><strong>AI-Generated Codes:</strong> When our AI pipeline classifies a new product, the resulting HTS code and duty rate are automatically persisted to our database. This means the same product description will resolve instantly on future queries — no redundant AI inference. Over 5,000+ product-route combinations are already pre-classified.</li>
                         <li><strong>Compliance Rules:</strong> Country-specific rules (handling fees, de minimis thresholds, disclaimer text) are stored as compliance policies in our database and cached with 24-hour TTL, ensuring rapid access without stale data.</li>
-                        <li><strong>SEO Content Generation:</strong> For every new calculation, our Trade Compliance Advisor AI generates deep, trade-lane-specific content — compliance barriers, FTA eligibility, document requirements — in the background. This content enriches the report page within minutes of the first calculation.</li>
                     </ul>
                 </div>
             </section>

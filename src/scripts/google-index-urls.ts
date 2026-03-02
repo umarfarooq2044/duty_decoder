@@ -1,10 +1,9 @@
 /**
- * Google Indexing API — Submit remaining URLs (skip first 210 already submitted)
+ * Google Indexing API — Submit remaining 94 static + dynamic calculate URLs
  * 
- * Usage:
- *   npx tsx src/scripts/google-index-urls.ts
+ * Usage: npx tsx src/scripts/google-index-urls.ts
  * 
- * Requires GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in .env.local
+ * Requires GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET in .env.local
  */
 
 import * as dotenv from 'dotenv';
@@ -13,6 +12,7 @@ dotenv.config({ path: '.env.local' });
 import { google } from "googleapis";
 import http from "http";
 import open from "open";
+import { createClient } from "@supabase/supabase-js";
 import { COUNTRIES } from "../lib/countries";
 
 const CLIENT_ID = process.env.GOOGLE_CLIENT_ID!;
@@ -20,11 +20,12 @@ const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET!;
 const REDIRECT_URI = "http://localhost:3939/oauth2callback";
 const BASE_URL = "https://dutydecoder.com";
 
-const SKIP = 429;       // Already submitted (210 + 200 + 19)
-const DAILY_LIMIT = 200; // Google Indexing API daily quota
+const STATIC_SKIP = 523;  // All static URLs submitted (429 + 94 on Mar 2)
+const DYNAMIC_SKIP = 115; // Dynamic URLs already submitted (Mar 2 batch)
+const TOTAL_LIMIT = 210;  // Google daily quota
 
-// ── Collect all static URLs ──
-function getAllStaticUrls(): string[] {
+// ── Collect remaining static URLs ──
+function getRemainingStaticUrls(): string[] {
     const urls: string[] = [];
 
     const topPages = [
@@ -51,13 +52,46 @@ function getAllStaticUrls(): string[] {
         }
     }
 
+    // Skip already-submitted static URLs
+    return urls.slice(STATIC_SKIP);
+}
+
+// ── Fetch dynamic /calculate/ slugs from Supabase ──
+async function getDynamicCalculateUrls(): Promise<string[]> {
+    const supabase = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
+
+    const urls: string[] = [];
+    let offset = 0;
+    const pageSize = 1000;
+
+    while (true) {
+        const { data, error } = await supabase
+            .from("landed_costs")
+            .select("slug")
+            .not("slug", "is", null)
+            .order("created_at", { ascending: false })
+            .range(offset, offset + pageSize - 1);
+
+        if (error) { console.error("Supabase error:", error.message); break; }
+        if (!data || data.length === 0) break;
+
+        for (const row of data) {
+            if (row.slug) urls.push(`${BASE_URL}/calculate/${row.slug}/`);
+        }
+
+        offset += pageSize;
+        if (data.length < pageSize) break;
+    }
+
     return urls;
 }
 
 // ── OAuth2 flow ──
 async function getAccessToken(): Promise<string> {
     const oauth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-
     const authUrl = oauth2Client.generateAuthUrl({
         access_type: "offline",
         scope: ["https://www.googleapis.com/auth/indexing"],
@@ -69,18 +103,13 @@ async function getAccessToken(): Promise<string> {
                 const url = new URL(req.url!, `http://localhost:3939`);
                 const code = url.searchParams.get("code");
                 if (!code) { res.writeHead(400); res.end("No code"); return; }
-
                 const { tokens } = await oauth2Client.getToken(code);
                 res.writeHead(200, { "Content-Type": "text/html" });
-                res.end(`<html><body style="font-family:system-ui;text-align:center;padding:3rem;background:#0a0a0a;color:#fff"><h1 style="color:#4ade80">✅ Authorized!</h1><p>Close this tab. Script is running...</p></body></html>`);
+                res.end(`<html><body style="font-family:system-ui;text-align:center;padding:3rem;background:#0a0a0a;color:#fff"><h1 style="color:#4ade80">✅ Authorized!</h1><p>Close this tab.</p></body></html>`);
                 server.close();
                 resolve(tokens.access_token!);
-            } catch (err) {
-                res.writeHead(500); res.end(`Error: ${err}`);
-                reject(err);
-            }
+            } catch (err) { res.writeHead(500); res.end(`${err}`); reject(err); }
         });
-
         server.listen(3939, () => {
             console.log("\n🔐 Opening browser for Google OAuth2...\n");
             open(authUrl);
@@ -88,7 +117,7 @@ async function getAccessToken(): Promise<string> {
     });
 }
 
-// ── Submit single URL ──
+// ── Submit URL ──
 async function submitUrl(token: string, url: string): Promise<boolean> {
     try {
         const res = await fetch("https://indexing.googleapis.com/v3/urlNotifications:publish", {
@@ -97,9 +126,7 @@ async function submitUrl(token: string, url: string): Promise<boolean> {
             body: JSON.stringify({ url, type: "URL_UPDATED" }),
         });
         return res.ok;
-    } catch {
-        return false;
-    }
+    } catch { return false; }
 }
 
 // ── Main ──
@@ -109,15 +136,23 @@ async function main() {
         process.exit(1);
     }
 
-    const allUrls = getAllStaticUrls();
-    const remaining = allUrls.slice(SKIP);
-    const batch = remaining.slice(0, DAILY_LIMIT);
+    console.log(`\n📋 Google Indexing API — Remaining Static + Dynamic URLs`);
 
-    console.log(`\n📋 Google Indexing API — Remaining URLs`);
-    console.log(`   Total URLs: ${allUrls.length}`);
-    console.log(`   Already submitted: ${SKIP}`);
-    console.log(`   Remaining: ${remaining.length}`);
-    console.log(`   Today's batch: ${batch.length} (limit: ${DAILY_LIMIT})`);
+    // Get remaining static URLs
+    const staticUrls = getRemainingStaticUrls();
+    console.log(`   Remaining static: ${staticUrls.length}`);
+
+    // Get dynamic calculate URLs from Supabase
+    console.log(`   Fetching dynamic /calculate/ URLs from Supabase...`);
+    const dynamicUrls = await getDynamicCalculateUrls();
+    console.log(`   Dynamic calculate pages: ${dynamicUrls.length}`);
+
+    // Combine: static first, then dynamic (skipping already-submitted)
+    const allUrls = [...staticUrls, ...dynamicUrls.slice(DYNAMIC_SKIP)];
+    const batch = allUrls.slice(0, TOTAL_LIMIT);
+
+    console.log(`   Combined total: ${allUrls.length}`);
+    console.log(`   Today's batch: ${batch.length} (limit: ${TOTAL_LIMIT})\n`);
 
     const token = await getAccessToken();
     console.log(`\n🔑 Token obtained. Submitting ${batch.length} URLs...\n`);
@@ -137,17 +172,19 @@ async function main() {
         if (i + 5 < batch.length) await new Promise(r => setTimeout(r, 1200));
     }
 
-    console.log(`\n\n✅ Done!`);
-    console.log(`   Submitted: ${success}`);
+    console.log(`\n\n${"═".repeat(50)}`);
+    console.log(`✅ Done!`);
+    console.log(`   Static submitted: ${Math.min(staticUrls.length, success)}`);
+    console.log(`   Dynamic submitted: ${Math.max(0, success - staticUrls.length)}`);
+    console.log(`   Total success: ${success}`);
     console.log(`   Failed: ${failed}`);
-    console.log(`   Total indexed: ${SKIP + success}/${allUrls.length}`);
 
-    if (remaining.length > DAILY_LIMIT) {
-        console.log(`\n⚠️  ${remaining.length - DAILY_LIMIT} URLs still remaining.`);
-        console.log(`   Update SKIP to ${SKIP + success} and run again tomorrow.\n`);
+    if (allUrls.length > TOTAL_LIMIT) {
+        console.log(`\n⚠️  ${allUrls.length - TOTAL_LIMIT} URLs remaining. Run again tomorrow.`);
     } else {
-        console.log(`\n🎉 All URLs submitted!\n`);
+        console.log(`\n🎉 All URLs submitted!`);
     }
+    console.log();
 }
 
 main().catch(console.error);
