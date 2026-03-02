@@ -16,7 +16,20 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
     const { data } = await supabase.from("country_hubs").select("restrictions_page").eq("country_slug", slug).maybeSingle();
     const pageData = data?.restrictions_page as any;
 
-    return { title: pageData?.title, description: pageData?.meta_description };
+    const title = pageData?.title || `${country.name} import restrictions`;
+    const description = pageData?.meta_description || `Comprehensive import restrictions guide for ${country.name}.`;
+
+    return {
+        title,
+        description,
+        alternates: { canonical: `/${slug}/import-restrictions/` },
+        openGraph: {
+            title,
+            description,
+            url: `/${slug}/import-restrictions`,
+            type: "article",
+        }
+    };
 }
 
 export default async function Page({ params }: any) {

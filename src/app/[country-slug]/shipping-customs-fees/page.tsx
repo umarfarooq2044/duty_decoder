@@ -16,7 +16,20 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
     const { data } = await supabase.from("country_hubs").select("shipping_fees_page").eq("country_slug", slug).maybeSingle();
     const pageData = data?.shipping_fees_page as any;
 
-    return { title: pageData?.title, description: pageData?.meta_description };
+    const title = pageData?.title || `${country.name} shipping customs fees`;
+    const description = pageData?.meta_description || `Comprehensive shipping customs fees guide for ${country.name}.`;
+
+    return {
+        title,
+        description,
+        alternates: { canonical: `/${slug}/shipping-customs-fees/` },
+        openGraph: {
+            title,
+            description,
+            url: `/${slug}/shipping-customs-fees`,
+            type: "article",
+        }
+    };
 }
 
 export default async function Page({ params }: any) {

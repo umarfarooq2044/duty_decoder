@@ -107,8 +107,8 @@ export function CountrySupportPage({ slug, pageType, data }: SupportPageProps) {
                             </p>
                             <Link href={`/${slug}/import-duty-calculator`} aria-label={`Open ${country.name} import duty calculator`} style={{
                                 display: "inline-block",
-                                background: "#fff",
-                                color: "var(--accent)",
+                                background: "white",
+                                color: "black",
                                 fontWeight: 700,
                                 padding: "0.85rem 2rem",
                                 borderRadius: "8px",

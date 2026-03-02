@@ -16,7 +16,20 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
     const { data } = await supabase.from("country_hubs").select("import_duty_page").eq("country_slug", slug).maybeSingle();
     const pageData = data?.import_duty_page as any;
 
-    return { title: pageData?.title, description: pageData?.meta_description };
+    const title = pageData?.title || `${country.name} import duty`;
+    const description = pageData?.meta_description || `Comprehensive import duty guide for ${country.name}.`;
+
+    return {
+        title,
+        description,
+        alternates: { canonical: `/${slug}/import-duty/` },
+        openGraph: {
+            title,
+            description,
+            url: `/${slug}/import-duty`,
+            type: "article",
+        }
+    };
 }
 
 export default async function Page({ params }: any) {

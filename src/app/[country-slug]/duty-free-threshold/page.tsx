@@ -16,7 +16,20 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
     const { data } = await supabase.from("country_hubs").select("threshold_page").eq("country_slug", slug).maybeSingle();
     const pageData = data?.threshold_page as any;
 
-    return { title: pageData?.title, description: pageData?.meta_description };
+    const title = pageData?.title || `${country.name} duty free threshold`;
+    const description = pageData?.meta_description || `Comprehensive duty free threshold guide for ${country.name}.`;
+
+    return {
+        title,
+        description,
+        alternates: { canonical: `/${slug}/duty-free-threshold/` },
+        openGraph: {
+            title,
+            description,
+            url: `/${slug}/duty-free-threshold`,
+            type: "article",
+        }
+    };
 }
 
 export default async function Page({ params }: any) {

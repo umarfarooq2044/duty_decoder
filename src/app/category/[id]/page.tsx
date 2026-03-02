@@ -315,7 +315,7 @@ export default async function CategoryPage({
                                 Get exact landing costs for your {meta.title.toLowerCase()} imports.
                             </p>
                             <Link href="/calculate/" style={{
-                                display: "block", textAlign: "center", background: "var(--accent)", color: "#fff",
+                                display: "block", textAlign: "center", background: "white", color: "black",
                                 fontWeight: 600, padding: "0.75rem 1rem", borderRadius: "8px", textDecoration: "none", fontSize: "0.9rem",
                             }}>
                                 Open Calculator →

@@ -16,7 +16,20 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
     const { data } = await supabase.from("country_hubs").select("hs_code_page").eq("country_slug", slug).maybeSingle();
     const pageData = data?.hs_code_page as any;
 
-    return { title: pageData?.title, description: pageData?.meta_description };
+    const title = pageData?.title || `${country.name} hs code lookup`;
+    const description = pageData?.meta_description || `Comprehensive hs code lookup guide for ${country.name}.`;
+
+    return {
+        title,
+        description,
+        alternates: { canonical: `/${slug}/hs-code-lookup/` },
+        openGraph: {
+            title,
+            description,
+            url: `/${slug}/hs-code-lookup`,
+            type: "article",
+        }
+    };
 }
 
 export default async function Page({ params }: any) {
