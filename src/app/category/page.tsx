@@ -60,6 +60,20 @@ const CATEGORIES = [
         subtitle: "REACH, GHS Classification & TSCA",
         icon: "🧪",
         desc: "Navigate hazardous materials regulations, REACH registration, and cosmetics safety data for chemical imports. Calculate duties for polymers, resins, paints, and specialty chemicals.",
+    },
+    {
+        id: "luxury",
+        title: "Jewellery, Watches & Luxury Goods",
+        subtitle: "Hallmarking, Precious Metals & Customs Valuation",
+        icon: "💎",
+        desc: "Calculate import duties for precious metals, gemstones, fine jewellery, and luxury watches. Navigate hallmarking requirements, customs valuation rules, and country-specific luxury taxes.",
+    },
+    {
+        id: "home",
+        title: "Home, Garden & Lifestyle",
+        subtitle: "Product Safety, Labeling & Consumer Standards",
+        icon: "🏠",
+        desc: "Calculate import duties for home goods, furniture, kitchenware, toys, and lifestyle products. Understand product safety standards, labeling requirements, and consumer protection regulations.",
     }
 ];
 

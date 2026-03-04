@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getCachedLandedCostBySlug, getCachedComplianceRules } from "@/lib/cache";
+import { COUNTRY_BY_CODE } from "@/lib/countries";
 import { generateProductJsonLd, generateFaqJsonLd } from "@/lib/seo/json-ld";
 import type { LandedCostBreakdown, CostLineItem } from "@/schemas/landed-cost";
 import { TableOfContents } from "@/components/TableOfContents";
@@ -386,6 +387,15 @@ export default async function CalculatePage({ params }: PageProps) {
                                     </div>
                                 </section>
                             )}
+
+                            {/* ─── Related Resources (Internal Links) ─── */}
+                            <RelatedResources
+                                destCode={calculation.destination_country}
+                                originCode={calculation.origin_country}
+                                productDescription={calculation.product_description}
+                                countryLabel={countryLabel}
+                                originLabel={originLabel}
+                            />
                         </div>
 
                         <aside className="report-sidebar">
@@ -430,5 +440,130 @@ function CostRow({
                 {item.currency} {item.amount}
             </td>
         </tr>
+    );
+}
+
+// ============================================================
+// Related Resources Component (Internal Links for SEO)
+// ============================================================
+
+interface RelatedLink {
+    href: string;
+    emoji: string;
+    title: string;
+    description: string;
+}
+
+function RelatedResources({
+    destCode,
+    originCode,
+    productDescription,
+    countryLabel,
+    originLabel,
+}: {
+    destCode: string;
+    originCode: string;
+    productDescription: string;
+    countryLabel: string;
+    originLabel: string;
+}) {
+    const destCountry = COUNTRY_BY_CODE[destCode?.toUpperCase()];
+    const originCountry = COUNTRY_BY_CODE[originCode?.toUpperCase()];
+
+    const destSlug = destCountry?.slug;
+    const originSlug = originCountry?.slug;
+
+    const links: RelatedLink[] = [];
+
+    // Destination country links
+    if (destSlug) {
+        links.push(
+            { href: `/${destSlug}/`, emoji: "🌍", title: `${countryLabel} Import Guide`, description: `Complete import regulations, duty rates and customs info for ${countryLabel}.` },
+            { href: `/${destSlug}/import-duty-calculator/`, emoji: "🧮", title: `${countryLabel} Duty Calculator`, description: `Calculate import duties for any product shipped to ${countryLabel}.` },
+            { href: `/${destSlug}/import-duty/`, emoji: "💰", title: `${countryLabel} Import Duty Rates`, description: `Current import duty rates and tariff schedules for ${countryLabel}.` },
+            { href: `/${destSlug}/import-tax/`, emoji: "🧾", title: `${countryLabel} Import Tax (${destCountry?.vatLabel || 'VAT'})`, description: `${destCountry?.vatLabel || 'VAT'} rates and tax obligations when importing to ${countryLabel}.` },
+            { href: `/${destSlug}/customs-clearance/`, emoji: "🛃", title: `${countryLabel} Customs Clearance`, description: `Step-by-step customs clearance process for ${countryLabel} imports.` },
+            { href: `/${destSlug}/import-documents/`, emoji: "📄", title: `${countryLabel} Import Documents`, description: `Required documents for clearing customs in ${countryLabel}.` },
+            { href: `/${destSlug}/import-restrictions/`, emoji: "🚫", title: `${countryLabel} Import Restrictions`, description: `Prohibited and restricted items for import into ${countryLabel}.` },
+            { href: `/${destSlug}/duty-free-threshold/`, emoji: "🎁", title: `${countryLabel} Duty-Free Threshold`, description: `De minimis values and duty-free allowances for ${countryLabel}.` },
+            { href: `/${destSlug}/shipping-customs-fees/`, emoji: "🚢", title: `Shipping to ${countryLabel}`, description: `Shipping costs and customs handling fees for ${countryLabel}.` },
+        );
+    }
+
+    // Origin country link
+    if (originSlug && originSlug !== destSlug) {
+        links.push(
+            { href: `/${originSlug}/`, emoji: "📦", title: `Exporting from ${originLabel}`, description: `Trade regulations and export info for ${originLabel}.` },
+        );
+    }
+
+    // Category matching — link to matching category pages
+    const CATEGORY_MATCH: { id: string; icon: string; title: string; keywords: string[] }[] = [
+        { id: "medical", icon: "🏥", title: "Medical & Dental", keywords: ["surgery", "surgical", "medical", "dental", "x-ray", "syringe", "implant", "stethoscope", "catheter", "prosthetic", "wheelchair", "bandage", "pharmaceutical", "vaccine", "diagnostic", "scalpel", "defibrillator", "endoscope", "pacemaker", "ultrasound", "orthopedic", "dialysis", "fluoroscopy", "ophthalmic", "centrifuge", "glucose", "oximeter", "oxygen", "hearing aid", "bone graft", "hernia", "mri", "disinfectant", "microscope"] },
+        { id: "electronics", icon: "⚡", title: "Electronics & IT", keywords: ["computer", "phone", "laptop", "circuit", "battery", "led", "screen", "camera", "headphone", "earbuds", "charger", "cable", "tablet", "monitor", "keyboard", "mouse", "printer", "router", "light bulb", "lighting", "mobile", "power bank", "rectifier", "speaker", "drone", "console", "electronics"] },
+        { id: "energy", icon: "☀️", title: "Solar & Energy", keywords: ["solar", "inverter", "turbine", "generator", "panel", "wind", "transformer", "motor", "pump", "compressor", "photovoltaic", "renewable", "fan", "heater", "boiler", "condenser"] },
+        { id: "textiles", icon: "👕", title: "Textiles & Apparel", keywords: ["shirt", "shoe", "cotton", "leather", "silk", "jacket", "dress", "jeans", "fabric", "wool", "polyester", "trouser", "coat", "sweater", "sock", "underwear", "scarf", "glove", "hat", "bag", "handbag", "garment", "heel", "backpack", "umbrella", "woven", "knit", "linen", "nylon", "apparel"] },
+        { id: "food", icon: "🌾", title: "Food & Agriculture", keywords: ["food", "grain", "rice", "wheat", "fruit", "vegetable", "meat", "fish", "dairy", "cheese", "milk", "chocolate", "coffee", "tea", "spice", "sugar", "flour", "oil", "honey", "wine", "beer", "juice", "seed", "fertilizer", "vitamin", "supplement", "pet food", "multivitamin", "herb", "protein"] },
+        { id: "automotive", icon: "🚗", title: "Automotive & Parts", keywords: ["car", "vehicle", "tire", "brake", "engine", "automotive", "truck", "motorcycle", "bicycle", "wheel", "exhaust", "bumper", "windshield", "spark plug", "transmission", "clutch", "automobile", "intercooler", "tractor", "signal switch", "alternator", "radiator"] },
+        { id: "industrial", icon: "⚙️", title: "Industrial Machinery", keywords: ["machine", "machinery", "valve", "pipe", "steel", "iron", "metal", "aluminum", "copper", "bearing", "bolt", "nut", "screw", "welding", "crane", "forklift", "conveyor", "hydraulic", "pneumatic", "tool", "cnc", "mixer", "injection mold", "laser cutter", "pallet", "clamp", "wire", "wood", "saw", "drill", "lathe", "grinder"] },
+        { id: "chemicals", icon: "🧪", title: "Chemicals & Cosmetics", keywords: ["chemical", "plastic", "resin", "polymer", "adhesive", "paint", "coating", "solvent", "acid", "rubber", "silicone", "pigment", "ink", "detergent", "soap", "cosmetic", "fragrance", "perfume", "makeup", "naphtha", "wax", "dye", "bleach", "glycerin"] },
+        { id: "luxury", icon: "💎", title: "Jewellery & Luxury", keywords: ["jewellery", "jewelry", "watch", "watches", "silver", "gold", "diamond", "ring", "necklace", "bracelet", "figurine", "crystal", "gemstone", "pendant", "platinum", "pearl", "brooch", "cufflink"] },
+        { id: "home", icon: "🏠", title: "Home & Lifestyle", keywords: ["board game", "game", "toy", "furniture", "curtain", "carpet", "rug", "candle", "kitchenware", "cookware", "ceramic", "glass", "tableware", "decor", "pillow", "mattress", "stable", "lamp", "vase", "mirror", "clock", "basket", "blanket"] },
+    ];
+
+    const lowerDesc = productDescription.toLowerCase();
+    for (const cat of CATEGORY_MATCH) {
+        if (cat.keywords.some(kw => lowerDesc.includes(kw))) {
+            links.push({
+                href: `/category/${cat.id}/`,
+                emoji: cat.icon,
+                title: `${cat.title} Imports`,
+                description: `Browse all ${cat.title.toLowerCase()} import duty calculations and compliance guides.`,
+            });
+        }
+    }
+
+    // Global tool links
+    links.push(
+        { href: "/hs-code-finder/", emoji: "🔎", title: "HS Code Finder", description: "Search and find the correct HS/HTS code for any product." },
+        { href: "/hs-code-lookup/", emoji: "📋", title: "HS Code Lookup", description: "Look up tariff classifications and duty rates by HS code." },
+        { href: "/calculate/", emoji: "⚡", title: "Duty Calculator", description: "Calculate landed cost for any product to any country." },
+    );
+
+    return (
+        <section className="related-resources-section" style={{ marginTop: "3rem", marginBottom: "2rem" }}>
+            <h2 style={{ fontSize: "1.35rem", color: "var(--foreground)", marginBottom: "1.5rem", fontWeight: 700 }}>
+                📚 Related Import Resources
+            </h2>
+            <div style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+                gap: "1rem",
+            }}>
+                {links.map((link) => (
+                    <a
+                        key={link.href}
+                        href={link.href}
+                        className="glass-panel related-link-card"
+                        style={{
+                            display: "block",
+                            padding: "1.25rem",
+                            borderRadius: "var(--radius, 12px)",
+                            textDecoration: "none",
+                            color: "inherit",
+                            transition: "transform 0.15s ease, box-shadow 0.15s ease",
+                        }}
+                    >
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
+                            <span style={{ fontSize: "1.25rem" }}>{link.emoji}</span>
+                            <span style={{ fontSize: "0.95rem", fontWeight: 600, color: "var(--accent)" }}>{link.title}</span>
+                        </div>
+                        <p style={{ fontSize: "0.82rem", color: "var(--muted-foreground)", lineHeight: "1.5", margin: 0 }}>
+                            {link.description}
+                        </p>
+                    </a>
+                ))}
+            </div>
+        </section>
     );
 }

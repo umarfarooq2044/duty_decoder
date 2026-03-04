@@ -17,6 +17,8 @@ export async function generateStaticParams() {
         { id: "automotive" },
         { id: "industrial" },
         { id: "chemicals" },
+        { id: "luxury" },
+        { id: "home" },
     ];
 }
 
@@ -35,7 +37,7 @@ const CATEGORY_META: Record<string, {
         subtitle: "FDA, CE Marks, and Sterilization Regulations",
         icon: "🏥",
         desc: "Navigate complex regulatory frameworks for importing class I-III medical devices, surgical instruments, and PPE. Ensure your supply chain meets international health standards.",
-        keywords: ["surgery", "medical", "dental", "x-ray", "syringe", "implant", "stethoscope", "catheter", "prosthetic", "wheelchair", "bandage", "pharmaceutical", "vaccine", "diagnostic", "scalpel"],
+        keywords: ["surgery", "surgical", "medical", "dental", "x-ray", "syringe", "implant", "stethoscope", "catheter", "prosthetic", "wheelchair", "bandage", "pharmaceutical", "vaccine", "diagnostic", "scalpel", "defibrillator", "endoscope", "pacemaker", "ultrasound", "orthopedic", "dialysis", "fluoroscopy", "ophthalmic", "centrifuge", "glucose", "oximeter", "oxygen", "hearing aid", "bone graft", "hernia", "mri", "disinfectant", "microscope"],
         seoTitle: "Medical & Dental Import Duty Calculator | DutyDecoder",
         seoDescription: "Calculate import duties and landed costs for medical devices, dental equipment, and healthcare products. FDA, CE Mark, and WHO compliance tools."
     },
@@ -44,7 +46,7 @@ const CATEGORY_META: Record<string, {
         subtitle: "FCC, RoHS, and Battery Directives",
         icon: "⚡",
         desc: "Understand the intricate compliance landscape for consumer hardware, from lithium-ion transport requirements to e-waste directives across the US and EU.",
-        keywords: ["computer", "phone", "laptop", "circuit", "battery", "led", "screen", "camera", "headphone", "earbuds", "charger", "cable", "tablet", "monitor", "keyboard", "mouse", "printer", "router"],
+        keywords: ["computer", "phone", "laptop", "circuit", "battery", "led", "screen", "camera", "headphone", "earbuds", "charger", "cable", "tablet", "monitor", "keyboard", "mouse", "printer", "router", "light bulb", "lighting", "mobile", "power bank", "rectifier", "speaker", "drone", "console", "electronics"],
         seoTitle: "Electronics Import Duty Calculator | DutyDecoder",
         seoDescription: "Calculate import duties for electronics, phones, laptops, and IT hardware. FCC, RoHS, and WEEE compliance covered."
     },
@@ -53,7 +55,7 @@ const CATEGORY_META: Record<string, {
         subtitle: "Section 301 Tariffs, AD/CVD Compliance",
         icon: "☀️",
         desc: "Manage the volatile tariff landscape surrounding solar panels, inverters, and heavy energy infrastructure. Stay ahead of Anti-Dumping and Countervailing Duties.",
-        keywords: ["solar", "inverter", "turbine", "generator", "panel", "wind", "transformer", "motor", "pump", "compressor", "photovoltaic"],
+        keywords: ["solar", "inverter", "turbine", "generator", "panel", "wind", "transformer", "motor", "pump", "compressor", "photovoltaic", "renewable", "fan", "heater", "boiler", "condenser"],
         seoTitle: "Solar & Energy Import Duty Calculator | DutyDecoder",
         seoDescription: "Calculate import duties for solar panels, inverters, turbines, and energy equipment. Section 301 and AD/CVD compliance tools."
     },
@@ -62,7 +64,7 @@ const CATEGORY_META: Record<string, {
         subtitle: "Quota Limits & CPSC Standards",
         icon: "👕",
         desc: "Master the complexities of fabric classification, origin marking requirements, and safety standards for wearing apparel in global markets.",
-        keywords: ["shirt", "shoe", "cotton", "leather", "silk", "jacket", "dress", "jeans", "fabric", "wool", "polyester", "trouser", "coat", "sweater", "sock", "underwear", "scarf", "glove", "hat", "bag", "handbag"],
+        keywords: ["shirt", "shoe", "cotton", "leather", "silk", "jacket", "dress", "jeans", "fabric", "wool", "polyester", "trouser", "coat", "sweater", "sock", "underwear", "scarf", "glove", "hat", "bag", "handbag", "garment", "heel", "backpack", "umbrella", "woven", "knit", "linen", "nylon", "apparel"],
         seoTitle: "Textiles & Apparel Import Duty Calculator | DutyDecoder",
         seoDescription: "Calculate import duties for clothing, shoes, leather goods, and fabrics. Quota limits and CPSC compliance included."
     },
@@ -71,7 +73,7 @@ const CATEGORY_META: Record<string, {
         subtitle: "USDA, FDA & Phytosanitary Certificates",
         icon: "🌾",
         desc: "Navigate food safety regulations, phytosanitary certificates, and agricultural trade barriers. Calculate exact duties for raw commodities, processed foods, and beverages.",
-        keywords: ["food", "grain", "rice", "wheat", "fruit", "vegetable", "meat", "fish", "dairy", "cheese", "milk", "chocolate", "coffee", "tea", "spice", "sugar", "flour", "oil", "honey", "wine", "beer", "juice", "seed", "fertilizer"],
+        keywords: ["food", "grain", "rice", "wheat", "fruit", "vegetable", "meat", "fish", "dairy", "cheese", "milk", "chocolate", "coffee", "tea", "spice", "sugar", "flour", "oil", "honey", "wine", "beer", "juice", "seed", "fertilizer", "vitamin", "supplement", "pet food", "multivitamin", "herb", "protein"],
         seoTitle: "Food & Agriculture Import Duty Calculator | DutyDecoder",
         seoDescription: "Calculate import duties for food products, agricultural goods, and beverages. USDA and phytosanitary compliance covered."
     },
@@ -80,7 +82,7 @@ const CATEGORY_META: Record<string, {
         subtitle: "NHTSA, EU Type Approval & FMVSS",
         icon: "🚗",
         desc: "Calculate import duties for vehicles, spare parts, and automotive components. Understand emissions standards, safety certifications, and country-specific vehicle import rules.",
-        keywords: ["car", "vehicle", "tire", "brake", "engine", "automotive", "truck", "motorcycle", "bicycle", "wheel", "exhaust", "bumper", "windshield", "spark plug", "transmission", "clutch"],
+        keywords: ["car", "vehicle", "tire", "brake", "engine", "automotive", "truck", "motorcycle", "bicycle", "wheel", "exhaust", "bumper", "windshield", "spark plug", "transmission", "clutch", "automobile", "intercooler", "tractor", "signal switch", "alternator", "radiator"],
         seoTitle: "Automotive Import Duty Calculator | DutyDecoder",
         seoDescription: "Calculate import duties for cars, auto parts, tires, and vehicle components. NHTSA and EU type approval compliance."
     },
@@ -89,7 +91,7 @@ const CATEGORY_META: Record<string, {
         subtitle: "CE Marking, UL Certification & Pressure Vessel Codes",
         icon: "⚙️",
         desc: "Calculate exact import costs for heavy machinery, industrial tools, metal products, and manufacturing equipment. Understand certification requirements across global markets.",
-        keywords: ["machine", "machinery", "valve", "pipe", "steel", "iron", "metal", "aluminum", "copper", "bearing", "bolt", "nut", "screw", "welding", "crane", "forklift", "conveyor", "hydraulic", "pneumatic", "tool"],
+        keywords: ["machine", "machinery", "valve", "pipe", "steel", "iron", "metal", "aluminum", "copper", "bearing", "bolt", "nut", "screw", "welding", "crane", "forklift", "conveyor", "hydraulic", "pneumatic", "tool", "cnc", "mixer", "injection mold", "laser cutter", "pallet", "clamp", "wire", "wood", "saw", "drill", "lathe", "grinder"],
         seoTitle: "Industrial Machinery Import Duty Calculator | DutyDecoder",
         seoDescription: "Calculate import duties for industrial machinery, steel, metals, and manufacturing equipment. CE marking and UL certification covered."
     },
@@ -98,9 +100,27 @@ const CATEGORY_META: Record<string, {
         subtitle: "REACH, GHS Classification & TSCA",
         icon: "🧪",
         desc: "Navigate hazardous materials regulations, REACH registration, and cosmetics safety data for chemical imports. Calculate duties for polymers, resins, paints, and specialty chemicals.",
-        keywords: ["chemical", "plastic", "resin", "polymer", "adhesive", "paint", "coating", "solvent", "acid", "rubber", "silicone", "pigment", "ink", "detergent", "soap", "cosmetic", "fragrance", "perfume"],
+        keywords: ["chemical", "plastic", "resin", "polymer", "adhesive", "paint", "coating", "solvent", "acid", "rubber", "silicone", "pigment", "ink", "detergent", "soap", "cosmetic", "fragrance", "perfume", "makeup", "naphtha", "wax", "dye", "bleach", "glycerin"],
         seoTitle: "Chemicals & Plastics Import Duty Calculator | DutyDecoder",
         seoDescription: "Calculate import duties for chemicals, plastics, resins, and cosmetics. REACH and TSCA compliance tools."
+    },
+    luxury: {
+        title: "Jewellery, Watches & Luxury Goods",
+        subtitle: "Hallmarking, Precious Metals & Customs Valuation",
+        icon: "💎",
+        desc: "Calculate import duties for precious metals, gemstones, fine jewellery, and luxury watches. Navigate hallmarking requirements, customs valuation rules, and country-specific luxury taxes.",
+        keywords: ["jewellery", "jewelry", "watch", "watches", "silver", "gold", "diamond", "ring", "necklace", "bracelet", "figurine", "crystal", "gemstone", "pendant", "platinum", "pearl", "brooch", "cufflink"],
+        seoTitle: "Jewellery & Luxury Goods Import Duty Calculator | DutyDecoder",
+        seoDescription: "Calculate import duties for jewellery, watches, silver, gold, and luxury goods. Hallmarking and precious metals compliance covered."
+    },
+    home: {
+        title: "Home, Garden & Lifestyle",
+        subtitle: "Product Safety, Labeling & Consumer Standards",
+        icon: "🏠",
+        desc: "Calculate import duties for home goods, furniture, kitchenware, toys, and lifestyle products. Understand product safety standards, labeling requirements, and consumer protection regulations.",
+        keywords: ["board game", "game", "toy", "furniture", "curtain", "carpet", "rug", "candle", "kitchenware", "cookware", "ceramic", "glass", "tableware", "decor", "pillow", "mattress", "stable", "lamp", "vase", "mirror", "clock", "basket", "blanket"],
+        seoTitle: "Home & Lifestyle Import Duty Calculator | DutyDecoder",
+        seoDescription: "Calculate import duties for furniture, toys, kitchenware, and home goods. Product safety and labeling compliance covered."
     }
 };
 

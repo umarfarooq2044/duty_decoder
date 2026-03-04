@@ -47,6 +47,7 @@ const COUNTRY_SUPPORT_PAGES = [
 const CATEGORY_IDS = [
     "medical", "electronics", "energy", "textiles",
     "food", "automotive", "industrial", "chemicals",
+    "luxury", "home",
 ];
 
 function xmlEntry(url: string, lastmod: string, changefreq: string, priority: number): string {

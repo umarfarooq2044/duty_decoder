@@ -12,6 +12,19 @@ dotenv.config({ path: '.env.local' });
 
 import { createClient } from "@supabase/supabase-js";
 import { COUNTRIES } from "../lib/countries";
+import Database from 'better-sqlite3';
+import path from 'path';
+
+const DB_PATH = path.join(process.cwd(), 'bing-indexed-urls.db');
+const db = new Database(DB_PATH);
+
+// Initialize DB schema
+db.exec(`
+  CREATE TABLE IF NOT EXISTS indexed_urls (
+    url TEXT PRIMARY KEY,
+    indexed_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  )
+`);
 
 const BASE_URL = "https://dutydecoder.com";
 const INDEXNOW_KEY = "dutydecoder2026key";
@@ -54,7 +67,17 @@ function getStaticUrls(): string[] {
     return urls;
 }
 
-async function getDynamicUrls(maxCount: number): Promise<string[]> {
+/**
+ * Filter a list of URLs and return only those that haven't been indexed.
+ */
+function filterUnindexed(urls: string[]): string[] {
+    return urls.filter(url => {
+        const row = db.prepare('SELECT 1 FROM indexed_urls WHERE url = ?').get(url);
+        return !row;
+    });
+}
+
+async function getDynamicUrls(neededCount: number): Promise<string[]> {
     const urls: string[] = [];
     const BATCH = 1000;
     let offset = 0;
@@ -75,17 +98,21 @@ async function getDynamicUrls(maxCount: number): Promise<string[]> {
         }
         if (!pages || pages.length === 0) break;
 
-        for (const p of pages) {
-            urls.push(`${BASE_URL}/calculate/${p.slug}/`);
-            if (maxCount > 0 && urls.length >= maxCount) break;
+        const candidateUrls = pages.map(p => `${BASE_URL}/calculate/${p.slug}/`);
+        const unindexedCandidates = filterUnindexed(candidateUrls);
+
+        urls.push(...unindexedCandidates);
+
+        if (neededCount > 0 && urls.length >= neededCount) {
+            urls.length = neededCount; // Truncate to exactly neededCount
+            break;
         }
 
-        if (maxCount > 0 && urls.length >= maxCount) break;
         if (pages.length < BATCH) break;
         offset += BATCH;
     }
 
-    console.log(`   Found ${urls.length} dynamic calculation URLs`);
+    console.log(`   Found ${urls.length} NEW dynamic calculation URLs`);
     return urls;
 }
 
@@ -97,12 +124,21 @@ async function submitToEngine(engineName: string, endpoint: string, urls: string
     // IndexNow supports batches up to 10,000 but we chunk at 100 for reliability
     for (let i = 0; i < urls.length; i += 100) {
         const batch = urls.slice(i, i + 100);
+
+        // Filter out already indexed URLs (just in case they were added between gathering and submitting)
+        const unindexedBatch = filterUnindexed(batch);
+
+        if (unindexedBatch.length === 0) {
+            console.log(`   Batch ${Math.floor(i / 100) + 1}/${totalBatches}: Skipped (already indexed)`);
+            continue;
+        }
+
         const batchNum = Math.floor(i / 100) + 1;
         const payload = {
             host: "dutydecoder.com",
             key: INDEXNOW_KEY,
             keyLocation: `${BASE_URL}/${INDEXNOW_KEY}.txt`,
-            urlList: batch,
+            urlList: unindexedBatch,
         };
 
         try {
@@ -116,12 +152,20 @@ async function submitToEngine(engineName: string, endpoint: string, urls: string
             let detail = "";
             try { detail = await res.text(); } catch { }
 
-            if (res.ok) okCount += batch.length;
-            else failCount += batch.length;
+            if (res.ok) {
+                okCount += unindexedBatch.length;
+                // Insert successful URLs into DB
+                const insert = db.prepare('INSERT OR IGNORE INTO indexed_urls (url) VALUES (?)');
+                const insertMany = db.transaction((urlsToInsert: string[]) => {
+                    for (const url of urlsToInsert) insert.run(url);
+                });
+                insertMany(unindexedBatch);
+            }
+            else failCount += unindexedBatch.length;
 
-            console.log(`   Batch ${batchNum}/${totalBatches}: ${statusText} (${batch.length} URLs)${detail && !res.ok ? ` — ${detail.slice(0, 100)}` : ""}`);
+            console.log(`   Batch ${batchNum}/${totalBatches}: ${statusText} (${unindexedBatch.length} new URLs)${detail && !res.ok ? ` — ${detail.slice(0, 100)}` : ""}`);
         } catch (err: any) {
-            failCount += batch.length;
+            failCount += unindexedBatch.length;
             console.log(`   Batch ${batchNum}/${totalBatches}: ❌ ${err.message}`);
         }
 
@@ -138,8 +182,9 @@ async function main() {
     console.log(`${"═".repeat(60)}`);
 
     // 1. Gather all URLs
-    const staticUrls = getStaticUrls();
-    console.log(`\n   Static pages: ${staticUrls.length}`);
+    let staticUrls = getStaticUrls();
+    staticUrls = filterUnindexed(staticUrls);
+    console.log(`\n   New Static pages: ${staticUrls.length}`);
 
     // Calculate how many dynamic URLs we need
     const dynamicLimit = URL_LIMIT > 0 ? Math.max(0, URL_LIMIT - staticUrls.length) : 0;

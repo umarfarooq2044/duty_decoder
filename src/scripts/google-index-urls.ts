@@ -20,8 +20,7 @@ const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET!;
 const REDIRECT_URI = "http://localhost:3939/oauth2callback";
 const BASE_URL = "https://dutydecoder.com";
 
-const STATIC_SKIP = 523;  // All static URLs submitted (429 + 94 on Mar 2)
-const DYNAMIC_SKIP = 115; // Dynamic URLs already submitted (Mar 2 batch)
+const STATIC_SKIP = 429;  // Static URLs already submitted
 const TOTAL_LIMIT = 210;  // Google daily quota
 
 // ── Collect remaining static URLs ──
@@ -147,8 +146,8 @@ async function main() {
     const dynamicUrls = await getDynamicCalculateUrls();
     console.log(`   Dynamic calculate pages: ${dynamicUrls.length}`);
 
-    // Combine: static first, then dynamic (skipping already-submitted)
-    const allUrls = [...staticUrls, ...dynamicUrls.slice(DYNAMIC_SKIP)];
+    // Combine: static first, then dynamic
+    const allUrls = [...staticUrls, ...dynamicUrls];
     const batch = allUrls.slice(0, TOTAL_LIMIT);
 
     console.log(`   Combined total: ${allUrls.length}`);
