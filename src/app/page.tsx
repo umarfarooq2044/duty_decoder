@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 export const revalidate = 3600; // Refresh every hour for freshness
 
 export const metadata: Metadata = {
-    title: "Calculate Import Duty, Tax & Total Landed Cost | DutyDecoder",
+    title: "Calculate Import Duty, Tax & Total Landed Cost",
     description: "Calculate import duties, customs taxes, VAT, and total landed costs for 50+ countries instantly. Free AI-powered calculator with 5,000+ trade routes.",
     keywords: [
         "import duty calculator",

@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Import Duty Explained — Types, Rates & How to Calculate 2026 | DutyDecoder",
+    title: "Import Duty Explained — Types, Rates & How to Calculate 2026",
     description: "Understand import duty: ad valorem, specific, and compound duty types, MFN rates, FTA reductions, de minimis thresholds, and how to legally minimize customs charges in 2026.",
     alternates: { canonical: "/import-duty/" },
     keywords: [

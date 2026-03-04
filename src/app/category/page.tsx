@@ -78,11 +78,11 @@ const CATEGORIES = [
 ];
 
 export const metadata: Metadata = {
-    title: "Import Categories & HS Code Classification 2026 | DutyDecoder",
+    title: "Import Categories & HS Code Classification 2026",
     description: "Browse import duty categories including medical, electronics, textiles, and automotive. Find exact landed costs, HS code classifications, and trade compliance rules for 50+ countries.",
     alternates: { canonical: "/category/" },
     openGraph: {
-        title: "Import Categories & HS Code Classification 2026 | DutyDecoder",
+        title: "Import Categories & HS Code Classification 2026",
         description: "Browse our comprehensive list of import product categories to calculate exact landed costs and duties.",
         url: "/category/",
         type: "website",

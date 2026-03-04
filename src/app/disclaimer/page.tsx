@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Disclaimer | DutyDecoder",
+    title: "Disclaimer",
     description: "Important disclaimers regarding the use of DutyDecoder's import duty calculator, HS code classification, and landed cost estimates.",
     alternates: { canonical: "/disclaimer/" }
 };

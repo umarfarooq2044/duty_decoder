@@ -281,7 +281,7 @@ export function MegaMenu() {
                             <h3 style={colHeadingStyle}>Country Calculators</h3>
                             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                                 {POPULAR_COUNTRIES.map(c => (
-                                    <li key={c.slug}><a href={`/${c.slug}/import-duty-calculator/`} style={linkStyle}>{c.flag} {c.name} Import Duty Calculator</a></li>
+                                    <li key={c.slug}><Link href={`/${c.slug}/import-duty-calculator/`} style={linkStyle}>{c.flag} {c.name} Import Duty Calculator</Link></li>
                                 ))}
                             </ul>
                         </div>
@@ -290,9 +290,9 @@ export function MegaMenu() {
                         <div>
                             <h3 style={colHeadingStyle}>Import Duty Guides</h3>
                             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                                <li><a href="/import-duty/" style={linkStyle}>Import Duty Guide</a></li>
-                                <li><a href="/customs-duty/" style={linkStyle}>Customs Duty Explained</a></li>
-                                <li><a href="/tariff-rates/" style={linkStyle}>Tariff Rates & Schedules</a></li>
+                                <li><Link href="/import-duty/" style={linkStyle}>Import Duty Guide</Link></li>
+                                <li><Link href="/customs-duty/" style={linkStyle}>Customs Duty Explained</Link></li>
+                                <li><Link href="/tariff-rates/" style={linkStyle}>Tariff Rates & Schedules</Link></li>
                             </ul>
                         </div>
 
@@ -300,10 +300,10 @@ export function MegaMenu() {
                         <div>
                             <h3 style={colHeadingStyle}>Compliance & Rules</h3>
                             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                                <li><a href="/import-tax/" style={linkStyle}>Import Tax (VAT/GST)</a></li>
-                                <li><a href="/customs-clearance/" style={linkStyle}>Customs Clearance Process</a></li>
-                                <li><a href="/import-documents/" style={linkStyle}>Required Import Documents</a></li>
-                                <li><a href="/import-restrictions/" style={linkStyle}>Import Restrictions</a></li>
+                                <li><Link href="/import-tax/" style={linkStyle}>Import Tax (VAT/GST)</Link></li>
+                                <li><Link href="/customs-clearance/" style={linkStyle}>Customs Clearance Process</Link></li>
+                                <li><Link href="/import-documents/" style={linkStyle}>Required Import Documents</Link></li>
+                                <li><Link href="/import-restrictions/" style={linkStyle}>Import Restrictions</Link></li>
                             </ul>
                         </div>
 
@@ -311,18 +311,18 @@ export function MegaMenu() {
                         <div>
                             <h3 style={colHeadingStyle}>Tools</h3>
                             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                                <li><a href="/calculate/" style={linkStyle}>Landed Cost Calculator</a></li>
-                                <li><a href="/hs-code-lookup/" style={linkStyle}>HS Code Lookup</a></li>
-                                <li><a href="/hs-code-finder/" style={linkStyle}>AI HS Code Finder</a></li>
+                                <li><Link href="/calculate/" style={linkStyle}>Landed Cost Calculator</Link></li>
+                                <li><Link href="/hs-code-lookup/" style={linkStyle}>HS Code Lookup</Link></li>
+                                <li><Link href="/hs-code-finder/" style={linkStyle}>AI HS Code Finder</Link></li>
                             </ul>
                             <div style={{ marginTop: "1.5rem" }}>
-                                <a href="/calculate/" style={{
+                                <Link href="/calculate/" style={{
                                     display: "inline-block", background: "var(--accent)", color: "#fff",
                                     padding: "0.6rem 1.25rem", borderRadius: "8px", fontWeight: 600,
                                     fontSize: "0.85rem", textDecoration: "none",
                                 }}>
                                     Try Calculator →
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -355,12 +355,12 @@ export function MegaMenu() {
                             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                                 {POPULAR_COUNTRIES.map(c => (
                                     <li key={c.slug} style={{ marginBottom: "0.5rem" }}>
-                                        <a href={`/${c.slug}/`} style={{ ...linkStyle, fontWeight: 600 }}>
+                                        <Link href={`/${c.slug}/`} style={{ ...linkStyle, fontWeight: 600 }}>
                                             {c.flag} {c.name}
-                                        </a>
+                                        </Link>
                                         <div style={{ display: "flex", gap: "0.75rem", paddingLeft: "1.5rem" }}>
-                                            <a href={`/${c.slug}/import-duty-calculator/`} style={{ fontSize: "0.75rem", color: "var(--accent)", textDecoration: "none" }}>Calculator</a>
-                                            <a href={`/${c.slug}/import-tax/`} style={{ fontSize: "0.75rem", color: "var(--accent)", textDecoration: "none" }}>Import Tax</a>
+                                            <Link href={`/${c.slug}/import-duty-calculator/`} style={{ fontSize: "0.75rem", color: "var(--accent)", textDecoration: "none" }}>Calculator</Link>
+                                            <Link href={`/${c.slug}/import-tax/`} style={{ fontSize: "0.75rem", color: "var(--accent)", textDecoration: "none" }}>Import Tax</Link>
                                         </div>
                                     </li>
                                 ))}
@@ -375,9 +375,9 @@ export function MegaMenu() {
                                 maxHeight: "400px", overflowY: "auto",
                             }}>
                                 {filteredCountries.map(c => (
-                                    <a key={c.slug} href={`/${c.slug}/`} style={{ ...linkStyle, fontSize: "0.85rem", display: "flex", alignItems: "center", gap: "0.35rem" }}>
+                                    <Link key={c.slug} href={`/${c.slug}/`} style={{ ...linkStyle, fontSize: "0.85rem", display: "flex", alignItems: "center", gap: "0.35rem" }}>
                                         <span style={{ fontSize: "0.9rem" }}>{c.flag}</span> {c.name}
-                                    </a>
+                                    </Link>
                                 ))}
                                 {filteredCountries.length === 0 && (
                                     <p style={{ gridColumn: "1/-1", color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", padding: "1rem 0" }}>
@@ -398,12 +398,12 @@ export function MegaMenu() {
                         <div>
                             <h3 style={colHeadingStyle}>Guides (Global)</h3>
                             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                                <li><a href="/import-duty/" style={linkStyle}>Understanding Import Duty</a></li>
-                                <li><a href="/import-tax/" style={linkStyle}>Import Tax (VAT & GST)</a></li>
-                                <li><a href="/tariff-rates/" style={linkStyle}>Global Tariff Rates</a></li>
-                                <li><a href="/customs-clearance/" style={linkStyle}>Customs Clearance Guide</a></li>
-                                <li><a href="/import-documents/" style={linkStyle}>Import Documentation</a></li>
-                                <li><a href="/import-restrictions/" style={linkStyle}>Import Restrictions</a></li>
+                                <li><Link href="/import-duty/" style={linkStyle}>Understanding Import Duty</Link></li>
+                                <li><Link href="/import-tax/" style={linkStyle}>Import Tax (VAT & GST)</Link></li>
+                                <li><Link href="/tariff-rates/" style={linkStyle}>Global Tariff Rates</Link></li>
+                                <li><Link href="/customs-clearance/" style={linkStyle}>Customs Clearance Guide</Link></li>
+                                <li><Link href="/import-documents/" style={linkStyle}>Import Documentation</Link></li>
+                                <li><Link href="/import-restrictions/" style={linkStyle}>Import Restrictions</Link></li>
                             </ul>
                         </div>
 
@@ -426,9 +426,9 @@ export function MegaMenu() {
                         <div>
                             <h3 style={colHeadingStyle}>Methodology & Data</h3>
                             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                                <li><a href="/methodology/" style={linkStyle}>Our Methodology</a></li>
-                                <li><a href="/hs-code-lookup/" style={linkStyle}>How HS Classification Works</a></li>
-                                <li><a href="/hs-code-finder/" style={linkStyle}>AI-Powered HS Code Finder</a></li>
+                                <li><Link href="/methodology/" style={linkStyle}>Our Methodology</Link></li>
+                                <li><Link href="/hs-code-lookup/" style={linkStyle}>How HS Classification Works</Link></li>
+                                <li><Link href="/hs-code-finder/" style={linkStyle}>AI-Powered HS Code Finder</Link></li>
                             </ul>
                             <div style={{
                                 marginTop: "1rem", padding: "0.75rem",

@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Tariff Rates Explained — MFN, Preferential & How Rates Are Set 2026 | DutyDecoder",
+    title: { absolute: "Tariff Rates — MFN, Preferential & How Rates Are Set 2026" },
     description: "Understand tariff rates: how they're set, MFN vs preferential rates, tariff escalation, rate lookup tools, and major FTA rate comparisons across 50+ countries.",
     alternates: { canonical: "/tariff-rates/" },
     keywords: ["tariff rates", "MFN tariff rate", "preferential tariff rate", "tariff schedule", "import tariff rates 2026", "tariff rate lookup", "FTA tariff rates", "customs tariff", "trade tariff"],

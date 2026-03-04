@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Import Documents — Required Paperwork for International Shipping 2026 | DutyDecoder",
+    title: { absolute: "Import Documents — Required Paperwork for International Shipping 2026" },
     description: "Complete guide to import documents: commercial invoice, bill of lading, certificate of origin, packing list, customs declaration, import licenses, and country-specific requirements.",
     alternates: { canonical: "/import-documents/" },
     keywords: ["import documents", "import paperwork", "commercial invoice", "bill of lading", "certificate of origin", "customs declaration", "packing list", "import license", "import documentation 2026"],

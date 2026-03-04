@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Terms of Service | DutyDecoder",
+    title: "Terms of Service",
     description: "Terms of Service for DutyDecoder — rules and conditions governing your use of our import duty calculator and trade compliance platform.",
     alternates: { canonical: "/terms/" }
 };

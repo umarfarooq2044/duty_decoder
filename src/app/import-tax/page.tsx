@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Import Tax Explained — VAT, GST & Sales Tax on Imports 2026 | DutyDecoder",
+    title: "Import Tax Explained — VAT, GST & Sales Tax on Imports 2026",
     description: "Understand import taxes: how VAT/GST is calculated on imports, country-specific rates, reverse charge mechanisms, IOSS, and the difference between import duty and import tax.",
     alternates: { canonical: "/import-tax/" },
     keywords: ["import tax", "VAT on imports", "GST on imports", "import sales tax", "import VAT rate", "customs VAT", "IOSS", "reverse charge imports", "import tax calculator"],

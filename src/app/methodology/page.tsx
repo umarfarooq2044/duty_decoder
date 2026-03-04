@@ -2,11 +2,11 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-    title: 'Methodology & Data Sources — How We Calculate Landed Costs | DutyDecoder',
+    title: { absolute: 'Methodology & Data Sources — How We Calculate Landed Costs' },
     description: 'Our data sources, AI classification pipeline, calculation methodology, and accuracy commitments. Learn how we source rates from 50+ customs authorities and apply WCO classification rules.',
     alternates: { canonical: '/methodology/' },
     openGraph: {
-        title: 'Methodology & Data Sources | DutyDecoder',
+        title: 'Methodology & Data Sources — DutyDecoder',
         description: 'Enterprise-grade transparency: official government data sources, AI classification pipeline, and calculation methodology behind our landed cost estimates.',
         url: '/methodology',
         type: 'article',

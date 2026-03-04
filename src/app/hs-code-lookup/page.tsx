@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "HS Code Lookup — Understand & Search Harmonized System Codes 2026 | DutyDecoder",
+    title: { absolute: "HS Code Lookup — Understand & Search HS Codes 2026" },
     description: "Everything you need to know about HS code lookup: code structure, GRI classification rules, country-specific extensions, common mistakes, and free lookup tools. Updated for 2026.",
     alternates: { canonical: "/hs-code-lookup/" },
     keywords: [

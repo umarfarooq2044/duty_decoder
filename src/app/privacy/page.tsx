@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Privacy Policy | DutyDecoder",
+    title: "Privacy Policy",
     description: "Privacy Policy for DutyDecoder — how we collect, use, and protect your data when using our import duty calculator and trade compliance tools.",
     alternates: { canonical: "/privacy/" }
 };
