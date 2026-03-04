@@ -51,6 +51,42 @@
 }
 
 /* ============================================================
+   Skeleton Loading Animation
+   ============================================================ */
+
+@keyframes skeleton-pulse {
+  0% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}
+
+.skeleton-block {
+  background: linear-gradient(90deg, var(--color-bg-elevated) 25%, var(--color-bg-card) 50%, var(--color-bg-elevated) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-pulse 1.8s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--color-bg-primary) 0%, #0d0f1a 100%);
+  padding: var(--space-2xl) var(--space-md);
+}
+
+.skeleton-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ============================================================
    Base Reset
    ============================================================ */
 
