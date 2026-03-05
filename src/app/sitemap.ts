@@ -34,6 +34,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${baseUrl}/privacy/`, lastModified: now, changeFrequency: "monthly", priority: 0.3 },
         { url: `${baseUrl}/terms/`, lastModified: now, changeFrequency: "monthly", priority: 0.3 },
         { url: `${baseUrl}/disclaimer/`, lastModified: now, changeFrequency: "monthly", priority: 0.3 },
+        { url: `${baseUrl}/contact/`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
+        { url: `${baseUrl}/about/`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
     ];
 
     // ── 2. Country pages ──

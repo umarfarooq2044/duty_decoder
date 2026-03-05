@@ -94,10 +94,12 @@ export function Footer() {
                         Company
                     </h4>
                     <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "0.85rem", lineHeight: 2 }}>
+                        <li><Link href="/about/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>About Us</Link></li>
                         <li><Link href="/methodology/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>Data Methodology</Link></li>
                         <li><Link href="/privacy/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>Privacy Policy</Link></li>
                         <li><Link href="/terms/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>Terms of Service</Link></li>
                         <li><Link href="/disclaimer/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>Disclaimer</Link></li>
+                        <li><Link href="/contact/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>Contact Us</Link></li>
                     </ul>
                 </div>
             </div>
@@ -117,6 +119,7 @@ export function Footer() {
                     <Link href="/terms/" style={{ fontSize: "0.8rem", color: "var(--muted-foreground)", textDecoration: "none" }}>Terms</Link>
                     <Link href="/disclaimer/" style={{ fontSize: "0.8rem", color: "var(--muted-foreground)", textDecoration: "none" }}>Disclaimer</Link>
                     <Link href="/methodology/" style={{ fontSize: "0.8rem", color: "var(--muted-foreground)", textDecoration: "none" }}>Methodology</Link>
+                    <Link href="/contact/" style={{ fontSize: "0.8rem", color: "var(--muted-foreground)", textDecoration: "none" }}>Contact</Link>
                 </div>
             </div>
         </footer>
