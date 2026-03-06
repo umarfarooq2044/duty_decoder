@@ -369,15 +369,23 @@ body {
   /* Hidden on mobile by default */
 }
 
+.mobile-only-calculator {
+  display: block;
+}
+
 @media (min-width: 1024px) {
   .report-grid {
-    grid-template-columns: 1fr 320px;
+    grid-template-columns: 1fr 280px;
     gap: 3rem;
     align-items: start;
   }
 
   .report-sidebar {
     display: block;
+  }
+
+  .mobile-only-calculator {
+    display: none;
   }
 }
 
@@ -1452,5 +1460,149 @@ select.form-control {
   .calc-content-article .section-body td {
     padding: 0.5rem 0.6rem;
     white-space: nowrap;
+  }
+}
+
+/* ============================================================
+   Longform Guide Content (guide_html via 3-Step AI Pipeline)
+   ============================================================ */
+
+.guide-content {
+  color: var(--foreground);
+  line-height: 1.85;
+  font-size: 0.95rem;
+}
+
+.guide-content h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border, rgba(255, 255, 255, 0.1));
+}
+
+.guide-content h2:first-child {
+  margin-top: 0;
+}
+
+.guide-content h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin: 1.75rem 0 0.75rem;
+}
+
+.guide-content h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  margin: 1.25rem 0 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 0.82rem;
+}
+
+.guide-content p {
+  margin: 0 0 1rem;
+  color: var(--foreground);
+}
+
+.guide-content strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.guide-content ul,
+.guide-content ol {
+  margin: 0.75rem 0 1rem 1.25rem;
+  padding: 0;
+}
+
+.guide-content li {
+  margin-bottom: 0.4rem;
+  line-height: 1.7;
+}
+
+/* FAQ Items within the guide */
+.guide-content .faq-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+  border-radius: var(--radius, 12px);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.guide-content .faq-item h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  color: var(--foreground);
+}
+
+.guide-content .faq-item p {
+  margin: 0;
+  color: var(--muted-foreground);
+  line-height: 1.65;
+}
+
+/* Disclaimer tag rendered as a styled callout */
+.guide-content disclaimer {
+  display: block;
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  background: rgba(234, 179, 8, 0.08);
+  border: 1px solid rgba(234, 179, 8, 0.2);
+  border-radius: var(--radius, 12px);
+  font-size: 0.85rem;
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+
+/* Print styles for guide */
+@media print {
+  .guide-content h2 {
+    color: #0f172a !important;
+    border-bottom-color: #e2e8f0 !important;
+  }
+
+  .guide-content h3 {
+    color: #1e293b !important;
+  }
+
+  .guide-content p {
+    color: #334155 !important;
+  }
+
+  .guide-content .faq-item {
+    border: 1px solid #e2e8f0 !important;
+    background: #f8fafc !important;
+    break-inside: avoid;
+  }
+
+  .guide-content disclaimer {
+    background: #fffbeb !important;
+    border-color: #fbbf24 !important;
+    color: #92400e !important;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .guide-content {
+    font-size: 0.9rem;
+    line-height: 1.75;
+  }
+
+  .guide-content h2 {
+    font-size: 1.15rem;
+    margin: 2rem 0 0.75rem;
+  }
+
+  .guide-content h3 {
+    font-size: 1rem;
+  }
+
+  .guide-content .faq-item {
+    padding: 1rem;
   }
 }

@@ -12,6 +12,7 @@ import Groq from "groq-sdk";
 import { createClient } from "@supabase/supabase-js";
 import { calculatorLimiter, getClientIP, isSuspiciousRequest } from "@/lib/rate-limit";
 import { verifyTurnstileToken } from "@/lib/turnstile";
+import { generateGuideForPage } from "@/lib/guide-generator";
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -561,7 +562,28 @@ Return ONLY JSON. No explanation.`
             // Use after() so Vercel keeps the function alive after responding
             after(async () => {
                 try {
+                    // 1. Legacy SEO content (semantic H2s, FAQs)
                     await generateSEOInBackground(saved.id, shortProductName, originName, destName);
+
+                    // 2. Longform HTML guide (3-step pipeline)
+                    const hsCodeForGuide = htsData.hts_code
+                        ? htsData.hts_code.replace(/(\d{4})(\d{2})/, '$1.$2')
+                        : '9999.99';
+                    const supabaseAdmin = createClient(
+                        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+                        process.env.SUPABASE_SERVICE_ROLE_KEY!
+                    );
+                    await generateGuideForPage(
+                        saved.id,
+                        shortProductName,
+                        parsed.originCountry,
+                        parsed.destinationCountry,
+                        hsCodeForGuide,
+                        htsData.duty_rate_pct ?? 0,
+                        htsData.vat_rate_pct ?? 0,
+                        supabaseAdmin,
+                        groq
+                    );
                 } catch (err) {
                     console.error('[Background AI] after() error:', err);
                 }

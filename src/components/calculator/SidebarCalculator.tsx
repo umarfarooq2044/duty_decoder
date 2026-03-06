@@ -71,9 +71,9 @@ export function SidebarCalculator({ initialData, exemptions, destinationCountry 
     const showAdditionalDuties = store.liveAdditionalDuties > 0;
 
     return (
-        <div className="glass-panel" style={{ padding: "1.5rem", position: "sticky", top: "100px", borderRadius: "var(--radius)", border: "1px solid var(--color-border)" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
-                <h3 style={{ fontSize: "1.25rem", fontWeight: "600", color: "var(--foreground)" }}>Live Calculator</h3>
+        <div className="glass-panel" style={{ padding: "1.25rem", position: "sticky", top: "100px", borderRadius: "var(--radius)", border: "1px solid var(--color-border)" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+                <h3 style={{ fontSize: "1.1rem", fontWeight: "600", color: "var(--foreground)" }}>Live Calculator</h3>
                 {hasChanges && (
                     <button
                         onClick={store.resetToOriginal}
@@ -142,9 +142,9 @@ export function SidebarCalculator({ initialData, exemptions, destinationCountry 
                 </div>
             )}
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                 <div className="input-group">
-                    <label style={{ display: "block", fontSize: "0.875rem", marginBottom: "0.5rem", color: "var(--muted-foreground)" }}>
+                    <label style={{ display: "block", fontSize: "0.8rem", marginBottom: "0.25rem", color: "var(--muted-foreground)" }}>
                         Product Value ({store.currency})
                     </label>
                     <input
@@ -154,15 +154,15 @@ export function SidebarCalculator({ initialData, exemptions, destinationCountry 
                         value={store.productValue === 0 ? "" : store.productValue}
                         onChange={(e) => store.updateProductValue(parseFloat(e.target.value) || 0)}
                         style={{
-                            width: "100%", padding: "0.75rem", borderRadius: "var(--radius-sm)",
+                            width: "100%", padding: "0.5rem 0.75rem", borderRadius: "var(--radius-sm)",
                             border: "1px solid var(--color-border)", background: "var(--color-bg-base)",
-                            color: "var(--foreground)", fontSize: "1rem"
+                            color: "var(--foreground)", fontSize: "0.95rem"
                         }}
                     />
                 </div>
 
                 <div className="input-group">
-                    <label style={{ display: "block", fontSize: "0.875rem", marginBottom: "0.5rem", color: "var(--muted-foreground)" }}>
+                    <label style={{ display: "block", fontSize: "0.8rem", marginBottom: "0.25rem", color: "var(--muted-foreground)" }}>
                         Shipping Cost ({store.currency})
                     </label>
                     <input
@@ -172,15 +172,15 @@ export function SidebarCalculator({ initialData, exemptions, destinationCountry 
                         value={store.shippingCost === 0 ? "" : store.shippingCost}
                         onChange={(e) => store.updateShippingCost(parseFloat(e.target.value) || 0)}
                         style={{
-                            width: "100%", padding: "0.75rem", borderRadius: "var(--radius-sm)",
+                            width: "100%", padding: "0.5rem 0.75rem", borderRadius: "var(--radius-sm)",
                             border: "1px solid var(--color-border)", background: "var(--color-bg-base)",
-                            color: "var(--foreground)", fontSize: "1rem"
+                            color: "var(--foreground)", fontSize: "0.95rem"
                         }}
                     />
                 </div>
 
                 <div className="input-group">
-                    <label style={{ display: "block", fontSize: "0.875rem", marginBottom: "0.5rem", color: "var(--muted-foreground)" }}>
+                    <label style={{ display: "block", fontSize: "0.8rem", marginBottom: "0.25rem", color: "var(--muted-foreground)" }}>
                         Insurance Cost ({store.currency})
                     </label>
                     <input
@@ -190,43 +190,43 @@ export function SidebarCalculator({ initialData, exemptions, destinationCountry 
                         value={store.insuranceCost === 0 ? "" : store.insuranceCost}
                         onChange={(e) => store.updateInsuranceCost(parseFloat(e.target.value) || 0)}
                         style={{
-                            width: "100%", padding: "0.75rem", borderRadius: "var(--radius-sm)",
+                            width: "100%", padding: "0.5rem 0.75rem", borderRadius: "var(--radius-sm)",
                             border: "1px solid var(--color-border)", background: "var(--color-bg-base)",
-                            color: "var(--foreground)", fontSize: "1rem"
+                            color: "var(--foreground)", fontSize: "0.95rem"
                         }}
                     />
                 </div>
             </div>
 
             {/* Cost Breakdown */}
-            <div style={{ marginTop: "2rem", paddingTop: "1.5rem", borderTop: "1px solid var(--color-border)" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.75rem", fontSize: "0.875rem" }}>
+            <div style={{ marginTop: "1.25rem", paddingTop: "1.25rem", borderTop: "1px solid var(--color-border)" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem", fontSize: "0.85rem" }}>
                     <span style={{ color: "var(--muted-foreground)" }}>Est. Duty</span>
                     <span style={{ color: "var(--foreground)", fontWeight: "500" }}>{store.currency} {store.liveCustomsDutyAmount.toFixed(2)}</span>
                 </div>
 
                 {showProcessingFees && (
-                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.75rem", fontSize: "0.875rem" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem", fontSize: "0.85rem" }}>
                         <span style={{ color: "var(--muted-foreground)" }}>Processing Fees</span>
                         <span style={{ color: "var(--foreground)", fontWeight: "500" }}>{store.currency} {store.liveProcessingFees.toFixed(2)}</span>
                     </div>
                 )}
 
                 {showAdditionalDuties && (
-                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.75rem", fontSize: "0.875rem" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem", fontSize: "0.85rem" }}>
                         <span style={{ color: "var(--muted-foreground)" }}>Additional Duties</span>
                         <span style={{ color: "var(--foreground)", fontWeight: "500" }}>{store.currency} {store.liveAdditionalDuties.toFixed(2)}</span>
                     </div>
                 )}
 
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.75rem", fontSize: "0.875rem" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem", fontSize: "0.85rem" }}>
                     <span style={{ color: "var(--muted-foreground)" }}>Est. VAT/GST</span>
                     <span style={{ color: "var(--foreground)", fontWeight: "500" }}>{store.currency} {store.liveVatAmount.toFixed(2)}</span>
                 </div>
 
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "1rem", paddingTop: "1rem", borderTop: "1px dashed var(--color-border)" }}>
-                    <span style={{ fontWeight: "600", color: "var(--foreground)" }}>Total Landed</span>
-                    <span style={{ fontSize: "1.25rem", fontWeight: "800", color: "var(--color-success)" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "0.75rem", paddingTop: "0.75rem", borderTop: "1px dashed var(--color-border)" }}>
+                    <span style={{ fontWeight: "600", color: "var(--foreground)", fontSize: "0.9rem" }}>Total Landed</span>
+                    <span style={{ fontSize: "1.15rem", fontWeight: "800", color: "var(--color-success)" }}>
                         {store.currency} {store.liveTotalLandedCost.toFixed(2)}
                     </span>
                 </div>

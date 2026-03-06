@@ -83,6 +83,8 @@ export default async function CalculatePage({ params }: PageProps) {
         semantic_h2_solution?: string;
         faqs_json?: Array<{ question: string, answer: string }>;
         hts_codes?: { hts_code: string; description: string; country_code: string };
+        guide_html?: string;
+        guide_meta_description?: string;
     };
 
     const breakdown = calculation.calculation_json;
@@ -212,138 +214,243 @@ export default async function CalculatePage({ params }: PageProps) {
                     <div className="report-grid">
                         <div>
 
-                            {/* Semantic H2 Problem (SEO Injection) */}
-                            {calculation.semantic_h2_problem && (
-                                <section className="semantic-content-section glass-panel" style={{ padding: "1.5rem", marginBottom: "2rem" }}>
-                                    <h2 style={{ fontSize: "1.1rem", color: "var(--accent)", marginBottom: "0.75rem", fontWeight: 700 }}>
-                                        Why Customs Classification Matters for {calculation.product_description}
-                                    </h2>
-                                    <div style={{ color: "var(--muted-foreground)", lineHeight: "1.7", fontSize: "0.88rem", fontWeight: 400 }} dangerouslySetInnerHTML={{ __html: calculation.semantic_h2_problem.replace(/\n\n/g, '<br/><br/>') }} />
-                                </section>
-                            )}
+                            {/* ─── Longform Guide HTML (New Pipeline) ─── */}
+                            {calculation.guide_html ? (() => {
+                                // Split guide into intro (first H2 + its content) and body (rest)
+                                const guideHtml = calculation.guide_html;
+                                const secondH2Idx = guideHtml.indexOf('<h2>', guideHtml.indexOf('<h2>') + 4);
+                                const guideIntro = secondH2Idx > -1 ? guideHtml.substring(0, secondH2Idx) : guideHtml;
+                                const guideBody = secondH2Idx > -1 ? guideHtml.substring(secondH2Idx) : '';
 
-                            {/* Cost Breakdown Table */}
-                            <section className="breakdown-section" style={{ marginTop: "2rem" }}>
-                                <h2 style={{ fontSize: "1.2rem", marginBottom: "1rem", color: "var(--accent)" }}>
-                                    Cost Breakdown
-                                </h2>
-                                <table className="breakdown-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Component</th>
-                                            <th>Rate</th>
-                                            <th className="amount-col">Amount</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <CostRow item={breakdown.productValue} />
-                                        <CostRow item={breakdown.shippingCost} />
-                                        <CostRow item={breakdown.insuranceCost} />
-                                        <CostRow item={breakdown.cifValue} isSubtotal />
-                                        <CostRow item={breakdown.customsDuty} />
-                                        {breakdown.additionalDuties.map((item, i) => (
-                                            <CostRow key={`add-${i}`} item={item} />
-                                        ))}
-                                        {breakdown.processingFees.map((item, i) => (
-                                            <CostRow key={`fee-${i}`} item={item} />
-                                        ))}
-                                        {breakdown.nationalHandling && (
-                                            <CostRow item={breakdown.nationalHandling} />
+                                return (
+                                    <>
+                                        {/* Guide Intro: First H2 + paragraph */}
+                                        <section className="longform-guide-section" style={{ marginBottom: "2rem" }}>
+                                            <div
+                                                className="guide-content"
+                                                style={{
+                                                    color: "var(--foreground)",
+                                                    lineHeight: "1.8",
+                                                    fontSize: "0.95rem",
+                                                }}
+                                                dangerouslySetInnerHTML={{ __html: guideIntro }}
+                                            />
+                                        </section>
+
+                                        {/* Cost Breakdown Table — right after first H2 */}
+                                        <section className="breakdown-section" style={{ marginTop: "1rem", marginBottom: "2rem" }}>
+                                            <h2 style={{ fontSize: "1.2rem", marginBottom: "1rem", color: "var(--accent)" }}>
+                                                Cost Breakdown
+                                            </h2>
+                                            <table className="breakdown-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Component</th>
+                                                        <th>Rate</th>
+                                                        <th className="amount-col">Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <CostRow item={breakdown.productValue} />
+                                                    <CostRow item={breakdown.shippingCost} />
+                                                    <CostRow item={breakdown.insuranceCost} />
+                                                    <CostRow item={breakdown.cifValue} isSubtotal />
+                                                    <CostRow item={breakdown.customsDuty} />
+                                                    {breakdown.additionalDuties.map((item, i) => (
+                                                        <CostRow key={`add-${i}`} item={item} />
+                                                    ))}
+                                                    {breakdown.processingFees.map((item, i) => (
+                                                        <CostRow key={`fee-${i}`} item={item} />
+                                                    ))}
+                                                    {breakdown.nationalHandling && (
+                                                        <CostRow item={breakdown.nationalHandling} />
+                                                    )}
+                                                    <CostRow item={breakdown.vatGst} />
+                                                    <CostRow item={breakdown.totalLandedCost} isTotal />
+                                                </tbody>
+                                            </table>
+                                        </section>
+
+                                        {/* Mobile Live Calculator (only visible on small screens) */}
+                                        <div className="mobile-only-calculator" style={{ marginBottom: "2rem" }}>
+                                            <SidebarCalculator
+                                                initialData={breakdown}
+                                                exemptions={calculation.seo_blueprint?.tax_exemptions}
+                                                destinationCountry={calculation.destination_country}
+                                            />
+                                        </div>
+
+                                        {/* Guide Body: Remaining H2 sections */}
+                                        {guideBody && (
+                                            <section className="longform-guide-section">
+                                                <div
+                                                    className="guide-content"
+                                                    style={{
+                                                        color: "var(--foreground)",
+                                                        lineHeight: "1.8",
+                                                        fontSize: "0.95rem",
+                                                    }}
+                                                    dangerouslySetInnerHTML={{ __html: guideBody }}
+                                                />
+                                            </section>
                                         )}
-                                        <CostRow item={breakdown.vatGst} />
-                                        <CostRow item={breakdown.totalLandedCost} isTotal />
-                                    </tbody>
-                                </table>
-                            </section>
+                                    </>
+                                );
+                            })() : (
+                                <>
+                                    {/* Legacy: Semantic H2 Problem (SEO Injection) */}
+                                    {calculation.semantic_h2_problem && (
+                                        <section className="semantic-content-section glass-panel" style={{ padding: "1.5rem", marginBottom: "2rem" }}>
+                                            <h2 style={{ fontSize: "1.1rem", color: "var(--accent)", marginBottom: "0.75rem", fontWeight: 700 }}>
+                                                Why Customs Classification Matters for {calculation.product_description}
+                                            </h2>
+                                            <div style={{ color: "var(--muted-foreground)", lineHeight: "1.7", fontSize: "0.88rem", fontWeight: 400 }} dangerouslySetInnerHTML={{ __html: calculation.semantic_h2_problem.replace(/\n\n/g, '<br/><br/>') }} />
+                                        </section>
+                                    )}
 
-                            {/* Semantic H2 Solution (SEO Injection) */}
-                            {calculation.semantic_h2_solution && (
-                                <section className="semantic-content-section glass-panel" style={{ padding: "1.5rem", marginBottom: "2rem" }}>
-                                    <h2 style={{ fontSize: "1.1rem", color: "var(--accent)", marginBottom: "0.75rem", fontWeight: 700 }}>
-                                        Step-by-Step Import & Compliance Guide
-                                    </h2>
-                                    <div style={{ color: "var(--muted-foreground)", lineHeight: "1.7", fontSize: "0.88rem", fontWeight: 400 }} dangerouslySetInnerHTML={{ __html: calculation.semantic_h2_solution.replace(/\n\n/g, '<br/><br/>') }} />
-                                </section>
+                                    {/* Cost Breakdown Table — legacy position */}
+                                    <section className="breakdown-section" style={{ marginTop: "2rem" }}>
+                                        <h2 style={{ fontSize: "1.2rem", marginBottom: "1rem", color: "var(--accent)" }}>
+                                            Cost Breakdown
+                                        </h2>
+                                        <table className="breakdown-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Component</th>
+                                                    <th>Rate</th>
+                                                    <th className="amount-col">Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <CostRow item={breakdown.productValue} />
+                                                <CostRow item={breakdown.shippingCost} />
+                                                <CostRow item={breakdown.insuranceCost} />
+                                                <CostRow item={breakdown.cifValue} isSubtotal />
+                                                <CostRow item={breakdown.customsDuty} />
+                                                {breakdown.additionalDuties.map((item, i) => (
+                                                    <CostRow key={`add-${i}`} item={item} />
+                                                ))}
+                                                {breakdown.processingFees.map((item, i) => (
+                                                    <CostRow key={`fee-${i}`} item={item} />
+                                                ))}
+                                                {breakdown.nationalHandling && (
+                                                    <CostRow item={breakdown.nationalHandling} />
+                                                )}
+                                                <CostRow item={breakdown.vatGst} />
+                                                <CostRow item={breakdown.totalLandedCost} isTotal />
+                                            </tbody>
+                                        </table>
+                                    </section>
+
+                                    {/* Mobile Live Calculator (only visible on small screens) */}
+                                    <div className="mobile-only-calculator" style={{ marginBottom: "2rem" }}>
+                                        <SidebarCalculator
+                                            initialData={breakdown}
+                                            exemptions={calculation.seo_blueprint?.tax_exemptions}
+                                            destinationCountry={calculation.destination_country}
+                                        />
+                                    </div>
+                                </>
                             )}
 
-                            {/* H2 Intent Section (Research-Driven) */}
-                            {calculation.seo_h2_intent && (
-                                <section className="semantic-content-section glass-panel" style={{ padding: "2rem", marginBottom: "3rem" }}>
-                                    <h2 style={{ fontSize: "1.2rem", color: "var(--accent)", marginBottom: "1rem" }}>
-                                        {calculation.seo_h2_intent}
-                                    </h2>
-                                    <p style={{ color: "var(--foreground)", lineHeight: "1.8", fontSize: "0.95rem" }}>
-                                        When importing <strong>{calculation.product_description}</strong> from {originLabel} to {countryLabel}, the applicable customs duty rate is <strong>{dutyRate || 'the standard rate'}</strong> on the CIF value (Cost + Insurance + Freight).
-                                        {breakdown.vatGst?.rate ? ` Additionally, a VAT/GST of ${breakdown.vatGst.rate} is applied on the dutiable value.` : ''}
-                                        {' '}The total landed cost depends on your specific product value, shipping method, and insurance — use the calculator above to get an exact breakdown for your shipment.
-                                    </p>
-                                    <p style={{ color: "var(--muted-foreground)", lineHeight: "1.8", fontSize: "0.9rem", marginTop: "0.75rem" }}>
-                                        These rates are based on 2026 tariff schedules and may vary depending on the precise HS code finalization by customs and any applicable trade agreements between {originLabel} and {countryLabel}.
-                                    </p>
-                                </section>
+                            {/* Legacy content sections — hidden when guide_html exists */}
+                            {!calculation.guide_html && (
+                                <>
+                                    {/* Semantic H2 Solution (SEO Injection) */}
+                                    {calculation.semantic_h2_solution && (
+                                        <section className="semantic-content-section glass-panel" style={{ padding: "1.5rem", marginBottom: "2rem" }}>
+                                            <h2 style={{ fontSize: "1.1rem", color: "var(--accent)", marginBottom: "0.75rem", fontWeight: 700 }}>
+                                                Step-by-Step Import & Compliance Guide
+                                            </h2>
+                                            <div style={{ color: "var(--muted-foreground)", lineHeight: "1.7", fontSize: "0.88rem", fontWeight: 400 }} dangerouslySetInnerHTML={{ __html: calculation.semantic_h2_solution.replace(/\n\n/g, '<br/><br/>') }} />
+                                        </section>
+                                    )}
+
+                                    {/* H2 Intent Section (Research-Driven) */}
+                                    {calculation.seo_h2_intent && (
+                                        <section className="semantic-content-section glass-panel" style={{ padding: "2rem", marginBottom: "3rem" }}>
+                                            <h2 style={{ fontSize: "1.2rem", color: "var(--accent)", marginBottom: "1rem" }}>
+                                                {calculation.seo_h2_intent}
+                                            </h2>
+                                            <p style={{ color: "var(--foreground)", lineHeight: "1.8", fontSize: "0.95rem" }}>
+                                                When importing <strong>{calculation.product_description}</strong> from {originLabel} to {countryLabel}, the applicable customs duty rate is <strong>{dutyRate || 'the standard rate'}</strong> on the CIF value (Cost + Insurance + Freight).
+                                                {breakdown.vatGst?.rate ? ` Additionally, a VAT/GST of ${breakdown.vatGst.rate} is applied on the dutiable value.` : ''}
+                                                {' '}The total landed cost depends on your specific product value, shipping method, and insurance — use the calculator above to get an exact breakdown for your shipment.
+                                            </p>
+                                            <p style={{ color: "var(--muted-foreground)", lineHeight: "1.8", fontSize: "0.9rem", marginTop: "0.75rem" }}>
+                                                These rates are based on 2026 tariff schedules and may vary depending on the precise HS code finalization by customs and any applicable trade agreements between {originLabel} and {countryLabel}.
+                                            </p>
+                                        </section>
+                                    )}
+
+                                    {/* H3 Technical Compliance Breakdown (Research-Driven) */}
+                                    {calculation.seo_h3_technical && (
+                                        <section className="semantic-content-section glass-panel" style={{ padding: "2rem", marginBottom: "3rem", borderLeft: "3px solid var(--color-success)" }}>
+                                            <h3 style={{ fontSize: "1.1rem", color: "var(--color-success)", marginBottom: "1rem" }}>
+                                                {calculation.seo_h3_technical}
+                                            </h3>
+                                            <p style={{ color: "var(--foreground)", lineHeight: "1.8", fontSize: "0.9rem" }}>
+                                                <strong>{calculation.product_description}</strong> is typically classified under HS Code <strong>{hts?.hts_code || 'various classifications'}</strong> when imported into {countryLabel}.
+                                                At this classification, the customs duty rate is <strong>{dutyRate || 'the applicable rate'}</strong>.
+                                                Accurate classification is critical — ensure your commercial invoice and packing list explicitly reference this HS code.
+                                            </p>
+                                            <p style={{ color: "var(--muted-foreground)", lineHeight: "1.8", fontSize: "0.9rem", marginTop: "0.75rem" }}>
+                                                Misclassification can result in shipment delays, penalties, or overpayment of duties. If trade agreements exist between {originLabel} and {countryLabel}, a certificate of origin may qualify your goods for preferential (reduced) duty rates.
+                                            </p>
+                                        </section>
+                                    )}
+                                </>
                             )}
 
-                            {/* H3 Technical Compliance Breakdown (Research-Driven) */}
-                            {calculation.seo_h3_technical && (
-                                <section className="semantic-content-section glass-panel" style={{ padding: "2rem", marginBottom: "3rem", borderLeft: "3px solid var(--color-success)" }}>
-                                    <h3 style={{ fontSize: "1.1rem", color: "var(--color-success)", marginBottom: "1rem" }}>
-                                        {calculation.seo_h3_technical}
-                                    </h3>
-                                    <p style={{ color: "var(--foreground)", lineHeight: "1.8", fontSize: "0.9rem" }}>
-                                        <strong>{calculation.product_description}</strong> is typically classified under HS Code <strong>{hts?.hts_code || 'various classifications'}</strong> when imported into {countryLabel}.
-                                        At this classification, the customs duty rate is <strong>{dutyRate || 'the applicable rate'}</strong>.
-                                        Accurate classification is critical — ensure your commercial invoice and packing list explicitly reference this HS code.
-                                    </p>
-                                    <p style={{ color: "var(--muted-foreground)", lineHeight: "1.8", fontSize: "0.9rem", marginTop: "0.75rem" }}>
-                                        Misclassification can result in shipment delays, penalties, or overpayment of duties. If trade agreements exist between {originLabel} and {countryLabel}, a certificate of origin may qualify your goods for preferential (reduced) duty rates.
-                                    </p>
-                                </section>
+                            {/* De Minimis, Exchange Rate, Disclaimer, Compliance Insights — hidden when guide_html exists */}
+                            {!calculation.guide_html && (
+                                <>
+                                    {/* De Minimis Info */}
+                                    {breakdown.deMinimisDetails && (
+                                        <section className="de-minimis-section">
+                                            <h3>De Minimis Status</h3>
+                                            <p className={breakdown.deMinimisApplied ? "exempt" : "not-exempt"}>
+                                                {breakdown.deMinimisApplied ? "✅ Exemption Applied" : "❌ No Exemption"}
+                                            </p>
+                                            <p className="de-minimis-detail">{breakdown.deMinimisDetails}</p>
+                                        </section>
+                                    )}
+
+                                    {/* Exchange Rate */}
+                                    {breakdown.exchangeRate && (
+                                        <p className="exchange-rate">
+                                            Exchange Rate: {breakdown.exchangeRate}
+                                        </p>
+                                    )}
+
+                                    {/* Disclaimer */}
+                                    <footer className="disclaimer">
+                                        <p>{disclaimer}</p>
+                                        <time dateTime={breakdown.calculatedAt}>
+                                            Calculated: {new Date(breakdown.calculatedAt).toLocaleDateString("en-US", {
+                                                year: "numeric",
+                                                month: "long",
+                                                day: "numeric",
+                                                hour: "2-digit",
+                                                minute: "2-digit",
+                                            })}
+                                        </time>
+                                    </footer>
+
+                                    {/* SGE-Shield Section */}
+                                    {calculation.market_insight && (
+                                        <aside className="compliance-insight glass-panel" style={{ marginTop: "3rem" }}>
+                                            <h2 style={{ fontSize: "1.25rem", color: "var(--accent)", marginBottom: "1rem" }}>
+                                                🛡️ 2026 Import Compliance Insights
+                                            </h2>
+                                            <p className="insight-text">{calculation.market_insight}</p>
+                                        </aside>
+                                    )}
+                                </>
                             )}
 
-                            {/* De Minimis Info */}
-                            {breakdown.deMinimisDetails && (
-                                <section className="de-minimis-section">
-                                    <h3>De Minimis Status</h3>
-                                    <p className={breakdown.deMinimisApplied ? "exempt" : "not-exempt"}>
-                                        {breakdown.deMinimisApplied ? "✅ Exemption Applied" : "❌ No Exemption"}
-                                    </p>
-                                    <p className="de-minimis-detail">{breakdown.deMinimisDetails}</p>
-                                </section>
-                            )}
-
-                            {/* Exchange Rate */}
-                            {breakdown.exchangeRate && (
-                                <p className="exchange-rate">
-                                    Exchange Rate: {breakdown.exchangeRate}
-                                </p>
-                            )}
-
-                            {/* Disclaimer */}
-                            <footer className="disclaimer">
-                                <p>{disclaimer}</p>
-                                <time dateTime={breakdown.calculatedAt}>
-                                    Calculated: {new Date(breakdown.calculatedAt).toLocaleDateString("en-US", {
-                                        year: "numeric",
-                                        month: "long",
-                                        day: "numeric",
-                                        hour: "2-digit",
-                                        minute: "2-digit",
-                                    })}
-                                </time>
-                            </footer>
-
-                            {/* SGE-Shield Section */}
-                            {calculation.market_insight && (
-                                <aside className="compliance-insight glass-panel" style={{ marginTop: "3rem" }}>
-                                    <h2 style={{ fontSize: "1.25rem", color: "var(--accent)", marginBottom: "1rem" }}>
-                                        🛡️ 2026 Import Compliance Insights
-                                    </h2>
-                                    <p className="insight-text">{calculation.market_insight}</p>
-                                </aside>
-                            )}
-
-                            {/* Visible FAQs */}
-                            {breakdown && calculation && (
+                            {/* Visible FAQs — hidden when guide_html exists (FAQs are inside the guide) */}
+                            {!calculation.guide_html && breakdown && calculation && (
                                 <section className="faq-section" style={{ marginTop: "4rem", marginBottom: "2rem" }}>
                                     <h2 style={{ fontSize: "1.5rem", color: "var(--foreground)", marginBottom: "2rem" }}>
                                         Frequently Asked Questions
