@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { MegaMenu } from "@/components/MegaMenu";
 import { Footer } from "@/components/Footer";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { NavigationProgress } from "@/components/NavigationProgress";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -76,6 +78,9 @@ export default function RootLayout({
                 ></script>
             </head>
             <body className="bg-background text-foreground min-h-screen flex flex-col" suppressHydrationWarning>
+                <Suspense fallback={null}>
+                    <NavigationProgress />
+                </Suspense>
                 <MegaMenu />
 
                 <div className="page-content" style={{ flex: 1, paddingTop: "80px" }}>
