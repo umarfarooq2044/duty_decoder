@@ -582,13 +582,13 @@ async function run() {
     // Process with concurrency limit
     const tasks = rows.map(row => () => limit(() => generateGuideForRow(row)));
 
-    const BATCH_SIZE = 3; // Small batches due to heavy token usage
+    const BATCH_SIZE = 50;
     for (let i = 0; i < tasks.length; i += BATCH_SIZE) {
         console.log(`\n═══════════ BATCH ${Math.floor(i / BATCH_SIZE) + 1} (${i + 1}-${Math.min(i + BATCH_SIZE, tasks.length)}/${tasks.length}) ═══════════`);
 
         if (i > 0) {
-            console.log(`⏸️  Rate limit pause: 3 seconds...`);
-            await sleep(3000);
+            console.log(`⏸️  Pause: 1 second...`);
+            await sleep(1000);
         }
 
         const batch = tasks.slice(i, i + BATCH_SIZE);
