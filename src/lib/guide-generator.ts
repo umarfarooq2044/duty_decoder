@@ -20,11 +20,11 @@ const COUNTRY_NAMES: Record<string, string> = {
 };
 
 const TRADE_CURRENCIES: Record<string, string> = {
-    US: "USD", GB: "GBP", DE: "EUR", FR: "EUR", IT: "EUR", ES: "EUR",
-    NL: "EUR", SE: "SEK", PL: "PLN", EU: "EUR", MX: "MXN", CA: "CAD",
-    JP: "JPY", IN: "INR", AU: "AUD", SG: "SGD", AE: "AED", SA: "SAR",
-    BR: "BRL", PK: "PKR", CN: "CNY", KR: "KRW", VN: "VND", TW: "TWD",
-    TR: "TRY", TH: "THB", ID: "IDR", MY: "MYR",
+    US: "USD", GB: "USD", DE: "EUR", FR: "EUR", IT: "EUR", ES: "EUR",
+    NL: "EUR", SE: "USD", PL: "USD", EU: "EUR", MX: "USD", CA: "USD",
+    JP: "USD", IN: "USD", AU: "USD", SG: "USD", AE: "USD", SA: "USD",
+    BR: "USD", PK: "USD", CN: "USD", KR: "USD", VN: "USD", TW: "USD",
+    TR: "USD", TH: "USD", ID: "USD", MY: "USD",
 };
 
 const REGULATORY_BODIES: Record<string, string[]> = {

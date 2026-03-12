@@ -20,7 +20,7 @@ const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET!;
 const REDIRECT_URI = "http://localhost:3939/oauth2callback";
 const BASE_URL = "https://dutydecoder.com";
 
-const STATIC_SKIP = 429;  // Static URLs already submitted
+const STATIC_SKIP = 523;  // All static URLs done
 const TOTAL_LIMIT = 210;  // Google daily quota
 
 // ── Collect remaining static URLs ──

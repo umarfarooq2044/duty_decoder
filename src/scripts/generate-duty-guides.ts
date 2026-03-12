@@ -16,7 +16,7 @@ if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY || !GROQ_API_KEY) {
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
 const groq = new Groq({ apiKey: GROQ_API_KEY });
-const limit = pLimit(3); // Lower concurrency — longform = more tokens per call
+const limit = pLimit(6); // 2X speed — higher concurrency
 
 const sleep = (ms: number) => new Promise(res => setTimeout(res, ms));
 
@@ -34,11 +34,11 @@ const COUNTRY_NAMES: Record<string, string> = {
 };
 
 const TRADE_CURRENCIES: Record<string, string> = {
-    US: "USD", GB: "GBP", DE: "EUR", FR: "EUR", IT: "EUR", ES: "EUR",
-    NL: "EUR", SE: "SEK", PL: "PLN", EU: "EUR", MX: "MXN", CA: "CAD",
-    JP: "JPY", IN: "INR", AU: "AUD", SG: "SGD", AE: "AED", SA: "SAR",
-    BR: "BRL", PK: "PKR", CN: "CNY", KR: "KRW", VN: "VND", TW: "TWD",
-    TR: "TRY", TH: "THB", ID: "IDR", MY: "MYR",
+    US: "USD", GB: "USD", DE: "EUR", FR: "EUR", IT: "EUR", ES: "EUR",
+    NL: "EUR", SE: "USD", PL: "USD", EU: "EUR", MX: "USD", CA: "USD",
+    JP: "USD", IN: "USD", AU: "USD", SG: "USD", AE: "USD", SA: "USD",
+    BR: "USD", PK: "USD", CN: "USD", KR: "USD", VN: "USD", TW: "USD",
+    TR: "USD", TH: "USD", ID: "USD", MY: "USD",
 };
 
 const REGULATORY_BODIES: Record<string, string[]> = {
@@ -476,12 +476,12 @@ async function generateGuideForRow(row: any) {
         // STEP 1: Research
         console.log(`  📊 Step 1/3: Researching ${product} (${origin}->${dest})...`);
         const research = await runResearchAgent(product, origin, dest, hsCode, dutyRate, vatRate);
-        await sleep(1000); // Rate limit breathing room
+        await sleep(500); // Rate limit breathing room
 
         // STEP 2: Write Guide
         console.log(`  ✍️  Step 2/3: Writing longform guide...`);
         let result = await runGuideWriter(product, origin, dest, hsCode, dutyRate, vatRate, research);
-        await sleep(1000);
+        await sleep(500);
 
         if (!result) {
             console.error(`  ❌ Guide Writer returned null for ${product} (${origin}->${dest})`);
@@ -498,7 +498,7 @@ async function generateGuideForRow(row: any) {
             // One retry with specific fix instructions
             if (validation.issues.some(i => i.includes("banned phrase") || i.includes("Missing H2") || i.includes("too short"))) {
                 console.log(`  🔄 Retrying with fix instructions...`);
-                await sleep(2000);
+                await sleep(1000);
 
                 // Re-run Step 2 with additional instructions about the issues
                 const retryResult = await runGuideWriter(product, origin, dest, hsCode, dutyRate, vatRate, research);
@@ -562,7 +562,7 @@ async function run() {
     if (isTest) {
         query = query.limit(1);
     } else {
-        query = query.limit(500);
+        query = query.limit(1000);
     }
 
     const { data: rows, error } = await query;

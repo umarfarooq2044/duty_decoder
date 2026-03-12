@@ -3,7 +3,7 @@ import { getCachedLandedCostBySlug, getCachedComplianceRules } from "@/lib/cache
 import { COUNTRY_BY_CODE } from "@/lib/countries";
 import { generateProductJsonLd, generateFaqJsonLd } from "@/lib/seo/json-ld";
 import type { LandedCostBreakdown, CostLineItem } from "@/schemas/landed-cost";
-import { TableOfContents } from "@/components/TableOfContents";
+
 import { SidebarCalculator } from "@/components/calculator/SidebarCalculator";
 import { DataIntegrityBadge } from "@/components/DataIntegrityBadge";
 import { PrintReportButton } from "@/components/calculator/PrintReportButton";
@@ -507,7 +507,7 @@ export default async function CalculatePage({ params }: PageProps) {
 
                         <aside className="report-sidebar">
                             <div style={{ position: "sticky", top: "100px", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-                                <TableOfContents />
+
                                 <SidebarCalculator
                                     initialData={breakdown}
                                     exemptions={calculation.seo_blueprint?.tax_exemptions}
