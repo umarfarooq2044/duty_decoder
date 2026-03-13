@@ -63,6 +63,7 @@ export const COUNTRIES: CountryEntry[] = [
     { code: "EG", name: "Egypt", slug: "egypt", currency: "EGP", vatLabel: "VAT", vatRate: 14, region: "Africa" },
     { code: "AR", name: "Argentina", slug: "argentina", currency: "ARS", vatLabel: "VAT", vatRate: 21, region: "South America" },
     { code: "UA", name: "Ukraine", slug: "ukraine", currency: "UAH", vatLabel: "VAT", vatRate: 20, region: "Europe" },
+    { code: "PK", name: "Pakistan", slug: "pakistan", currency: "PKR", vatLabel: "Sales Tax", vatRate: 18, region: "South Asia" },
 ];
 
 // Lookup helpers
