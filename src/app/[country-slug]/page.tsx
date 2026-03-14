@@ -79,8 +79,8 @@ export default async function CountryHubPage({ params }: PageProps) {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com" },
-            { "@type": "ListItem", "position": 2, "name": country.name, "item": `${process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com"}/${slug}` }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com" },
+            { "@type": "ListItem", "position": 2, "name": country.name, "item": `${process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com"}/${slug}` }
         ]
     };
 
@@ -93,7 +93,7 @@ export default async function CountryHubPage({ params }: PageProps) {
         "publisher": { "@type": "Organization", "name": "DutyDecoder" },
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": `${process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com"}/${slug}`
+            "@id": `${process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com"}/${slug}`
         }
     };
 

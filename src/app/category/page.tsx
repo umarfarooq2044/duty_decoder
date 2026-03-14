@@ -102,8 +102,8 @@ export default function CategoryIndexPage() {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com" },
-            { "@type": "ListItem", "position": 2, "name": "Categories", "item": `${process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com"}/category` }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com" },
+            { "@type": "ListItem", "position": 2, "name": "Categories", "item": `${process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com"}/category` }
         ]
     };
 

@@ -34,9 +34,9 @@ export function CountrySupportPage({ slug, pageType, data }: SupportPageProps) {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com" },
-            { "@type": "ListItem", "position": 2, "name": country.name, "item": `${process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com"}/${slug}` },
-            { "@type": "ListItem", "position": 3, "name": pageTitle, "item": `${process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com"}${data.url}` }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com" },
+            { "@type": "ListItem", "position": 2, "name": country.name, "item": `${process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com"}/${slug}` },
+            { "@type": "ListItem", "position": 3, "name": pageTitle, "item": `${process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com"}${data.url}` }
         ]
     };
 

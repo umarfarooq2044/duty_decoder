@@ -208,8 +208,8 @@ export default function HSCodeLookupPage() {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com" },
-            { "@type": "ListItem", "position": 2, "name": "HS Code Lookup", "item": `${process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com"}/hs-code-lookup` }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com" },
+            { "@type": "ListItem", "position": 2, "name": "HS Code Lookup", "item": `${process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com"}/hs-code-lookup` }
         ]
     };
 
@@ -222,7 +222,7 @@ export default function HSCodeLookupPage() {
         "publisher": { "@type": "Organization", "name": "DutyDecoder" },
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": `${process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com"}/hs-code-lookup`
+            "@id": `${process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com"}/hs-code-lookup`
         }
     };
 

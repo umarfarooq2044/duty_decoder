@@ -65,7 +65,7 @@ export default async function HomePage() {
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "DutyDecoder Calculator",
-        "url": process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com",
+        "url": process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web",
         "image": "https://dutydecoder.com/icon.svg",
@@ -121,7 +121,7 @@ export default async function HomePage() {
 
     const breadcrumbSchema = {
         "@context": "https://schema.org", "@type": "BreadcrumbList",
-        itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com" }],
+        itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com" }],
     };
 
     const recentItemsList = recentPages?.length ? {

@@ -207,7 +207,7 @@ export default async function CountryCalculatorPage({ params }: PageProps) {
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": `${country.name} Import Duty Calculator`,
-        "url": `${process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com"}/${slug}/import-duty-calculator`,
+        "url": `${process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com"}/${slug}/import-duty-calculator`,
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web",
         "image": "https://dutydecoder.com/icon.svg",
@@ -254,8 +254,8 @@ export default async function CountryCalculatorPage({ params }: PageProps) {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": `${process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com"}` },
-            { "@type": "ListItem", "position": 2, "name": country.name, "item": `${process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com"}/${slug}` },
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `${process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com"}` },
+            { "@type": "ListItem", "position": 2, "name": country.name, "item": `${process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com"}/${slug}` },
             { "@type": "ListItem", "position": 3, "name": "Import Duty Calculator" },
         ]
     };

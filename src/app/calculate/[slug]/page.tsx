@@ -109,7 +109,7 @@ export default async function CalculatePage({ params }: PageProps) {
         ? ((disclaimerRules[0]?.rule_value as { text?: string })?.text ?? "Estimates are for informational purposes only.")
         : "Estimates are for informational purposes only.";
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "https://duty-decoder.com";
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "https://dutydecoder.com";
     const canonicalUrl = `${baseUrl}/calculate/${slug}/`;
 
     // JSON-LD

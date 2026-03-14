@@ -128,7 +128,7 @@ export default async function HSCodeFinderPage() {
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "AI HS Code Finder",
-        "url": `${process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com"}/hs-code-finder`,
+        "url": `${process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com"}/hs-code-finder`,
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web",
         "image": "https://dutydecoder.com/icon.svg",
@@ -171,8 +171,8 @@ export default async function HSCodeFinderPage() {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com" },
-            { "@type": "ListItem", "position": 2, "name": "HS Code Finder", "item": `${process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com"}/hs-code-finder` }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com" },
+            { "@type": "ListItem", "position": 2, "name": "HS Code Finder", "item": `${process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com"}/hs-code-finder` }
         ]
     };
 

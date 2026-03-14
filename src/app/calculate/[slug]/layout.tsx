@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
         const title = `Landed Cost: ${calculation.product_description} → ${countryLabel} | Duty Decoder`;
         const description = `Total landed cost for "${calculation.product_description}" imported to ${countryLabel}: ${calculation.total_landed_cost} ${calculation.currency}. Includes customs duty, VAT, and fees.`;
 
-        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "https://duty-decoder.com";
+        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "https://dutydecoder.com";
         const canonicalUrl = `${baseUrl}/calculate/${slug}/`;
 
         return {

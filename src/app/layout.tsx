@@ -7,7 +7,7 @@ import { NavigationProgress } from "@/components/NavigationProgress";
 import "./globals.css";
 
 export const metadata: Metadata = {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com"),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com"),
     title: {
         default: "DutyDecoder — Free Import Duty & Landed Cost Calculator 2026",
         template: "%s | DutyDecoder",

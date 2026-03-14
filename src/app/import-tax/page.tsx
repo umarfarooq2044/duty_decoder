@@ -32,7 +32,7 @@ export default function ImportTaxPage() {
     ];
 
     const faqJsonLd = { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": faqs.map(f => ({ "@type": "Question", "name": f.question, "acceptedAnswer": { "@type": "Answer", "text": f.answer } })) };
-    const breadcrumbJsonLd = { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com" }, { "@type": "ListItem", "position": 2, "name": "Import Tax", "item": `${process.env.NEXT_PUBLIC_BASE_URL || "https://duty-decoder.com"}/import-tax` }] };
+    const breadcrumbJsonLd = { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com" }, { "@type": "ListItem", "position": 2, "name": "Import Tax", "item": `${process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com"}/import-tax` }] };
 
     return (
         <>
