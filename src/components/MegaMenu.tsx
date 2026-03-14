@@ -49,6 +49,7 @@ const ALL_COUNTRIES = [
     { name: "Mexico", slug: "mexico", flag: "🇲🇽" },
     { name: "Netherlands", slug: "netherlands", flag: "🇳🇱" },
     { name: "Norway", slug: "norway", flag: "🇳🇴" },
+    { name: "Pakistan", slug: "pakistan", flag: "🇵🇰" },
     { name: "Philippines", slug: "philippines", flag: "🇵🇭" },
     { name: "Poland", slug: "poland", flag: "🇵🇱" },
     { name: "Portugal", slug: "portugal", flag: "🇵🇹" },
@@ -336,7 +337,7 @@ export function MegaMenu() {
                     <div style={{ marginBottom: "1.5rem" }}>
                         <input
                             type="text"
-                            placeholder="Search 50 countries..."
+                            placeholder="Search 51 countries..."
                             value={countrySearch}
                             onChange={(e) => setCountrySearch(e.target.value)}
                             aria-label="Search countries"
@@ -411,7 +412,7 @@ export function MegaMenu() {
                         <div>
                             <h3 style={colHeadingStyle}>Country Guides</h3>
                             <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.6, marginBottom: "1rem" }}>
-                                Access detailed import duty guides, customs calculators, and compliance tools for 50 countries.
+                                Access detailed import duty guides, customs calculators, and compliance tools for 51 countries.
                             </p>
                             <button onClick={() => setActivePanel("countries")} style={{
                                 background: "var(--accent)", color: "#fff", border: "none",
