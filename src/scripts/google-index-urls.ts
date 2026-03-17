@@ -1,9 +1,9 @@
 /**
- * Google Indexing API — Submit remaining 94 static + dynamic calculate URLs
+ * Google Indexing API — Submit dynamic /calculate/ URLs (with dedup tracking)
+ * 
+ * Tracks submitted URLs in .indexed-urls.json so it never re-submits.
  * 
  * Usage: npx tsx src/scripts/google-index-urls.ts
- * 
- * Requires GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET in .env.local
  */
 
 import * as dotenv from 'dotenv';
@@ -12,6 +12,8 @@ dotenv.config({ path: '.env.local' });
 import { google } from "googleapis";
 import http from "http";
 import open from "open";
+import fs from "fs";
+import path from "path";
 import { createClient } from "@supabase/supabase-js";
 import { COUNTRIES } from "../lib/countries";
 
@@ -19,12 +21,31 @@ const CLIENT_ID = process.env.GOOGLE_CLIENT_ID!;
 const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET!;
 const REDIRECT_URI = "http://localhost:3939/oauth2callback";
 const BASE_URL = "https://dutydecoder.com";
+const TOTAL_LIMIT = 210;
 
-const STATIC_SKIP = 523;  // All static URLs done
-const TOTAL_LIMIT = 210;  // Google daily quota
+// ── Tracking file ──
+const TRACKING_FILE = path.join(process.cwd(), ".indexed-urls.json");
 
-// ── Collect remaining static URLs ──
-function getRemainingStaticUrls(): string[] {
+function loadSubmittedUrls(): Set<string> {
+    try {
+        if (fs.existsSync(TRACKING_FILE)) {
+            const data = JSON.parse(fs.readFileSync(TRACKING_FILE, "utf-8"));
+            return new Set(data.urls || []);
+        }
+    } catch {}
+    return new Set();
+}
+
+function saveSubmittedUrls(urls: Set<string>) {
+    fs.writeFileSync(TRACKING_FILE, JSON.stringify({
+        lastRun: new Date().toISOString(),
+        totalSubmitted: urls.size,
+        urls: Array.from(urls),
+    }, null, 2));
+}
+
+// ── Collect all static URLs ──
+function getAllStaticUrls(): string[] {
     const urls: string[] = [];
 
     const topPages = [
@@ -51,8 +72,7 @@ function getRemainingStaticUrls(): string[] {
         }
     }
 
-    // Skip already-submitted static URLs
-    return urls.slice(STATIC_SKIP);
+    return urls;
 }
 
 // ── Fetch dynamic /calculate/ slugs from Supabase ──
@@ -135,23 +155,31 @@ async function main() {
         process.exit(1);
     }
 
-    console.log(`\n📋 Google Indexing API — Remaining Static + Dynamic URLs`);
+    // Load previously submitted URLs
+    const submitted = loadSubmittedUrls();
+    console.log(`\n📋 Google Indexing API — Smart Batch (skips already submitted)`);
+    console.log(`   Previously submitted: ${submitted.size} URLs`);
 
-    // Get remaining static URLs
-    const staticUrls = getRemainingStaticUrls();
-    console.log(`   Remaining static: ${staticUrls.length}`);
-
-    // Get dynamic calculate URLs from Supabase
+    // Collect all URLs
+    const staticUrls = getAllStaticUrls();
     console.log(`   Fetching dynamic /calculate/ URLs from Supabase...`);
     const dynamicUrls = await getDynamicCalculateUrls();
-    console.log(`   Dynamic calculate pages: ${dynamicUrls.length}`);
 
-    // Combine: static first, then dynamic
     const allUrls = [...staticUrls, ...dynamicUrls];
-    const batch = allUrls.slice(0, TOTAL_LIMIT);
+    console.log(`   Total static: ${staticUrls.length}`);
+    console.log(`   Total dynamic: ${dynamicUrls.length}`);
 
-    console.log(`   Combined total: ${allUrls.length}`);
+    // Filter out already-submitted URLs
+    const newUrls = allUrls.filter(url => !submitted.has(url));
+    const batch = newUrls.slice(0, TOTAL_LIMIT);
+
+    console.log(`   New (not yet submitted): ${newUrls.length}`);
     console.log(`   Today's batch: ${batch.length} (limit: ${TOTAL_LIMIT})\n`);
+
+    if (batch.length === 0) {
+        console.log("🎉 All URLs have been submitted! No new URLs to index.\n");
+        return;
+    }
 
     const token = await getAccessToken();
     console.log(`\n🔑 Token obtained. Submitting ${batch.length} URLs...\n`);
@@ -162,7 +190,15 @@ async function main() {
         const chunk = batch.slice(i, i + 5);
         const results = await Promise.all(chunk.map(url => submitUrl(token, url)));
 
-        for (const ok of results) { if (ok) success++; else failed++; }
+        for (let j = 0; j < results.length; j++) {
+            const url = chunk[j];
+            if (results[j] && url) {
+                success++;
+                submitted.add(url); // Track successful submission
+            } else {
+                failed++;
+            }
+        }
 
         const total = Math.min(i + 5, batch.length);
         const pct = Math.round((total / batch.length) * 100);
@@ -171,15 +207,18 @@ async function main() {
         if (i + 5 < batch.length) await new Promise(r => setTimeout(r, 1200));
     }
 
+    // Save updated tracking
+    saveSubmittedUrls(submitted);
+
     console.log(`\n\n${"═".repeat(50)}`);
     console.log(`✅ Done!`);
-    console.log(`   Static submitted: ${Math.min(staticUrls.length, success)}`);
-    console.log(`   Dynamic submitted: ${Math.max(0, success - staticUrls.length)}`);
-    console.log(`   Total success: ${success}`);
+    console.log(`   Submitted today: ${success}`);
     console.log(`   Failed: ${failed}`);
+    console.log(`   Total ever submitted: ${submitted.size}`);
+    console.log(`   Remaining: ${newUrls.length - success}`);
 
-    if (allUrls.length > TOTAL_LIMIT) {
-        console.log(`\n⚠️  ${allUrls.length - TOTAL_LIMIT} URLs remaining. Run again tomorrow.`);
+    if (newUrls.length > TOTAL_LIMIT) {
+        console.log(`\n⚠️  Run again tomorrow for the next batch.`);
     } else {
         console.log(`\n🎉 All URLs submitted!`);
     }

@@ -293,6 +293,9 @@ async function runGuideWriter(
             .replace(/\s*```$/i, "")
             .trim();
 
+        // Sanitize: force all internal links to https
+        html = html.replace(/http:\/\/(www\.)?dutydecoder\.com/gi, 'https://dutydecoder.com');
+
         return { html, metaDescription };
     } catch {
         return null;

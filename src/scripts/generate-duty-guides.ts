@@ -364,6 +364,9 @@ Your writing style rules:
         // Clean up any markdown code fences the model might wrap around the output
         html = html.replace(/^```html?\s*/i, "").replace(/\s*```$/i, "").trim();
 
+        // Sanitize: force all internal links to https
+        html = html.replace(/http:\/\/(www\.)?dutydecoder\.com/gi, 'https://dutydecoder.com');
+
         return { html, metaDescription };
     } catch (err: any) {
         console.error(`❌ Guide Writer failed: ${err.message}`);

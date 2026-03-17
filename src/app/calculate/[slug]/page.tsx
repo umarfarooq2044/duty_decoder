@@ -216,8 +216,12 @@ export default async function CalculatePage({ params }: PageProps) {
 
                             {/* ─── Longform Guide HTML (New Pipeline) ─── */}
                             {calculation.guide_html ? (() => {
+                                // Sanitize: force all internal links to https
+                                const sanitizedHtml = calculation.guide_html
+                                    .replace(/http:\/\/(www\.)?dutydecoder\.com/gi, 'https://dutydecoder.com');
+
                                 // Split guide into intro (first H2 + its content) and body (rest)
-                                const guideHtml = calculation.guide_html;
+                                const guideHtml = sanitizedHtml;
                                 const secondH2Idx = guideHtml.indexOf('<h2>', guideHtml.indexOf('<h2>') + 4);
                                 const guideIntro = secondH2Idx > -1 ? guideHtml.substring(0, secondH2Idx) : guideHtml;
                                 const guideBody = secondH2Idx > -1 ? guideHtml.substring(secondH2Idx) : '';
