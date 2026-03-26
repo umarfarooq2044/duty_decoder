@@ -7,35 +7,40 @@ export const revalidate = 86400;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "https://dutydecoder.com";
-    const now = new Date();
+
+    // Use a fixed "last content update" date for static pages — update this when you
+    // actually modify content on these pages (prevents Google seeing every page as
+    // "modified" on every deploy, which wastes crawl budget).
+    const lastContentUpdate = new Date("2026-03-26");
+    const lastPolicyUpdate  = new Date("2026-01-15");
 
     // ── 1. Static routes ──
     const staticRoutes: MetadataRoute.Sitemap = [
-        { url: `${baseUrl}/`, lastModified: now, changeFrequency: "weekly", priority: 1.0 },
-        { url: `${baseUrl}/import-duty/`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-        { url: `${baseUrl}/customs-duty/`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-        { url: `${baseUrl}/import-tax/`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-        { url: `${baseUrl}/tariff-rates/`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-        { url: `${baseUrl}/calculate/`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-        { url: `${baseUrl}/hs-code-lookup/`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-        { url: `${baseUrl}/hs-code-finder/`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-        { url: `${baseUrl}/import-documents/`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-        { url: `${baseUrl}/import-restrictions/`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-        { url: `${baseUrl}/customs-clearance/`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-        { url: `${baseUrl}/category/medical/`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-        { url: `${baseUrl}/category/electronics/`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-        { url: `${baseUrl}/category/energy/`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-        { url: `${baseUrl}/category/textiles/`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-        { url: `${baseUrl}/category/food/`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-        { url: `${baseUrl}/category/automotive/`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-        { url: `${baseUrl}/category/industrial/`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-        { url: `${baseUrl}/category/chemicals/`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-        { url: `${baseUrl}/methodology/`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
-        { url: `${baseUrl}/privacy/`, lastModified: now, changeFrequency: "monthly", priority: 0.3 },
-        { url: `${baseUrl}/terms/`, lastModified: now, changeFrequency: "monthly", priority: 0.3 },
-        { url: `${baseUrl}/disclaimer/`, lastModified: now, changeFrequency: "monthly", priority: 0.3 },
-        { url: `${baseUrl}/contact/`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
-        { url: `${baseUrl}/about/`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
+        { url: `${baseUrl}/`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 1.0 },
+        { url: `${baseUrl}/import-duty/`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 0.9 },
+        { url: `${baseUrl}/customs-duty/`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 0.9 },
+        { url: `${baseUrl}/import-tax/`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 0.9 },
+        { url: `${baseUrl}/tariff-rates/`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 0.9 },
+        { url: `${baseUrl}/calculate/`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 0.9 },
+        { url: `${baseUrl}/hs-code-lookup/`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 0.9 },
+        { url: `${baseUrl}/hs-code-finder/`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 0.9 },
+        { url: `${baseUrl}/import-documents/`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 0.9 },
+        { url: `${baseUrl}/import-restrictions/`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 0.9 },
+        { url: `${baseUrl}/customs-clearance/`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 0.9 },
+        { url: `${baseUrl}/category/medical/`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 0.8 },
+        { url: `${baseUrl}/category/electronics/`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 0.8 },
+        { url: `${baseUrl}/category/energy/`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 0.8 },
+        { url: `${baseUrl}/category/textiles/`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 0.8 },
+        { url: `${baseUrl}/category/food/`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 0.8 },
+        { url: `${baseUrl}/category/automotive/`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 0.8 },
+        { url: `${baseUrl}/category/industrial/`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 0.8 },
+        { url: `${baseUrl}/category/chemicals/`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 0.8 },
+        { url: `${baseUrl}/methodology/`, lastModified: lastContentUpdate, changeFrequency: "monthly", priority: 0.5 },
+        { url: `${baseUrl}/privacy/`, lastModified: lastPolicyUpdate, changeFrequency: "monthly", priority: 0.3 },
+        { url: `${baseUrl}/terms/`, lastModified: lastPolicyUpdate, changeFrequency: "monthly", priority: 0.3 },
+        { url: `${baseUrl}/disclaimer/`, lastModified: lastPolicyUpdate, changeFrequency: "monthly", priority: 0.3 },
+        { url: `${baseUrl}/contact/`, lastModified: lastPolicyUpdate, changeFrequency: "monthly", priority: 0.4 },
+        { url: `${baseUrl}/about/`, lastModified: lastContentUpdate, changeFrequency: "monthly", priority: 0.4 },
     ];
 
     // ── 2. Country pages ──
@@ -49,14 +54,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (const country of COUNTRIES) {
         countryRoutes.push({
             url: `${baseUrl}/${country.slug}/`,
-            lastModified: now,
+            lastModified: lastContentUpdate,
             changeFrequency: "weekly",
             priority: 0.9,
         });
         for (const sp of supportPages) {
             countryRoutes.push({
                 url: `${baseUrl}/${country.slug}/${sp}/`,
-                lastModified: now,
+                lastModified: lastContentUpdate,
                 changeFrequency: sp === "import-duty-calculator" ? "weekly" : "monthly",
                 priority: sp === "import-duty-calculator" ? 0.85 : 0.6,
             });

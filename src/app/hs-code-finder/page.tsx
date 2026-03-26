@@ -20,6 +20,8 @@ export const metadata: Metadata = {
     },
 };
 
+export const revalidate = 86400; // Refresh recent classifications every 24 hours
+
 export default async function HSCodeFinderPage() {
     const supabase = getServerSupabase();
 
@@ -158,12 +160,6 @@ export default async function HSCodeFinderPage() {
                 "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
                 "merchantReturnDays": "0"
             }
-        },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "ratingCount": "342",
-            "bestRating": "5"
         }
     };
 

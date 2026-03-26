@@ -95,12 +95,6 @@ export default async function HomePage() {
                 "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
                 "merchantReturnDays": "0"
             }
-        },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "ratingCount": "892",
-            "bestRating": "5"
         }
     };
 
@@ -366,14 +360,14 @@ export default async function HomePage() {
                         { flag: "🇫🇷", name: "France", slug: "france" },
                         { flag: "🇸🇬", name: "Singapore", slug: "singapore" },
                     ].map(c => (
-                        <a key={c.slug} href={`/${c.slug}/import-duty-calculator/`} style={{
+                        <Link key={c.slug} href={`/${c.slug}/import-duty-calculator/`} style={{
                             display: "inline-flex", alignItems: "center", gap: "0.4rem",
                             background: cardBg, border: cardBorder, borderRadius: "8px",
                             padding: "0.6rem 1rem", fontSize: "0.85rem", color: headingColor,
                             textDecoration: "none", fontWeight: 500,
                         }}>
                             {c.flag} {c.name}
-                        </a>
+                        </Link>
                     ))}
                 </div>
             </section>
@@ -387,7 +381,7 @@ export default async function HomePage() {
                     </div>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1rem" }}>
                         {recentPages.map((p, i) => (
-                            <a key={`rc-${i}`} href={`/calculate/${p.slug}`} style={{
+                            <Link key={`rc-${i}`} href={`/calculate/${p.slug}`} style={{
                                 display: "block", background: cardBg, border: cardBorder,
                                 borderRadius: "10px", padding: "1rem 1.25rem", textDecoration: "none",
                             }}>
@@ -397,7 +391,7 @@ export default async function HomePage() {
                                 <span style={{ fontSize: "0.8rem", color: textColor }}>
                                     {CN[p.origin_country] || p.origin_country} → {CN[p.destination_country] || p.destination_country}
                                 </span>
-                            </a>
+                            </Link>
                         ))}
                     </div>
                 </section>
@@ -409,7 +403,7 @@ export default async function HomePage() {
                     <h2 style={{ fontSize: "1.5rem", fontWeight: 700, color: headingColor, marginBottom: "1.25rem" }}>Featured Trade Routes</h2>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1rem", marginBottom: "1.5rem" }}>
                         {featuredRoutes.map((p, i) => (
-                            <a key={`fr-${i}`} href={`/calculate/${p.slug}`} style={{
+                            <Link key={`fr-${i}`} href={`/calculate/${p.slug}`} style={{
                                 display: "block", background: cardBg, border: cardBorder,
                                 borderRadius: "10px", padding: "1rem 1.25rem", textDecoration: "none",
                             }}>
@@ -419,13 +413,13 @@ export default async function HomePage() {
                                 <span style={{ fontSize: "0.8rem", color: textColor }}>
                                     {CN[p.origin_country] || p.origin_country} → {CN[p.destination_country] || p.destination_country}
                                 </span>
-                            </a>
+                            </Link>
                         ))}
                     </div>
                     <div style={{ textAlign: "center" }}>
-                        <a href="/calculate/" style={{ color: accentColor, fontWeight: 600, fontSize: "0.95rem", textDecoration: "none" }}>
+                        <Link href="/calculate/" style={{ color: accentColor, fontWeight: 600, fontSize: "0.95rem", textDecoration: "none" }}>
                             Browse All Calculations →
-                        </a>
+                        </Link>
                     </div>
                 </section>
             )}
@@ -479,14 +473,14 @@ export default async function HomePage() {
                         { href: "/tariff-rates", title: "Tariff Rates", desc: "Country-by-country schedules", icon: "📋" },
                         { href: "/customs-clearance", title: "Customs Clearance", desc: "Step-by-step process guide", icon: "🛃" },
                     ].map(tool => (
-                        <a key={tool.href} href={tool.href} style={{
+                        <Link key={tool.href} href={tool.href} style={{
                             display: "block", background: cardBg, border: cardBorder,
                             borderRadius: "10px", padding: "1.25rem", textDecoration: "none", textAlign: "center",
                         }}>
                             <div style={{ fontSize: "1.5rem", marginBottom: "0.5rem" }}>{tool.icon}</div>
                             <div style={{ fontWeight: 600, color: headingColor, fontSize: "0.9rem", marginBottom: "0.25rem" }}>{tool.title}</div>
                             <div style={{ fontSize: "0.8rem", color: textColor }}>{tool.desc}</div>
-                        </a>
+                        </Link>
                     ))}
                 </div>
             </section>
@@ -513,9 +507,9 @@ export default async function HomePage() {
                 <p style={{ fontSize: "0.9rem", color: textColor, lineHeight: 1.7, maxWidth: "600px", margin: "0 auto 1.5rem" }}>
                     Our tariff data comes from official government sources. Our AI classification engine is trained on real HS code data. We update continuously as trade policies change.
                 </p>
-                <a href="/methodology/" style={{ color: accentColor, fontWeight: 600, fontSize: "0.95rem", textDecoration: "none" }}>
+                <Link href="/methodology/" style={{ color: accentColor, fontWeight: 600, fontSize: "0.95rem", textDecoration: "none" }}>
                     Read Our Methodology →
-                </a>
+                </Link>
             </section>
 
             {/* ═══ SECTION 19: FINAL CTA ═══ */}
@@ -526,13 +520,13 @@ export default async function HomePage() {
                 <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.85)", marginBottom: "1.5rem" }}>
                     Stop guessing. Get a detailed breakdown in seconds.
                 </p>
-                <a href="/calculate/" style={{
+                <Link href="/calculate/" style={{
                     display: "inline-block", background: "#fff", color: accentColor,
                     fontWeight: 700, padding: "1rem 2.5rem", borderRadius: "8px",
                     textDecoration: "none", fontSize: "1.05rem",
                 }}>
                     Start Calculation →
-                </a>
+                </Link>
             </section>
 
             {/* ═══ SECTION 20: FAQ ═══ */}
@@ -562,13 +556,13 @@ export default async function HomePage() {
                         { id: "industrial", icon: "⚙️", name: "Industrial Machinery" },
                         { id: "chemicals", icon: "🧪", name: "Chemicals" },
                     ].map(ind => (
-                        <a key={ind.id} href={`/category/${ind.id}`} style={{
+                        <Link key={ind.id} href={`/category/${ind.id}`} style={{
                             display: "block", background: cardBg, border: cardBorder,
                             borderRadius: "10px", padding: "1.25rem", textDecoration: "none", textAlign: "center",
                         }}>
                             <div style={{ fontSize: "1.8rem", marginBottom: "0.5rem" }}>{ind.icon}</div>
                             <div style={{ fontWeight: 600, color: headingColor, fontSize: "0.9rem" }}>{ind.name}</div>
-                        </a>
+                        </Link>
                     ))}
                 </div>
             </section>

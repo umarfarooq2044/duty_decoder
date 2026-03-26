@@ -273,12 +273,6 @@ Every calculation generates a shareable URL, a printer-friendly report, and a pe
                 "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
                 "merchantReturnDays": "0"
             }
-        },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.8",
-            "ratingCount": "127",
-            "bestRating": "5"
         }
     };
 

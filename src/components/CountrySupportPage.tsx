@@ -45,13 +45,13 @@ export function CountrySupportPage({ slug, pageType, data }: SupportPageProps) {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
             {faqJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />}
 
-            <main style={{ maxWidth: "1100px", margin: "0 auto" }} role="main">
+            <main style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 clamp(1rem, 4vw, 1.5rem)", boxSizing: "border-box", width: "100%" }} role="main">
                 {/* ───── Hero Banner ───── */}
                 <header style={{
                     background: "linear-gradient(135deg, rgba(99,102,241,0.06), rgba(59,130,246,0.04))",
                     border: "1px solid var(--border)",
                     borderRadius: "16px",
-                    padding: "2rem 2.5rem",
+                    padding: "clamp(1.25rem, 4vw, 2rem) clamp(1rem, 4vw, 2.5rem)",
                     marginBottom: "2rem",
                 }}>
                     <nav aria-label="Breadcrumb" style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.75rem", flexWrap: "wrap" }}>
@@ -61,7 +61,7 @@ export function CountrySupportPage({ slug, pageType, data }: SupportPageProps) {
                         <span aria-hidden="true" style={{ color: "var(--muted-foreground)", fontSize: "0.8rem" }}>›</span>
                         <span style={{ fontSize: "0.8rem", color: "var(--muted-foreground)" }}>{pageTitle}</span>
                     </nav>
-                    <h1 style={{ fontSize: "2rem", fontWeight: 800, margin: "0 0 0.5rem", color: "var(--foreground)", lineHeight: 1.3 }}>
+                    <h1 style={{ fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 800, margin: "0 0 0.5rem", color: "var(--foreground)", lineHeight: 1.3 }}>
                         {data.seo_h1 || pageTitle}
                     </h1>
                     <p style={{ fontSize: "1rem", color: "var(--muted-foreground)", lineHeight: 1.6, margin: 0, maxWidth: "750px" }}>
@@ -70,7 +70,7 @@ export function CountrySupportPage({ slug, pageType, data }: SupportPageProps) {
                 </header>
 
                 {/* ───── Two Column Layout ───── */}
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 340px", gap: "2rem", alignItems: "start" }}>
+                <div className="content-sidebar-grid">
 
                     {/* LEFT: Content */}
                     <article aria-label={`${pageTitle} for ${country.name}`}>
@@ -84,7 +84,7 @@ export function CountrySupportPage({ slug, pageType, data }: SupportPageProps) {
                                     {section.heading}
                                 </h2>
                                 <div
-                                    style={{ color: "var(--muted-foreground)", lineHeight: 1.85, fontSize: "1rem" }}
+                                    style={{ color: "var(--muted-foreground)", lineHeight: 1.85, fontSize: "1rem", maxWidth: "100%", overflowWrap: "break-word", wordBreak: "break-word" }}
                                     dangerouslySetInnerHTML={{ __html: section.content }}
                                 />
                             </section>
@@ -95,11 +95,11 @@ export function CountrySupportPage({ slug, pageType, data }: SupportPageProps) {
                             margin: "3rem 0",
                             background: "linear-gradient(135deg, var(--accent), #6366f1)",
                             borderRadius: "16px",
-                            padding: "2rem",
+                            padding: "clamp(1.25rem, 4vw, 2rem)",
                             textAlign: "center",
                             boxShadow: "0 10px 30px rgba(99,102,241,0.15)",
                         }}>
-                            <h2 style={{ fontSize: "1.5rem", fontWeight: 800, color: "#fff", margin: "0 0 0.5rem" }}>
+                            <h2 style={{ fontSize: "clamp(1.25rem, 3.5vw, 1.5rem)", fontWeight: 800, color: "#fff", margin: "0 0 0.5rem" }}>
                                 Calculate 2026 Landed Cost for {country.name}
                             </h2>
                             <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.85)", margin: "0 0 1.5rem" }}>

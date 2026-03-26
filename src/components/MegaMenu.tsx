@@ -158,7 +158,7 @@ export function MegaMenu() {
             <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 1rem", height: "64px" }}>
                 {/* Brand */}
                 <Link href="/" aria-label="DutyDecoder Home" style={{ display: "flex", alignItems: "center", gap: "0.5rem", textDecoration: "none" }}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="28" height="28" style={{ display: 'block' }}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="28" height="28" style={{ display: 'block' }} role="img" aria-label="DutyDecoder logo">
                         <path d="M 25 10 L 50 10 A 40 40 0 0 1 50 90 L 25 90" fill="none" stroke="#4ade80" strokeWidth="20" strokeLinecap="round" strokeLinejoin="round" />
                         <rect x="5" y="0" width="20" height="20" rx="6" fill="#1e293b" />
                         <rect x="5" y="35" width="35" height="30" rx="6" fill="#1e293b" />

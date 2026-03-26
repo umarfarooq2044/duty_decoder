@@ -17,7 +17,7 @@ export function Footer() {
                 {/* Col 1: Brand + Description */}
                 <div>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1rem" }}>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="24" height="24" style={{ display: 'block' }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="24" height="24" style={{ display: 'block' }} role="img" aria-label="DutyDecoder logo">
                             <path d="M 25 10 L 50 10 A 40 40 0 0 1 50 90 L 25 90" fill="none" stroke="#4ade80" strokeWidth="20" strokeLinecap="round" strokeLinejoin="round" />
                             <rect x="5" y="0" width="20" height="20" rx="6" fill="#1e293b" />
                             <rect x="5" y="35" width="35" height="30" rx="6" fill="#1e293b" />
@@ -114,7 +114,7 @@ export function Footer() {
                 <p style={{ fontSize: "0.8rem", color: "var(--muted-foreground)", margin: 0 }}>
                     © {new Date().getFullYear()} DutyDecoder. All rights reserved.
                 </p>
-                <div style={{ display: "flex", gap: "1.5rem" }}>
+                <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
                     <Link href="/privacy/" style={{ fontSize: "0.8rem", color: "var(--muted-foreground)", textDecoration: "none" }}>Privacy</Link>
                     <Link href="/terms/" style={{ fontSize: "0.8rem", color: "var(--muted-foreground)", textDecoration: "none" }}>Terms</Link>
                     <Link href="/disclaimer/" style={{ fontSize: "0.8rem", color: "var(--muted-foreground)", textDecoration: "none" }}>Disclaimer</Link>
