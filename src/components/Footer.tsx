@@ -72,10 +72,13 @@ export function Footer() {
                         Import Guides
                     </h4>
                     <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "0.85rem", lineHeight: 2 }}>
+                        <li><Link href="/import-from-china/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>Import from China Guide</Link></li>
+                        <li><Link href="/incoterms/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>Incoterms 2020 Guide</Link></li>
+                        <li><Link href="/trade-finance/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>Trade Finance & LCs</Link></li>
                         <li><Link href="/import-duty/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>Import Duty Guide</Link></li>
                         <li><Link href="/customs-duty/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>Customs Duty Explained</Link></li>
                         <li><Link href="/import-tax/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>Import Tax (VAT/GST)</Link></li>
-                        <li><Link href="/tariff-rates/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>Tariff Rates</Link></li>
+                        <li><Link href="/tariff-rates/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>Tariff Rates Guide</Link></li>
                     </ul>
                 </div>
 
@@ -85,9 +88,11 @@ export function Footer() {
                         Compliance
                     </h4>
                     <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "0.85rem", lineHeight: 2 }}>
-                        <li><Link href="/import-documents/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>Import Documents</Link></li>
+                        <li><Link href="/customs-broker/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>Customs Broker Guide</Link></li>
+                        <li><Link href="/export-documents/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>Export Documents Guide</Link></li>
+                        <li><Link href="/import-documents/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>Import Documents Guide</Link></li>
                         <li><Link href="/import-restrictions/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>Import Restrictions</Link></li>
-                        <li><Link href="/customs-clearance/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>Customs Clearance</Link></li>
+                        <li><Link href="/customs-clearance/" style={{ color: "var(--muted-foreground)", textDecoration: "none" }}>Customs Clearance Guide</Link></li>
                     </ul>
 
                     <h4 style={{ color: "var(--foreground)", fontSize: "0.8rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.07em", margin: "1.5rem 0 0.75rem" }}>

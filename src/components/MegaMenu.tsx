@@ -402,6 +402,11 @@ export function MegaMenu() {
                                 <li><Link href="/import-duty/" style={linkStyle}>Understanding Import Duty</Link></li>
                                 <li><Link href="/import-tax/" style={linkStyle}>Import Tax (VAT & GST)</Link></li>
                                 <li><Link href="/tariff-rates/" style={linkStyle}>Global Tariff Rates</Link></li>
+                                <li><Link href="/import-from-china/" style={linkStyle}>Import from China Guide</Link></li>
+                                <li><Link href="/incoterms/" style={linkStyle}>Incoterms 2020 Guide</Link></li>
+                                <li><Link href="/trade-finance/" style={linkStyle}>Trade Finance & LCs</Link></li>
+                                <li><Link href="/customs-broker/" style={linkStyle}>Customs Broker Guide</Link></li>
+                                <li><Link href="/export-documents/" style={linkStyle}>Export Documents Guide</Link></li>
                                 <li><Link href="/customs-clearance/" style={linkStyle}>Customs Clearance Guide</Link></li>
                                 <li><Link href="/import-documents/" style={linkStyle}>Import Documentation</Link></li>
                                 <li><Link href="/import-restrictions/" style={linkStyle}>Import Restrictions</Link></li>
