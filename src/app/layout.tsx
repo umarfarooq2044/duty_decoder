@@ -159,6 +159,21 @@ export default function RootLayout({
                     strategy="afterInteractive"
                     crossOrigin="anonymous"
                 />
+
+                {/* ── Adsterra Social Bar — delayed 3s, bot-safe, zero CLS ── */}
+                <Script id="adsterra-social-bar" strategy="afterInteractive">
+                    {`
+                    (function(){
+                        if(/bot|crawl|spider|slurp|googlebot|bingbot|yandex|baidu|duckduckbot|facebot|ia_archiver/i.test(navigator.userAgent)){return;}
+                        setTimeout(function(){
+                            var s=document.createElement('script');
+                            s.src='https://pl29455676.effectivecpmnetwork.com/cf/e4/56/cfe456b0eee57499ada8b3646f79d2d7.js';
+                            s.async=true;
+                            document.body.appendChild(s);
+                        },3000);
+                    })();
+                    `}
+                </Script>
             </body>
         </html>
     );
