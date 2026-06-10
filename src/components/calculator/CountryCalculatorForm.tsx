@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { ChevronDown, ChevronRight } from "lucide-react";
 
 interface CountryCalculatorFormProps {
     defaultDestination: string;  // ISO code, e.g., "US"
@@ -213,8 +214,9 @@ export function CountryCalculatorForm({ defaultDestination, countryName }: Count
             </div>
 
             {/* Advanced Toggle */}
-            <button type="button" onClick={() => setShowAdvanced(!showAdvanced)} className="advanced-toggle" style={{ background: "none", border: "none", color: "var(--accent)", cursor: "pointer", fontSize: "0.85rem", marginBottom: "1rem", padding: 0 }}>
-                {showAdvanced ? "▼" : "►"} Advanced Logistics Options
+            <button type="button" onClick={() => setShowAdvanced(!showAdvanced)} className="advanced-toggle" style={{ background: "none", border: "none", color: "var(--color-accent)", cursor: "pointer", fontSize: "0.85rem", marginBottom: "1rem", padding: 0, display: "flex", alignItems: "center", gap: "0.35rem" }}>
+                {showAdvanced ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+                <span>Advanced Logistics Options</span>
             </button>
 
             {showAdvanced && (

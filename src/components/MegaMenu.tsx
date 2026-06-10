@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Menu, X, ShieldCheck, Globe, Search, BookOpen, Calculator, Cpu, ChevronDown } from "lucide-react";
 
 /* ─── Top 10 Popular Countries (by trade volume) ─── */
 const POPULAR_COUNTRIES = [
@@ -179,10 +180,11 @@ export function MegaMenu() {
                     aria-label="Toggle menu"
                     style={{
                         display: "none", background: "none", border: "none",
-                        color: "#fff", fontSize: "1.5rem", cursor: "pointer", padding: "0.5rem",
+                        color: "#fff", cursor: "pointer", padding: "0.5rem",
+                        alignItems: "center", justifyContent: "center"
                     }}
                 >
-                    {mobileOpen ? "✕" : "☰"}
+                    {mobileOpen ? <X size={20} /> : <Menu size={20} />}
                 </button>
 
                 {/* Primary Nav Items — hidden on mobile, shown in hamburger drawer */}
@@ -195,7 +197,9 @@ export function MegaMenu() {
                         aria-haspopup="true"
                         style={navBtnStyle(activePanel === "importDuty")}
                     >
-                        Import Duty ▾
+                        <span style={{ display: "inline-flex", alignItems: "center", gap: "0.25rem" }}>
+                            Import Duty <ChevronDown size={14} />
+                        </span>
                     </button>
 
                     {/* 2. HS Code Finder (direct link) */}
@@ -211,7 +215,9 @@ export function MegaMenu() {
                         aria-haspopup="true"
                         style={navBtnStyle(activePanel === "countries")}
                     >
-                        Countries ▾
+                        <span style={{ display: "inline-flex", alignItems: "center", gap: "0.25rem" }}>
+                            Countries <ChevronDown size={14} />
+                        </span>
                     </button>
 
                     {/* 4. Resources (mega menu) */}
@@ -222,7 +228,9 @@ export function MegaMenu() {
                         aria-haspopup="true"
                         style={navBtnStyle(activePanel === "resources")}
                     >
-                        Resources ▾
+                        <span style={{ display: "inline-flex", alignItems: "center", gap: "0.25rem" }}>
+                            Resources <ChevronDown size={14} />
+                        </span>
                     </button>
 
                     {/* 5. Methodology (direct link) */}
@@ -248,10 +256,22 @@ export function MegaMenu() {
                     background: "rgba(10, 15, 36, 0.98)", borderTop: "1px solid rgba(255,255,255,0.08)",
                     padding: "1rem", display: "flex", flexDirection: "column", gap: "0.25rem",
                 }}>
-                    <button onClick={() => togglePanel("importDuty")} style={{ ...navBtnStyle(false), textAlign: "left", width: "100%", padding: "0.75rem" }}>Import Duty ▾</button>
+                    <button onClick={() => togglePanel("importDuty")} style={{ ...navBtnStyle(false), textAlign: "left", width: "100%", padding: "0.75rem" }}>
+                        <span style={{ display: "inline-flex", alignItems: "center", gap: "0.25rem" }}>
+                            Import Duty <ChevronDown size={14} />
+                        </span>
+                    </button>
                     <Link href="/hs-code-finder/" style={{ ...navBtnStyle(false), textDecoration: "none", padding: "0.75rem" }}>HS Code Finder</Link>
-                    <button onClick={() => togglePanel("countries")} style={{ ...navBtnStyle(false), textAlign: "left", width: "100%", padding: "0.75rem" }}>Countries ▾</button>
-                    <button onClick={() => togglePanel("resources")} style={{ ...navBtnStyle(false), textAlign: "left", width: "100%", padding: "0.75rem" }}>Resources ▾</button>
+                    <button onClick={() => togglePanel("countries")} style={{ ...navBtnStyle(false), textAlign: "left", width: "100%", padding: "0.75rem" }}>
+                        <span style={{ display: "inline-flex", alignItems: "center", gap: "0.25rem" }}>
+                            Countries <ChevronDown size={14} />
+                        </span>
+                    </button>
+                    <button onClick={() => togglePanel("resources")} style={{ ...navBtnStyle(false), textAlign: "left", width: "100%", padding: "0.75rem" }}>
+                        <span style={{ display: "inline-flex", alignItems: "center", gap: "0.25rem" }}>
+                            Resources <ChevronDown size={14} />
+                        </span>
+                    </button>
                     <Link href="/methodology/" style={{ ...navBtnStyle(false), textDecoration: "none", padding: "0.75rem" }}>Methodology</Link>
                     <Link href="/calculate/" style={{
                         background: "var(--accent)", color: "#fff", fontWeight: 700,
@@ -441,7 +461,9 @@ export function MegaMenu() {
                                 background: "rgba(34,197,94,0.08)", borderRadius: "8px",
                                 border: "1px solid rgba(34,197,94,0.2)",
                             }}>
-                                <span style={{ fontSize: "0.8rem", color: "#22c55e", fontWeight: 600 }}>✓ Verified 2026 Data</span>
+                                <span style={{ fontSize: "0.8rem", color: "#22c55e", fontWeight: 600, display: "inline-flex", alignItems: "center", gap: "0.25rem" }}>
+                                    <ShieldCheck size={14} /> Verified 2026 Data
+                                </span>
                                 <p style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.5)", margin: "0.25rem 0 0" }}>
                                     Tariff schedules updated to reflect 2026 customs matrices.
                                 </p>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ShieldCheck } from "lucide-react";
 
 export function Footer() {
     return (
@@ -34,7 +35,9 @@ export function Footer() {
                         background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.2)",
                         padding: "0.4rem 0.75rem", borderRadius: "6px",
                     }}>
-                        <span style={{ color: "#22c55e", fontSize: "0.75rem", fontWeight: 600 }}>✓ Verified 2026 Data</span>
+                        <span style={{ color: "#22c55e", fontSize: "0.75rem", fontWeight: 600, display: "inline-flex", alignItems: "center", gap: "0.25rem" }}>
+                            <ShieldCheck size={14} /> Verified 2026 Data
+                        </span>
                     </div>
                 </div>
 

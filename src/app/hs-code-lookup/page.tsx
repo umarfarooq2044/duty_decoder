@@ -42,7 +42,7 @@ export default function HSCodeLookupPage() {
         {
             id: "what-is-hs-code",
             heading: "What Is an HS Code?",
-            content: `The <strong>Harmonized System (HS)</strong> is an internationally standardized system of names and numbers to classify traded products. Developed and maintained by the <a href="https://www.wcoomd.org/en/topics/nomenclature/overview/what-is-the-harmonized-system.aspx" target="_blank" rel="dofollow">World Customs Organization (WCO)</a>, it is used by <strong>over 200 countries and economies</strong> covering more than 98% of world trade. The HS assigns a unique 6-digit code to every commodity — from raw cotton to satellites — and serves as the universal language of customs authorities worldwide.`
+            content: `The <strong>Harmonized System (HS)</strong> is an internationally standardized system of names and numbers to classify traded products. Developed and maintained by the <a href="https://www.wcoomd.org/en/topics/nomenclature/overview/what-is-the-harmonized-system.aspx" target="_blank" rel='noopener'>World Customs Organization (WCO)</a>, it is used by <strong>over 200 countries and economies</strong> covering more than 98% of world trade. The HS assigns a unique 6-digit code to every commodity — from raw cotton to satellites — and serves as the universal language of customs authorities worldwide.`
         },
         {
             id: "hs-code-structure",
@@ -74,7 +74,7 @@ export default function HSCodeLookupPage() {
                 <li><strong>Chapters 01–97:</strong> The HS divides all goods into 97 chapters grouped within 21 sections. Chapter 01 starts with live animals; Chapter 97 covers works of art.</li>
                 <li><strong>Headings (4 digits):</strong> Each chapter contains multiple headings that narrow the classification. For example, Chapter 62 has headings for suits (6203), dresses (6204), shirts (6205), and more.</li>
                 <li><strong>Subheadings (6 digits):</strong> The subheading level adds material or attribute specificity. The first 6 digits are <strong>internationally harmonized</strong> — meaning HS 6205.20 is "men's cotton shirt" everywhere in the world.</li>
-                <li><strong>National Extensions (8-10+ digits):</strong> Countries add additional digits beyond the 6-digit HS core. The US uses 10-digit <a href="https://hts.usitc.gov/" target="_blank" rel="dofollow">HTS codes</a>, the EU uses 8-digit <a href="https://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp" target="_blank" rel="dofollow">TARIC codes</a>, and the UK uses 10-digit <a href="https://www.trade-tariff.service.gov.uk/" target="_blank" rel="dofollow">commodity codes</a>.</li>
+                <li><strong>National Extensions (8-10+ digits):</strong> Countries add additional digits beyond the 6-digit HS core. The US uses 10-digit <a href="https://hts.usitc.gov/" target="_blank" rel='noopener'>HTS codes</a>, the EU uses 8-digit <a href="https://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp" target="_blank" rel='noopener'>TARIC codes</a>, and the UK uses 10-digit <a href="https://www.trade-tariff.service.gov.uk/" target="_blank" rel='noopener'>commodity codes</a>.</li>
             </ul>`
         },
         {
@@ -92,7 +92,7 @@ export default function HSCodeLookupPage() {
         {
             id: "gri-rules",
             heading: "The General Rules of Interpretation (GRI)",
-            content: `When looking up an HS code, customs brokers worldwide apply the <a href="https://www.wcoomd.org/en/topics/nomenclature/instrument-and-tools/tools-to-assist-with-the-classification-in-the-hs/general-rules-of-interpretation-gri.aspx" target="_blank" rel="dofollow">WCO General Rules of Interpretation (GRI)</a> — a set of 6 legal principles that determine how any product should be classified:
+            content: `When looking up an HS code, customs brokers worldwide apply the <a href="https://www.wcoomd.org/en/topics/nomenclature/instrument-and-tools/tools-to-assist-with-the-classification-in-the-hs/general-rules-of-interpretation-gri.aspx" target="_blank" rel='noopener'>WCO General Rules of Interpretation (GRI)</a> — a set of 6 legal principles that determine how any product should be classified:
             <ol style="padding-left: 1.5rem; margin-top: 1rem;">
                 <li><strong>GRI 1:</strong> Classification is determined first by the terms of the headings and any relative section or chapter notes. This is the primary rule — always start here.</li>
                 <li><strong>GRI 2(a):</strong> Incomplete or unfinished articles are classified as if they were complete, provided they have the essential character of the finished product.</li>
@@ -122,31 +122,31 @@ export default function HSCodeLookupPage() {
                             <td style="padding: 0.75rem;"><strong>HS Code</strong></td>
                             <td style="padding: 0.75rem;">6 digits</td>
                             <td style="padding: 0.75rem;">International standard (200+ countries)</td>
-                            <td style="padding: 0.75rem;"><a href="https://www.wcoomd.org/" target="_blank" rel="dofollow">WCO</a></td>
+                            <td style="padding: 0.75rem;"><a href="https://www.wcoomd.org/" target="_blank" rel='noopener'>WCO</a></td>
                         </tr>
                         <tr style="border-bottom: 1px solid var(--border);">
                             <td style="padding: 0.75rem;"><strong>HTS Code</strong></td>
                             <td style="padding: 0.75rem;">10 digits</td>
                             <td style="padding: 0.75rem;">US imports (duty assessment)</td>
-                            <td style="padding: 0.75rem;"><a href="https://hts.usitc.gov/" target="_blank" rel="dofollow">USITC</a></td>
+                            <td style="padding: 0.75rem;"><a href="https://hts.usitc.gov/" target="_blank" rel='noopener'>USITC</a></td>
                         </tr>
                         <tr style="border-bottom: 1px solid var(--border);">
                             <td style="padding: 0.75rem;"><strong>Schedule B</strong></td>
                             <td style="padding: 0.75rem;">10 digits</td>
                             <td style="padding: 0.75rem;">US exports (statistical reporting)</td>
-                            <td style="padding: 0.75rem;"><a href="https://www.census.gov/foreign-trade/schedules/b/index.html" target="_blank" rel="dofollow" style="color: var(--accent);">Census Bureau</a></td>
+                            <td style="padding: 0.75rem;"><a href="https://www.census.gov/foreign-trade/schedules/b/index.html" target="_blank" rel='noopener' style="color: var(--accent);">Census Bureau</a></td>
                         </tr>
                         <tr style="border-bottom: 1px solid var(--border);">
                             <td style="padding: 0.75rem;"><strong>CN Code</strong></td>
                             <td style="padding: 0.75rem;">8 digits</td>
                             <td style="padding: 0.75rem;">EU imports/exports</td>
-                            <td style="padding: 0.75rem;"><a href="https://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp" target="_blank" rel="dofollow">EU TARIC</a></td>
+                            <td style="padding: 0.75rem;"><a href="https://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp" target="_blank" rel='noopener'>EU TARIC</a></td>
                         </tr>
                         <tr>
                             <td style="padding: 0.75rem;"><strong>Commodity Code</strong></td>
                             <td style="padding: 0.75rem;">10 digits</td>
                             <td style="padding: 0.75rem;">UK imports</td>
-                            <td style="padding: 0.75rem;"><a href="https://www.trade-tariff.service.gov.uk/" target="_blank" rel="dofollow">HMRC</a></td>
+                            <td style="padding: 0.75rem;"><a href="https://www.trade-tariff.service.gov.uk/" target="_blank" rel='noopener'>HMRC</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -158,10 +158,10 @@ export default function HSCodeLookupPage() {
             heading: "How to Look Up an HS Code (Step-by-Step)",
             content: `<ol style="padding-left: 1.5rem;">
                 <li style="margin-bottom: 1rem;"><strong>Identify the product's essential character:</strong> What is it made of? What does it do? Who uses it? A "Bluetooth speaker shaped like a rubber duck" is classified by its function (sound reproduction → Chapter 85), not its shape.</li>
-                <li style="margin-bottom: 1rem;"><strong>Find the HS Chapter (2-digit):</strong> Browse the <a href="https://www.wcoomd.org/en/topics/nomenclature/overview/what-is-the-harmonized-system.aspx" target="_blank" rel="dofollow">21 HS sections</a>, starting with the section that best matches the product's primary material or function.</li>
+                <li style="margin-bottom: 1rem;"><strong>Find the HS Chapter (2-digit):</strong> Browse the <a href="https://www.wcoomd.org/en/topics/nomenclature/overview/what-is-the-harmonized-system.aspx" target="_blank" rel='noopener'>21 HS sections</a>, starting with the section that best matches the product's primary material or function.</li>
                 <li style="margin-bottom: 1rem;"><strong>Narrow to the Heading (4-digit):</strong> Within the chapter, read the heading descriptions and chapter notes. Some headings have legal exclusions — always check the "does not include" notes.</li>
                 <li style="margin-bottom: 1rem;"><strong>Select the Subheading (6-digit):</strong> Drill down by material composition, intended use, or manufacturing process. This is where most classification disputes occur.</li>
-                <li style="margin-bottom: 1rem;"><strong>Add country-specific digits:</strong> Use your destination country's tariff tool to find the full national code. For the US, use the <a href="https://hts.usitc.gov/" target="_blank" rel="dofollow">USITC search</a>. For the EU, use <a href="https://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp" target="_blank" rel="dofollow">TARIC</a>.</li>
+                <li style="margin-bottom: 1rem;"><strong>Add country-specific digits:</strong> Use your destination country's tariff tool to find the full national code. For the US, use the <a href="https://hts.usitc.gov/" target="_blank" rel='noopener'>USITC search</a>. For the EU, use <a href="https://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp" target="_blank" rel='noopener'>TARIC</a>.</li>
                 <li><strong>Validate with our AI tool:</strong> Use our <a href="/hs-code-finder/">AI-Powered HS Code Finder</a> to cross-check your classification with confidence scoring and alternative suggestions.</li>
             </ol>`
         },
@@ -191,7 +191,7 @@ export default function HSCodeLookupPage() {
         { question: "Are HS codes the same in every country?", answer: "The first 6 digits (Chapter + Heading + Subheading) are internationally standardized across 200+ countries. However, countries add additional digits (7-10) for national tariff specificity. So the HS code is globally consistent, but the full tariff code varies by destination." },
         { question: "How often do HS codes change?", answer: "The WCO revises the full Harmonized System approximately every 5 years. The current edition is HS 2022. Individual countries may update their national extensions and duty rates more frequently through legislative changes." },
         { question: "What happens if I use the wrong HS code?", answer: "Using an incorrect HS code can result in overpaying or underpaying customs duties, denial of FTA preferential rates, customs penalties (up to 4x underpaid duty in the US), shipment delays, and in severe cases, seizure of goods or criminal prosecution." },
-        { question: "Can I look up HS codes for free?", answer: "Yes. Official government tools include <a href='https://hts.usitc.gov/' target='_blank' rel='dofollow'>USITC HTS Search</a> (US), <a href='https://www.trade-tariff.service.gov.uk/' target='_blank' rel='dofollow'>UK Trade Tariff</a>, and <a href='https://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp' target='_blank' rel='dofollow'>EU TARIC</a>. Our <a href='/hs-code-finder'>AI HS Code Finder</a> provides free AI-powered classification across all countries." },
+        { question: "Can I look up HS codes for free?", answer: "Yes. Official government tools include <a href='https://hts.usitc.gov/' target='_blank' rel='noopener'>USITC HTS Search</a> (US), <a href='https://www.trade-tariff.service.gov.uk/' target='_blank' rel='noopener'>UK Trade Tariff</a>, and <a href='https://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp' target='_blank' rel='noopener'>EU TARIC</a>. Our <a href='/hs-code-finder'>AI HS Code Finder</a> provides free AI-powered classification across all countries." },
     ];
 
     const faqJsonLd = {
@@ -397,11 +397,11 @@ export default function HSCodeLookupPage() {
                                 Official Lookup Tools
                             </h3>
                             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                                <li><a href="https://www.wcoomd.org/en/topics/nomenclature/overview/what-is-the-harmonized-system.aspx" target="_blank" rel="dofollow" style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>WCO Harmonized System ↗</a></li>
-                                <li><a href="https://hts.usitc.gov/" target="_blank" rel="dofollow" style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>USITC HTS Search ↗</a></li>
-                                <li><a href="https://www.trade-tariff.service.gov.uk/" target="_blank" rel="dofollow" style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>UK Trade Tariff ↗</a></li>
-                                <li><a href="https://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp" target="_blank" rel="dofollow" style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>EU TARIC Database ↗</a></li>
-                                <li><a href="https://www.census.gov/foreign-trade/schedules/b/index.html" target="_blank" rel="dofollow" style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>US Schedule B (Exports) ↗</a></li>
+                                <li><a href="https://www.wcoomd.org/en/topics/nomenclature/overview/what-is-the-harmonized-system.aspx" target="_blank" rel='noopener' style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>WCO Harmonized System ↗</a></li>
+                                <li><a href="https://hts.usitc.gov/" target="_blank" rel='noopener' style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>USITC HTS Search ↗</a></li>
+                                <li><a href="https://www.trade-tariff.service.gov.uk/" target="_blank" rel='noopener' style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>UK Trade Tariff ↗</a></li>
+                                <li><a href="https://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp" target="_blank" rel='noopener' style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>EU TARIC Database ↗</a></li>
+                                <li><a href="https://www.census.gov/foreign-trade/schedules/b/index.html" target="_blank" rel='noopener' style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>US Schedule B (Exports) ↗</a></li>
                             </ul>
                         </nav>
 

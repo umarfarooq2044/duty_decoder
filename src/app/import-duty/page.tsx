@@ -26,7 +26,7 @@ export default function ImportDutyPage() {
     const sections = [
         {
             id: "what-is-import-duty", heading: "What Is Import Duty?",
-            content: `<strong>Import duty</strong> (also called customs duty) is a tax levied by a country's government on goods entering its borders. It is collected by the national customs authority — <a href="https://www.cbp.gov/trade" target="_blank" rel="dofollow">U.S. Customs and Border Protection (CBP)</a>, <a href="https://www.gov.uk/government/organisations/hm-revenue-customs" target="_blank" rel="dofollow">UK HMRC</a>, or equivalent — at the point of importation. Import duty serves three purposes: <strong>revenue generation</strong> for the government, <strong>protection of domestic industries</strong> from foreign competition, and <strong>regulation of trade flows</strong> through economic incentives and penalties.<p style="margin-top:1rem;">The amount of duty you pay depends on three factors: (1) the <strong>HS code classification</strong> of your goods, (2) the <strong>customs value</strong> (typically CIF — Cost + Insurance + Freight), and (3) the <strong>country of origin</strong>, which determines whether preferential rates under Free Trade Agreements apply.</p>`
+            content: `<strong>Import duty</strong> (also called customs duty) is a tax levied by a country's government on goods entering its borders. It is collected by the national customs authority — <a href="https://www.cbp.gov/trade" target="_blank" rel='noopener'>U.S. Customs and Border Protection (CBP)</a>, <a href="https://www.gov.uk/government/organisations/hm-revenue-customs" target="_blank" rel='noopener'>UK HMRC</a>, or equivalent — at the point of importation. Import duty serves three purposes: <strong>revenue generation</strong> for the government, <strong>protection of domestic industries</strong> from foreign competition, and <strong>regulation of trade flows</strong> through economic incentives and penalties.<p style="margin-top:1rem;">The amount of duty you pay depends on three factors: (1) the <strong>HS code classification</strong> of your goods, (2) the <strong>customs value</strong> (typically CIF — Cost + Insurance + Freight), and (3) the <strong>country of origin</strong>, which determines whether preferential rates under Free Trade Agreements apply.</p>`
         },
         {
             id: "duty-types", heading: "Types of Import Duty",
@@ -72,8 +72,8 @@ export default function ImportDutyPage() {
             content: `<p>Every country's tariff schedule has a <strong>default duty rate</strong> that applies to all WTO member nations. This is called the <strong>MFN (Most Favoured Nation)</strong> rate — a baseline that ensures no WTO member is treated worse than any other.</p>
             <p style="margin-top:1rem;">However, countries that sign <strong>Free Trade Agreements (FTAs)</strong> enjoy reduced or zero duty rates on qualifying goods. Some key agreements:</p>
             <ul style="padding-left:1.5rem;margin-top:0.75rem;">
-                <li><strong><a href="https://ustr.gov/trade-agreements/free-trade-agreements/united-states-mexico-canada-agreement" target="_blank" rel="dofollow">USMCA</a>:</strong> US-Mexico-Canada — 0% duty on qualifying goods between the three countries.</li>
-                <li><strong><a href="https://www.dfat.gov.au/trade/agreements/in-force/cptpp" target="_blank" rel="dofollow">CPTPP</a>:</strong> 11-nation Pacific Rim agreement covering UK, Japan, Australia, Canada, and others.</li>
+                <li><strong><a href="https://ustr.gov/trade-agreements/free-trade-agreements/united-states-mexico-canada-agreement" target="_blank" rel='noopener'>USMCA</a>:</strong> US-Mexico-Canada — 0% duty on qualifying goods between the three countries.</li>
+                <li><strong><a href="https://www.dfat.gov.au/trade/agreements/in-force/cptpp" target="_blank" rel='noopener'>CPTPP</a>:</strong> 11-nation Pacific Rim agreement covering UK, Japan, Australia, Canada, and others.</li>
                 <li><strong>EU Single Market:</strong> Zero internal tariffs between 27 EU member states.</li>
                 <li><strong>RCEP:</strong> World's largest FTA covering 15 Asia-Pacific economies including China, Japan, South Korea, Australia, and ASEAN nations.</li>
             </ul>
@@ -117,7 +117,7 @@ export default function ImportDutyPage() {
             id: "penalties", heading: "Penalties for Getting Import Duty Wrong",
             content: `<p>Customs authorities worldwide take classification and valuation seriously. If you underpay duty — whether intentionally or through negligence — the consequences can be severe:</p>
             <ul style="padding-left:1.5rem;margin-top:0.75rem;">
-                <li><strong>US (CBP):</strong> Penalties range from 2× to 4× the unpaid duty for negligence, and up to the <strong>domestic value of the goods</strong> for fraud. <a href="https://www.cbp.gov/trade/priority-issues/penalties" target="_blank" rel="dofollow">CBP publishes penalty guidelines</a> under 19 USC §1592.</li>
+                <li><strong>US (CBP):</strong> Penalties range from 2× to 4× the unpaid duty for negligence, and up to the <strong>domestic value of the goods</strong> for fraud. <a href="https://www.cbp.gov/trade/priority-issues/penalties" target="_blank" rel='noopener'>CBP publishes penalty guidelines</a> under 19 USC §1592.</li>
                 <li><strong>EU:</strong> Member states each set penalty levels. Fines typically range from 1× to 3× the evaded duty, plus interest on late payments.</li>
                 <li><strong>UK (HMRC):</strong> Penalties of up to 100% of the underpaid duty for deliberate errors. Careless errors attract lower penalties (30-70%).</li>
                 <li><strong>Criminal Prosecution:</strong> In extreme cases of organized fraud, customs authorities can pursue criminal charges, asset forfeiture, and imprisonment.</li>
@@ -201,10 +201,10 @@ export default function ImportDutyPage() {
                         <nav aria-label="Official sources" style={{ background: "rgba(34,197,94,0.04)", border: "1px solid rgba(34,197,94,0.15)", borderRadius: "12px", padding: "1.25rem" }}>
                             <h3 style={{ fontSize: "0.8rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--muted-foreground)", marginBottom: "0.75rem" }}>Official Sources</h3>
                             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                                <li><a href="https://www.cbp.gov/trade" target="_blank" rel="dofollow" style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>U.S. CBP Trade ↗</a></li>
-                                <li><a href="https://hts.usitc.gov/" target="_blank" rel="dofollow" style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>USITC Tariff Schedule ↗</a></li>
-                                <li><a href="https://www.trade-tariff.service.gov.uk/" target="_blank" rel="dofollow" style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>UK Global Tariff ↗</a></li>
-                                <li><a href="https://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp" target="_blank" rel="dofollow" style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>EU TARIC Database ↗</a></li>
+                                <li><a href="https://www.cbp.gov/trade" target="_blank" rel='noopener' style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>U.S. CBP Trade ↗</a></li>
+                                <li><a href="https://hts.usitc.gov/" target="_blank" rel='noopener' style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>USITC Tariff Schedule ↗</a></li>
+                                <li><a href="https://www.trade-tariff.service.gov.uk/" target="_blank" rel='noopener' style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>UK Global Tariff ↗</a></li>
+                                <li><a href="https://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp" target="_blank" rel='noopener' style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>EU TARIC Database ↗</a></li>
                             </ul>
                         </nav>
                         <nav aria-label="TOC" style={{ borderTop: "1px solid var(--border)", paddingTop: "1rem" }}>

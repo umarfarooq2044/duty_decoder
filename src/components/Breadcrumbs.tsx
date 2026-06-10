@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Home } from "lucide-react";
 
 export function Breadcrumbs() {
     const pathname = usePathname();
@@ -12,12 +13,59 @@ export function Breadcrumbs() {
         return null;
     }
 
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com";
+    const itemListElement = [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": baseUrl + "/"
+        }
+    ];
+
+    paths.forEach((path, index) => {
+        const href = `${baseUrl}/${paths.slice(0, index + 1).join('/')}/`;
+        let displayPath = path;
+        const routeMatch = path.match(/(.+?)-from-([a-z]{2})-to-([a-z]{2})(?:-\w+)?$/i);
+        if (routeMatch) {
+            try {
+                const productPart = routeMatch[1] || "";
+                const originCode = (routeMatch[2] || "").toUpperCase();
+                const destCode = (routeMatch[3] || "").toUpperCase();
+                const originName = new Intl.DisplayNames(['en'], { type: 'region' }).of(originCode) || originCode;
+                const destName = new Intl.DisplayNames(['en'], { type: 'region' }).of(destCode) || destCode;
+                displayPath = `${productPart} from ${originName} to ${destName}`;
+            } catch (e) {}
+        }
+        const formattedPath = displayPath
+            .replace(/-/g, ' ')
+            .replace(/\b\w/g, char => char.toUpperCase());
+
+        itemListElement.push({
+            "@type": "ListItem",
+            "position": index + 2,
+            "name": formattedPath,
+            "item": href
+        });
+    });
+
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": itemListElement
+    };
+
     return (
-        <nav aria-label="Breadcrumb" className="breadcrumbs-container">
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
+            <nav aria-label="Breadcrumb" className="breadcrumbs-container">
             <ol className="breadcrumbs-list">
                 <li className="breadcrumb-item">
                     <Link href={"/" as any} className="breadcrumb-link tooltip-trigger">
-                        <span className="breadcrumb-icon">🏠</span>
+                        <Home style={{ width: "1rem", height: "1rem" }} />
                         <span className="sr-only">Home</span>
                         <div className="tooltip">Return to Hub</div>
                     </Link>
@@ -66,5 +114,6 @@ export function Breadcrumbs() {
                 })}
             </ol>
         </nav>
+        </>
     );
 }

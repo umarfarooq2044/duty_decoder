@@ -46,7 +46,7 @@ export default function DisclaimerPage() {
             <section style={sectionStyle}>
                 <h2 style={headingStyle}>No Professional Advice</h2>
                 <p style={paraStyle}>
-                    DutyDecoder does not provide legal, financial, or customs brokerage advice. The information and tools on this platform are intended for educational and estimation purposes. For binding rulings or professional customs advice, consult a licensed customs broker, trade attorney, or your national customs authority (e.g., <a href="https://www.cbp.gov/trade" target="_blank" rel="dofollow" style={{ color: "var(--accent)" }}>US CBP</a>, <a href="https://www.gov.uk/government/organisations/hm-revenue-customs" target="_blank" rel="dofollow" style={{ color: "var(--accent)" }}>UK HMRC</a>, <a href="https://taxation-customs.ec.europa.eu/" target="_blank" rel="dofollow" style={{ color: "var(--accent)" }}>EU Commission DG TAXUD</a>).
+                    DutyDecoder does not provide legal, financial, or customs brokerage advice. The information and tools on this platform are intended for educational and estimation purposes. For binding rulings or professional customs advice, consult a licensed customs broker, trade attorney, or your national customs authority (e.g., <a href="https://www.cbp.gov/trade" target="_blank" rel='noopener' style={{ color: "var(--accent)" }}>US CBP</a>, <a href="https://www.gov.uk/government/organisations/hm-revenue-customs" target="_blank" rel='noopener' style={{ color: "var(--accent)" }}>UK HMRC</a>, <a href="https://taxation-customs.ec.europa.eu/" target="_blank" rel='noopener' style={{ color: "var(--accent)" }}>EU Commission DG TAXUD</a>).
                 </p>
             </section>
 

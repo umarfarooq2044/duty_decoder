@@ -27,7 +27,7 @@ export default function CustomsBrokerPage() {
     const sections = [
         {
             id: "what-is-customs-broker", heading: "What Is a Customs Broker?",
-            content: `A <strong>customs broker</strong> (also called a customs house agent or customs clearance agent) is a licensed professional authorized to act on behalf of importers to clear goods through customs. In the United States, customs brokers must hold a <a href="https://www.cbp.gov/trade/programs-administration/customs-brokers" target="_blank" rel="dofollow">license issued by U.S. Customs and Border Protection (CBP)</a> after passing a rigorous exam with a ~15% pass rate.
+            content: `A <strong>customs broker</strong> (also called a customs house agent or customs clearance agent) is a licensed professional authorized to act on behalf of importers to clear goods through customs. In the United States, customs brokers must hold a <a href="https://www.cbp.gov/trade/programs-administration/customs-brokers" target="_blank" rel='noopener'>license issued by U.S. Customs and Border Protection (CBP)</a> after passing a rigorous exam with a ~15% pass rate.
             <p style="margin-top:1rem;">A customs broker's core responsibilities include:</p>
             <ul style="padding-left:1.5rem;margin-top:0.75rem;">
                 <li><strong>Filing customs entries</strong> — submitting the Entry Summary (CBP Form 7501) and supporting documents electronically through ACE</li>
@@ -112,7 +112,7 @@ export default function CustomsBrokerPage() {
         {
             id: "how-to-choose", heading: "How to Choose the Right Customs Broker",
             content: `<ol style="padding-left:1.5rem;">
-                <li style="margin-bottom:1rem;"><strong>Verify the license:</strong> In the US, search the <a href="https://www.cbp.gov/trade/programs-administration/customs-brokers/search-customs-broker" target="_blank" rel="dofollow">CBP Broker Database</a> to confirm active license status. In Canada, check CFICA membership.</li>
+                <li style="margin-bottom:1rem;"><strong>Verify the license:</strong> In the US, search the <a href="https://www.cbp.gov/trade/programs-administration/customs-brokers/search-customs-broker" target="_blank" rel='noopener'>CBP Broker Database</a> to confirm active license status. In Canada, check CFICA membership.</li>
                 <li style="margin-bottom:1rem;"><strong>Industry specialization:</strong> Choose a broker experienced with your product type. Food/pharmaceutical imports need brokers familiar with FDA processes. Textiles require quota/visa expertise.</li>
                 <li style="margin-bottom:1rem;"><strong>Port coverage:</strong> Ensure the broker operates at your port of entry. National brokers with port agents may have delays vs. brokers physically at your port.</li>
                 <li style="margin-bottom:1rem;"><strong>Technology integration:</strong> Modern brokers offer ACE portal access, automated tracking, duty payment visibility, and integration with your ERP/accounting software.</li>

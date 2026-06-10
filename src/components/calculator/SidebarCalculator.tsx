@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useCalculatorStore } from "@/store/calculator";
-import { RefreshCw, ShieldCheck } from "lucide-react";
+import { RefreshCw, ShieldCheck, Lightbulb, AlertTriangle } from "lucide-react";
 
 export function SidebarCalculator({ initialData, exemptions, destinationCountry }: {
     initialData: any;
@@ -121,7 +121,8 @@ export function SidebarCalculator({ initialData, exemptions, destinationCountry 
                     marginBottom: "1.5rem"
                 }}>
                     <h4 style={{ fontSize: "0.9rem", color: "var(--color-primary)", marginBottom: "0.5rem", display: "flex", alignItems: "center", gap: "0.5rem", fontWeight: "600" }}>
-                        💡 Savings Opportunities
+                        <Lightbulb size={16} style={{ color: "var(--color-warning)" }} />
+                        <span>Savings Opportunities</span>
                     </h4>
                     <p style={{ fontSize: "0.8rem", color: "var(--foreground)", opacity: 0.85, marginBottom: "0.75rem", lineHeight: "1.4" }}>
                         We identified similar HTS classifications in this chapter with lower duty rates:
@@ -233,8 +234,9 @@ export function SidebarCalculator({ initialData, exemptions, destinationCountry 
             </div>
 
             {hasChanges && (
-                <div style={{ marginTop: "1.5rem", fontSize: "0.75rem", color: "var(--color-warning)", textAlign: "center", opacity: 0.8 }}>
-                    ⚠️ Showing user-modified estimates.
+                <div style={{ marginTop: "1.5rem", fontSize: "0.75rem", color: "var(--color-warning)", display: "flex", alignItems: "center", justifyContent: "center", gap: "0.35rem", opacity: 0.8 }}>
+                    <AlertTriangle size={14} />
+                    <span>Showing user-modified estimates.</span>
                 </div>
             )}
         </div>

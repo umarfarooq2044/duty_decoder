@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { TurnstileWidget } from "@/components/TurnstileWidget";
+import { ChevronDown, ChevronRight } from "lucide-react";
 
 export function CalculatorForm() {
     const router = useRouter();
@@ -232,9 +233,10 @@ export function CalculatorForm() {
                     <button
                         type="button"
                         onClick={() => setShowAdvanced(!showAdvanced)}
-                        style={{ background: 'none', border: 'none', color: 'var(--color-primary)', cursor: 'pointer', fontSize: '0.875rem', fontWeight: '600', padding: '0', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}
+                        style={{ background: 'none', border: 'none', color: 'var(--color-accent)', cursor: 'pointer', fontSize: '0.875rem', fontWeight: '600', padding: '0', display: 'flex', alignItems: 'center', gap: '0.35rem', marginBottom: '1rem' }}
                     >
-                        {showAdvanced ? "▼ Hide Shipping & Insurance Details" : "▶ Add Shipping & Insurance Details"}
+                        {showAdvanced ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+                        <span>{showAdvanced ? "Hide Shipping & Insurance Details" : "Add Shipping & Insurance Details"}</span>
                     </button>
                 </div>
             </div>

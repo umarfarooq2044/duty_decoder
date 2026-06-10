@@ -491,10 +491,10 @@ export default async function HSCodeFinderPage() {
                                 Official Resources
                             </h3>
                             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                                <li><a href="https://www.wcoomd.org/en/topics/nomenclature/overview/what-is-the-harmonized-system.aspx" target="_blank" rel="dofollow" style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>WCO Harmonized System ↗</a></li>
-                                <li><a href="https://hts.usitc.gov/" target="_blank" rel="dofollow" style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>USITC HTS Search ↗</a></li>
-                                <li><a href="https://www.trade-tariff.service.gov.uk/" target="_blank" rel="dofollow" style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>UK Trade Tariff Lookup ↗</a></li>
-                                <li><a href="https://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp" target="_blank" rel="dofollow" style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>EU TARIC Database ↗</a></li>
+                                <li><a href="https://www.wcoomd.org/en/topics/nomenclature/overview/what-is-the-harmonized-system.aspx" target="_blank" rel='noopener' style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>WCO Harmonized System ↗</a></li>
+                                <li><a href="https://hts.usitc.gov/" target="_blank" rel='noopener' style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>USITC HTS Search ↗</a></li>
+                                <li><a href="https://www.trade-tariff.service.gov.uk/" target="_blank" rel='noopener' style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>UK Trade Tariff Lookup ↗</a></li>
+                                <li><a href="https://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp" target="_blank" rel='noopener' style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none" }}>EU TARIC Database ↗</a></li>
                             </ul>
                         </nav>
 
