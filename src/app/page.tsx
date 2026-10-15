@@ -213,7 +213,7 @@ export default async function HomePage() {
 
             {/* ═══ AUDIENCE TARGETING ═══ */}
             <p style={{ textAlign: "center", fontSize: "0.95rem", color: "var(--color-text-secondary)", margin: "-3.5rem 0 4.5rem", fontStyle: "italic", fontWeight: 500 }}>
-                Trusted by importers, ecommerce brands, freight forwarders, procurement teams, and finance professionals globally.
+                Engineered for importers, ecommerce brands, freight forwarders, procurement teams, and trade compliance professionals globally.
             </p>
 
             {/* ═══ WHAT'S IN THE ESTIMATE ═══ */}
@@ -495,9 +495,9 @@ export default async function HomePage() {
             <section style={{ marginBottom: "5rem", textAlign: "center" }}>
                 <div style={{ display: "flex", justifyContent: "center", gap: "4rem", flexWrap: "wrap" }}>
                     {[
-                        { num: "5,000+", label: "Estimates generated" },
+                        { num: "13,000+", label: "Trade route scenarios" },
                         { num: "50+", label: "Countries covered" },
-                        { num: "AI-Powered", label: "HS classification engine" },
+                        { num: "WCO GRI", label: "Classification framework" },
                     ].map((s, idx) => (
                         <div key={idx}>
                             <div style={{ fontSize: "2.25rem", fontWeight: 800, color: "var(--color-accent-hover)" }}>{s.num}</div>

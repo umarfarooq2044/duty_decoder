@@ -25,6 +25,35 @@ function getCountryName(code: string | undefined): string {
     }
 }
 
+// Programmatic Quality Gate Evaluator
+function isRouteQualityGated(data: any): boolean {
+    if (!data) return false;
+    if (data.needs_human_review) return false;
+
+    // 1. Must have valid computed breakdown
+    if (!data.calculation_json) return false;
+
+    // 2. Minimum 250 words of unique explanatory content
+    const guideWords = data.guide_html
+        ? data.guide_html.replace(/<[^>]*>/g, " ").trim().split(/\s+/).filter(Boolean).length
+        : 0;
+    const insightWords = data.market_insight
+        ? data.market_insight.trim().split(/\s+/).filter(Boolean).length
+        : 0;
+    const problemWords =
+        (data.semantic_h2_problem || "").trim().split(/\s+/).filter(Boolean).length +
+        (data.semantic_h2_solution || "").trim().split(/\s+/).filter(Boolean).length;
+
+    const totalWords = guideWords + insightWords + problemWords;
+    if (totalWords < 250) return false;
+
+    // 3. Must have at least 3 structured FAQs
+    const faqs = Array.isArray(data.faqs_json) ? data.faqs_json : [];
+    if (faqs.length < 3) return false;
+
+    return true;
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     try {
         const { slug } = await params;
@@ -34,11 +63,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
         const originName = getCountryName(data.origin_country);
         const destName = getCountryName(data.destination_country);
+        const isQualityGated = isRouteQualityGated(data);
 
         return {
             title: data.seo_title || `Import Duty & Landed Cost: ${data.product_description}`,
             description: data.seo_description || `Calculate landed cost and customs duty for importing ${data.product_description} from ${originName} to ${destName}.`,
             alternates: { canonical: `/calculate/${slug}/` },
+            robots: {
+                index: isQualityGated,
+                follow: true,
+                googleBot: {
+                    index: isQualityGated,
+                    follow: true,
+                    "max-video-preview": -1,
+                    "max-image-preview": "large",
+                    "max-snippet": -1,
+                },
+            },
             keywords: [
                 `${data.product_description} import duty`,
                 `HS code for ${data.product_description}`,

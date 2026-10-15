@@ -220,8 +220,8 @@ export default async function HSCodeFinderPage() {
                             {/* Trust Bar */}
                             <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", paddingTop: "0.5rem", borderTop: "1px solid var(--border)" }}>
                                 {[
-                                    { label: "Accuracy", value: "99.2%" },
-                                    { label: "Products", value: "50k+" },
+                                    { label: "Standard", value: "WCO GRI" },
+                                    { label: "Coverage", value: "50+ Countries" },
                                     { label: "Cost", value: "Free" },
                                 ].map(stat => (
                                     <div key={stat.label} style={{ textAlign: "center", flex: "1", minWidth: "60px", padding: "0.5rem 0" }}>

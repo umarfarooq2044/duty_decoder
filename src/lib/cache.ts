@@ -97,29 +97,33 @@ export const getCachedComplianceRules = unstable_cache(
  */
 export const getCachedLandedCostBySlug = unstable_cache(
     async (slug: string) => {
-        const supabase = getServerSupabase();
+        try {
+            const supabase = getServerSupabase();
 
-        // Try with hts_codes join first
-        const { data, error } = await supabase
-            .from("landed_costs")
-            .select("*, hts_codes(*)")
-            .eq("slug", slug)
-            .maybeSingle();
-
-        // If the join fails (orphaned FK, missing hts_codes row, etc.),
-        // fall back to fetching without the join
-        if (error) {
-            const { data: fallbackData, error: fallbackError } = await supabase
+            // Try with hts_codes join first
+            const { data, error } = await supabase
                 .from("landed_costs")
-                .select("*")
+                .select("*, hts_codes(*)")
                 .eq("slug", slug)
                 .maybeSingle();
 
-            if (fallbackError) throw fallbackError;
-            return fallbackData;
-        }
+            // If the join fails (orphaned FK, missing hts_codes row, etc.),
+            // fall back to fetching without the join
+            if (error) {
+                const { data: fallbackData } = await supabase
+                    .from("landed_costs")
+                    .select("*")
+                    .eq("slug", slug)
+                    .maybeSingle();
 
-        return data;
+                return fallbackData || null;
+            }
+
+            return data || null;
+        } catch (err) {
+            console.error(`[getCachedLandedCostBySlug] Error fetching slug "${slug}":`, err);
+            return null;
+        }
     },
     ["landed-cost-slug"],
     {

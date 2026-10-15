@@ -330,7 +330,7 @@ Every calculation generates a shareable URL, a printer-friendly report, and a pe
                             {/* Trust Bar */}
                             <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", paddingTop: "0.5rem", borderTop: "1px solid var(--border)" }}>
                                 {[
-                                    { label: "Accuracy", value: "99.2%" },
+                                    { label: "Tariff Year", value: "2026" },
                                     { label: "Countries", value: "50+" },
                                     { label: "Cost", value: "Free" },
                                 ].map(stat => (
