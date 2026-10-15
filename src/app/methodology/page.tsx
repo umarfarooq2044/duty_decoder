@@ -47,11 +47,6 @@ export default function MethodologyPage() {
     return (
         <main className="methodology-page" style={{ padding: "clamp(2rem, 5vw, 4rem) 1rem", maxWidth: "1000px", margin: "0 auto" }}>
 
-            <nav aria-label="Breadcrumb" style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "2rem" }}>
-                <Link href="/" style={{ fontSize: "0.85rem", color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>Home</Link>
-                <span aria-hidden="true" style={{ color: "var(--muted-foreground)", fontSize: "0.85rem" }}>›</span>
-                <span style={{ fontSize: "0.85rem", color: "var(--muted-foreground)" }}>Methodology</span>
-            </nav>
 
             <header style={{ marginBottom: "3.5rem" }}>
                 <h1 style={{ fontSize: "clamp(2rem, 5vw, 3rem)", fontWeight: 800, color: "var(--foreground)", marginBottom: "1rem", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
