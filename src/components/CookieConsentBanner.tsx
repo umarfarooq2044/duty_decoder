@@ -86,64 +86,63 @@ export function CookieConsentBanner() {
             aria-label="Cookie and Privacy Consent"
             style={{
                 position: "fixed",
-                bottom: 0,
-                left: 0,
-                right: 0,
+                bottom: "12px",
+                left: "12px",
+                right: "12px",
+                maxWidth: "960px",
+                margin: "0 auto",
                 zIndex: 9999,
-                background: "var(--surface, #FFFFFF)",
-                borderTop: "1px solid var(--border, #E3E8EF)",
-                boxShadow: "0 -8px 30px rgba(11, 31, 58, 0.12)",
-                padding: "1.25rem 1rem",
+                background: "rgba(255, 255, 255, 0.96)",
+                backdropFilter: "blur(12px)",
+                WebkitBackdropFilter: "blur(12px)",
+                border: "1px solid var(--border, #E3E8EF)",
+                borderRadius: "12px",
+                boxShadow: "0 10px 25px -5px rgba(11, 31, 58, 0.12), 0 4px 6px -2px rgba(11, 31, 58, 0.05)",
+                padding: "0.55rem 0.9rem",
             }}
         >
-            <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-                <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "1.5rem", flexWrap: "wrap" }}>
-                    <div style={{ flex: 1, minWidth: "280px" }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.4rem" }}>
-                            <Shield size={18} style={{ color: "var(--teal-700, #0F766E)" }} />
-                            <strong style={{ fontSize: "0.95rem", color: "var(--navy-900, #0B1F3A)" }}>
-                                Privacy &amp; Cookie Choices
-                            </strong>
-                        </div>
-                        <p style={{ fontSize: "0.85rem", color: "var(--text-body, #475569)", lineHeight: 1.6, margin: 0 }}>
-                            We use cookies to maintain security, measure audience analytics, and serve contextual advertising (Google AdSense). You can customize your preferences or withdraw consent at any time. Review our{" "}
+            <div style={{ width: "100%" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.85rem", flexWrap: "wrap" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flex: 1, minWidth: "260px" }}>
+                        <Shield size={16} style={{ color: "var(--teal-700, #0F766E)", flexShrink: 0 }} />
+                        <p style={{ fontSize: "0.78rem", color: "var(--text-body, #475569)", lineHeight: 1.4, margin: 0 }}>
+                            We use cookies for analytics and advertising (Google AdSense). Review our{" "}
                             <Link href="/privacy/" style={{ color: "var(--teal-700, #0F766E)", fontWeight: 600, textDecoration: "underline" }}>
                                 Privacy Policy
-                            </Link>{" "}
-                            to learn how Google and its partners process data.
+                            </Link>.
                         </p>
                     </div>
 
-                    <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", flexWrap: "wrap" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.45rem", flexShrink: 0, flexWrap: "wrap" }}>
                         <button
                             onClick={() => setShowCustomize(!showCustomize)}
                             style={{
-                                padding: "0.6rem 1rem",
+                                padding: "0.32rem 0.65rem",
                                 background: "var(--bg, #F7F9FC)",
                                 border: "1px solid var(--border, #E3E8EF)",
-                                borderRadius: "8px",
-                                fontSize: "0.85rem",
+                                borderRadius: "6px",
+                                fontSize: "0.76rem",
                                 fontWeight: 600,
                                 color: "var(--foreground)",
                                 cursor: "pointer",
                                 display: "inline-flex",
                                 alignItems: "center",
-                                gap: "0.4rem",
+                                gap: "0.3rem",
                             }}
                         >
-                            <Sliders size={14} />
+                            <Sliders size={12} />
                             <span>Customize</span>
-                            {showCustomize ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                            {showCustomize ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
                         </button>
 
                         <button
                             onClick={handleRejectAll}
                             style={{
-                                padding: "0.6rem 1.1rem",
+                                padding: "0.32rem 0.75rem",
                                 background: "#FFFFFF",
                                 border: "1px solid var(--border, #E3E8EF)",
-                                borderRadius: "8px",
-                                fontSize: "0.85rem",
+                                borderRadius: "6px",
+                                fontSize: "0.76rem",
                                 fontWeight: 600,
                                 color: "var(--foreground)",
                                 cursor: "pointer",
@@ -155,11 +154,11 @@ export function CookieConsentBanner() {
                         <button
                             onClick={handleAcceptAll}
                             style={{
-                                padding: "0.6rem 1.25rem",
+                                padding: "0.32rem 0.9rem",
                                 background: "var(--teal-700, #0F766E)",
                                 border: "none",
-                                borderRadius: "8px",
-                                fontSize: "0.85rem",
+                                borderRadius: "6px",
+                                fontSize: "0.76rem",
                                 fontWeight: 600,
                                 color: "#FFFFFF",
                                 cursor: "pointer",
@@ -174,51 +173,51 @@ export function CookieConsentBanner() {
                 {showCustomize && (
                     <div
                         style={{
-                            marginTop: "1.25rem",
-                            paddingTop: "1.25rem",
+                            marginTop: "0.75rem",
+                            paddingTop: "0.75rem",
                             borderTop: "1px solid var(--border, #E3E8EF)",
                             display: "grid",
-                            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-                            gap: "1rem",
+                            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+                            gap: "0.6rem",
                         }}
                     >
-                        <div style={{ padding: "0.85rem", background: "var(--bg, #F7F9FC)", borderRadius: "8px" }}>
-                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.3rem" }}>
-                                <strong style={{ fontSize: "0.85rem", color: "var(--foreground)" }}>Strictly Necessary</strong>
-                                <span style={{ fontSize: "0.75rem", fontWeight: 600, color: "var(--teal-700, #0F766E)" }}>Always Active</span>
+                        <div style={{ padding: "0.6rem 0.75rem", background: "var(--bg, #F7F9FC)", borderRadius: "6px" }}>
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.2rem" }}>
+                                <strong style={{ fontSize: "0.8rem", color: "var(--foreground)" }}>Strictly Necessary</strong>
+                                <span style={{ fontSize: "0.7rem", fontWeight: 600, color: "var(--teal-700, #0F766E)" }}>Always Active</span>
                             </div>
-                            <p style={{ fontSize: "0.78rem", color: "var(--muted-foreground)", margin: 0 }}>
+                            <p style={{ fontSize: "0.74rem", color: "var(--muted-foreground)", margin: 0 }}>
                                 Essential for page delivery, security, calculation session tokens, and privacy consent records.
                             </p>
                         </div>
 
-                        <div style={{ padding: "0.85rem", background: "var(--bg, #F7F9FC)", borderRadius: "8px" }}>
-                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.3rem" }}>
-                                <strong style={{ fontSize: "0.85rem", color: "var(--foreground)" }}>Analytics (GA4)</strong>
+                        <div style={{ padding: "0.6rem 0.75rem", background: "var(--bg, #F7F9FC)", borderRadius: "6px" }}>
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.2rem" }}>
+                                <strong style={{ fontSize: "0.8rem", color: "var(--foreground)" }}>Analytics (GA4)</strong>
                                 <input
                                     type="checkbox"
                                     checked={analyticsChecked}
                                     onChange={(e) => setAnalyticsChecked(e.target.checked)}
-                                    style={{ width: "16px", height: "16px", accentColor: "var(--teal-700, #0F766E)" }}
+                                    style={{ width: "15px", height: "15px", accentColor: "var(--teal-700, #0F766E)" }}
                                 />
                             </div>
-                            <p style={{ fontSize: "0.78rem", color: "var(--muted-foreground)", margin: 0 }}>
-                                Aggregated, anonymous traffic telemetry to evaluate calculator performance and usability.
+                            <p style={{ fontSize: "0.74rem", color: "var(--muted-foreground)", margin: 0 }}>
+                                Aggregated anonymous traffic telemetry to evaluate calculator performance and usability.
                             </p>
                         </div>
 
-                        <div style={{ padding: "0.85rem", background: "var(--bg, #F7F9FC)", borderRadius: "8px" }}>
-                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.3rem" }}>
-                                <strong style={{ fontSize: "0.85rem", color: "var(--foreground)" }}>Advertising (AdSense)</strong>
+                        <div style={{ padding: "0.6rem 0.75rem", background: "var(--bg, #F7F9FC)", borderRadius: "6px" }}>
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.2rem" }}>
+                                <strong style={{ fontSize: "0.8rem", color: "var(--foreground)" }}>Advertising (AdSense)</strong>
                                 <input
                                     type="checkbox"
                                     checked={advertisingChecked}
                                     onChange={(e) => setAdvertisingChecked(e.target.checked)}
-                                    style={{ width: "16px", height: "16px", accentColor: "var(--teal-700, #0F766E)" }}
+                                    style={{ width: "15px", height: "15px", accentColor: "var(--teal-700, #0F766E)" }}
                                 />
                             </div>
-                            <p style={{ fontSize: "0.78rem", color: "var(--muted-foreground)", margin: 0 }}>
-                                Third-party advertising measurement and personalization cookies deployed by Google and partners.
+                            <p style={{ fontSize: "0.74rem", color: "var(--muted-foreground)", margin: 0 }}>
+                                Third-party advertising measurement cookies deployed by Google and partners.
                             </p>
                         </div>
 
@@ -226,12 +225,12 @@ export function CookieConsentBanner() {
                             <button
                                 onClick={handleSaveCustom}
                                 style={{
-                                    padding: "0.5rem 1.25rem",
+                                    padding: "0.35rem 0.9rem",
                                     background: "var(--teal-700, #0F766E)",
                                     color: "#FFFFFF",
                                     border: "none",
                                     borderRadius: "6px",
-                                    fontSize: "0.85rem",
+                                    fontSize: "0.76rem",
                                     fontWeight: 600,
                                     cursor: "pointer",
                                 }}
