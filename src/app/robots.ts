@@ -8,7 +8,12 @@ export default function robots(): MetadataRoute.Robots {
             {
                 userAgent: "*",
                 allow: "/",
-                disallow: ["/api/", "/_next/", "/cdn-cgi/"],
+                disallow: ["/api/"],
+            },
+            // Explicitly allow Google AdSense review crawler
+            {
+                userAgent: "Mediapartners-Google",
+                allow: "/",
             },
             // Allow search engine bots explicitly for maximum crawl budget
             {

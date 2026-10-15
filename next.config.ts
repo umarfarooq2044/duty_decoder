@@ -2,7 +2,16 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
     trailingSlash: true,
-    // skipTrailingSlashRedirect: true,
+    async redirects() {
+        return [
+            {
+                source: "/:path*",
+                has: [{ type: "host", value: "www.dutydecoder.com" }],
+                destination: "https://dutydecoder.com/:path*",
+                permanent: true,
+            },
+        ];
+    },
     headers: async () => [
         {
             source: "/:path*",
