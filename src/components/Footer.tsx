@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ShieldCheck, ExternalLink } from "lucide-react";
+import { PrivacySettingsButton } from "@/components/CookieConsentBanner";
 
 export function Footer() {
     return (
@@ -171,12 +172,13 @@ export function Footer() {
                 <p style={{ fontSize: "0.8rem", color: "#64748B", margin: 0 }}>
                     © {new Date().getFullYear()} DutyDecoder. Precision Trade Compliance. All rights reserved.
                 </p>
-                <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
+                <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap", alignItems: "center" }}>
                     <Link href="/privacy/" style={{ fontSize: "0.8rem", color: "#94A3B8", textDecoration: "none" }}>Privacy</Link>
                     <Link href="/terms/" style={{ fontSize: "0.8rem", color: "#94A3B8", textDecoration: "none" }}>Terms</Link>
                     <Link href="/disclaimer/" style={{ fontSize: "0.8rem", color: "#94A3B8", textDecoration: "none" }}>Disclaimer</Link>
                     <Link href="/methodology/" style={{ fontSize: "0.8rem", color: "#94A3B8", textDecoration: "none" }}>Methodology</Link>
                     <Link href="/contact/" style={{ fontSize: "0.8rem", color: "#94A3B8", textDecoration: "none" }}>Contact</Link>
+                    <PrivacySettingsButton />
                 </div>
             </div>
         </footer>

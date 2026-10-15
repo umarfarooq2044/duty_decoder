@@ -6,6 +6,7 @@ import { MegaMenu } from "@/components/MegaMenu";
 import { Footer } from "@/components/Footer";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { NavigationProgress } from "@/components/NavigationProgress";
+import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import "./globals.css";
 
 /* ── Self-hosted Google Fonts via next/font (eliminates render-blocking CSS) ── */
@@ -98,8 +99,24 @@ export default function RootLayout({
 
                 <meta charSet="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta name="robots" content="max-image-preview:large" />
+                <meta name="google-adsense-account" content={process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "ca-pub-6219371790903754"} />
                 <link rel="alternate" hrefLang="en" href="https://dutydecoder.com/" />
                 <link rel="alternate" hrefLang="x-default" href="https://dutydecoder.com/" />
+
+                {/* ── Google Consent Mode v2 Default (denied until user explicit choice) ── */}
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','wait_for_update':500});`,
+                    }}
+                />
+
+                {/* ── AdSense Site Verification (plain script to avoid Next.js data-nscript attribute warning) ── */}
+                <script
+                    async
+                    src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "ca-pub-6219371790903754"}`}
+                    crossOrigin="anonymous"
+                />
 
                 {/* ── Prevent hydration error caused by browser extensions injecting bis_skin_checked ── */}
                 <script
@@ -123,8 +140,9 @@ export default function RootLayout({
                 </div>
 
                 <Footer />
+                <CookieConsentBanner />
 
-                {/* ── GA4 — loads after page is interactive (no longer render-blocking) ── */}
+                {/* ── GA4 — loads after page is interactive (respects Consent Mode v2) ── */}
                 <Script
                     src="https://www.googletagmanager.com/gtag/js?id=G-G74QF4WDSL"
                     strategy="afterInteractive"
@@ -132,13 +150,6 @@ export default function RootLayout({
                 <Script id="gtag-init" strategy="afterInteractive">
                     {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-G74QF4WDSL');`}
                 </Script>
-
-                {/* ── AdSense — loads after page is interactive (no longer render-blocking) ── */}
-                <Script
-                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6219371790903754"
-                    strategy="afterInteractive"
-                    crossOrigin="anonymous"
-                />
             </body>
         </html>
     );
