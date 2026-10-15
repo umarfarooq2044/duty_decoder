@@ -1,5 +1,6 @@
 import { CalculatorForm } from "@/components/CalculatorForm";
 import { getServerSupabase } from "@/lib/supabase/server";
+import { unstable_cache } from "next/cache";
 import { CountryFlag } from "@/components/ui/CountryFlag";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -71,8 +72,6 @@ const CN: Record<string, string> = {
     HK: "Hong Kong", TW: "Taiwan", MY: "Malaysia", PH: "Philippines",
     ID: "Indonesia", ZA: "South Africa",
 };
-
-import { unstable_cache } from "next/cache";
 
 const getCachedHomeRoutes = unstable_cache(
     async () => {
