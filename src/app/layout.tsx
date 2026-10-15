@@ -90,6 +90,13 @@ export default function RootLayout({
                 <link rel="alternate" hrefLang="en" href="https://dutydecoder.com/" />
                 <link rel="alternate" hrefLang="x-default" href="https://dutydecoder.com/" />
 
+                {/* ── Prevent hydration error caused by browser extensions injecting bis_skin_checked ── */}
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `(function(){try{new MutationObserver(function(e){for(var t=0;t<e.length;t++){var r=e[t];if("attributes"===r.type&&"bis_skin_checked"===r.attributeName&&r.target.removeAttribute("bis_skin_checked"),"childList"===r.type)for(var n=0;n<r.addedNodes.length;n++){var a=r.addedNodes[n];1===a.nodeType&&(a.hasAttribute("bis_skin_checked")&&a.removeAttribute("bis_skin_checked"),a.querySelectorAll&&a.querySelectorAll("[bis_skin_checked]").forEach(function(e){e.removeAttribute("bis_skin_checked")}))}}}).observe(document.documentElement,{attributes:!0,subtree:!0,childList:!0,attributeFilter:["bis_skin_checked"]})}catch(e){}})();`,
+                    }}
+                />
+
                 {/* ── Adsterra Popunder — engagement-gated, once-per-session, bot-safe ── */}
                 <Script id="adsterra-popunder-loader" strategy="afterInteractive">
                     {`
