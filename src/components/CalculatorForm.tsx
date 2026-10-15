@@ -228,52 +228,45 @@ export function CalculatorForm() {
                 </div>
 
                 {/* 2. Origin & Destination with Swap Button */}
-                <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: "0.5rem", alignItems: "flex-end" }}>
-                    <CountryCombobox
-                        id="originCountry"
-                        name="originCountry"
-                        label="Exporting From"
-                        required
-                        value={originCountry}
-                        onChange={(code) => setOriginCountry(code)}
-                        placeholder="Select origin"
-                        disabled={isLoading}
-                    />
+                <div className="calculator-route-selector">
+                    <div className="calculator-route-col">
+                        <CountryCombobox
+                            id="originCountry"
+                            name="originCountry"
+                            label="Exporting From"
+                            required
+                            value={originCountry}
+                            onChange={(code) => setOriginCountry(code)}
+                            placeholder="Select origin"
+                            disabled={isLoading}
+                        />
+                    </div>
 
                     {/* Swap Button */}
-                    <button
-                        type="button"
-                        onClick={handleSwapCountries}
-                        aria-label="Swap origin and destination"
-                        title="Swap countries"
-                        style={{
-                            width: "38px",
-                            height: "48px",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            background: "var(--bg, #F7F9FC)",
-                            border: "1px solid var(--border, #E3E8EF)",
-                            borderRadius: "var(--r-md, 10px)",
-                            color: "var(--teal-700, #0F766E)",
-                            cursor: "pointer",
-                            marginBottom: "0px",
-                            transition: "all 0.2s ease",
-                        }}
-                    >
-                        <ArrowLeftRight size={16} />
-                    </button>
+                    <div className="calculator-swap-wrapper">
+                        <button
+                            type="button"
+                            onClick={handleSwapCountries}
+                            aria-label="Swap origin and destination"
+                            title="Swap countries"
+                            className="calculator-swap-btn"
+                        >
+                            <ArrowLeftRight size={16} />
+                        </button>
+                    </div>
 
-                    <CountryCombobox
-                        id="destinationCountry"
-                        name="destinationCountry"
-                        label="Importing Into"
-                        required
-                        value={destCountry}
-                        onChange={(code) => setDestCountry(code)}
-                        placeholder="Select destination"
-                        disabled={isLoading}
-                    />
+                    <div className="calculator-route-col">
+                        <CountryCombobox
+                            id="destinationCountry"
+                            name="destinationCountry"
+                            label="Importing Into"
+                            required
+                            value={destCountry}
+                            onChange={(code) => setDestCountry(code)}
+                            placeholder="Select destination"
+                            disabled={isLoading}
+                        />
+                    </div>
                 </div>
 
                 {/* 3. Product Value & Currency */}

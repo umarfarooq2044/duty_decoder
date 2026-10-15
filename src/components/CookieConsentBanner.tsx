@@ -84,83 +84,40 @@ export function CookieConsentBanner() {
         <div
             role="region"
             aria-label="Cookie and Privacy Consent"
-            style={{
-                position: "fixed",
-                bottom: "12px",
-                left: "12px",
-                right: "12px",
-                maxWidth: "960px",
-                margin: "0 auto",
-                zIndex: 9999,
-                background: "#FFFFFF",
-                border: "1px solid var(--border, #E3E8EF)",
-                borderRadius: "12px",
-                boxShadow: "0 10px 25px -5px rgba(11, 31, 58, 0.12), 0 4px 6px -2px rgba(11, 31, 58, 0.05)",
-                padding: "0.55rem 0.9rem",
-            }}
+            className="cookie-banner-aside"
         >
             <div style={{ width: "100%" }}>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.85rem", flexWrap: "wrap" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flex: 1, minWidth: "260px" }}>
+                <div className="cookie-banner-content">
+                    <div className="cookie-banner-text-wrap">
                         <Shield size={16} style={{ color: "var(--teal-700, #0F766E)", flexShrink: 0 }} />
-                        <p style={{ fontSize: "0.78rem", color: "var(--text-body, #475569)", lineHeight: 1.4, margin: 0 }}>
-                            We use cookies for analytics and advertising (Google AdSense). Review our{" "}
+                        <p style={{ fontSize: "0.76rem", color: "var(--text-body, #475569)", lineHeight: 1.35, margin: 0 }}>
+                            We use cookies for analytics and ads. Review our{" "}
                             <Link href="/privacy/" style={{ color: "var(--teal-700, #0F766E)", fontWeight: 600, textDecoration: "underline" }}>
                                 Privacy Policy
                             </Link>.
                         </p>
                     </div>
 
-                    <div style={{ display: "flex", alignItems: "center", gap: "0.45rem", flexShrink: 0, flexWrap: "wrap" }}>
+                    <div className="cookie-banner-buttons">
                         <button
                             onClick={() => setShowCustomize(!showCustomize)}
-                            style={{
-                                padding: "0.32rem 0.65rem",
-                                background: "var(--bg, #F7F9FC)",
-                                border: "1px solid var(--border, #E3E8EF)",
-                                borderRadius: "6px",
-                                fontSize: "0.76rem",
-                                fontWeight: 600,
-                                color: "var(--foreground)",
-                                cursor: "pointer",
-                                display: "inline-flex",
-                                alignItems: "center",
-                                gap: "0.3rem",
-                            }}
+                            className="cookie-btn cookie-btn-options"
                         >
                             <Sliders size={12} />
-                            <span>Customize</span>
+                            <span>Options</span>
                             {showCustomize ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
                         </button>
 
                         <button
                             onClick={handleRejectAll}
-                            style={{
-                                padding: "0.32rem 0.75rem",
-                                background: "#FFFFFF",
-                                border: "1px solid var(--border, #E3E8EF)",
-                                borderRadius: "6px",
-                                fontSize: "0.76rem",
-                                fontWeight: 600,
-                                color: "var(--foreground)",
-                                cursor: "pointer",
-                            }}
+                            className="cookie-btn cookie-btn-reject"
                         >
-                            Reject Non-Essential
+                            Reject
                         </button>
 
                         <button
                             onClick={handleAcceptAll}
-                            style={{
-                                padding: "0.32rem 0.9rem",
-                                background: "var(--teal-700, #0F766E)",
-                                border: "none",
-                                borderRadius: "6px",
-                                fontSize: "0.76rem",
-                                fontWeight: 600,
-                                color: "#FFFFFF",
-                                cursor: "pointer",
-                            }}
+                            className="cookie-btn cookie-btn-accept"
                         >
                             Accept All
                         </button>

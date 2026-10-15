@@ -97,8 +97,9 @@ export function CountryCombobox({
                     alignItems: "center",
                     justifyContent: "space-between",
                     width: "100%",
+                    minWidth: 0,
                     height: "48px",
-                    padding: "0.5rem 0.85rem",
+                    padding: "0.5rem 0.75rem",
                     background: "var(--surface, #FFFFFF)",
                     border: `1px solid ${isOpen ? "var(--teal-700, #0F766E)" : "var(--border, #E3E8EF)"}`,
                     borderRadius: "var(--r-md, 10px)",
@@ -108,20 +109,25 @@ export function CountryCombobox({
                     boxShadow: isOpen ? "var(--focus, 0 0 0 3px rgba(15,118,110,.25))" : "var(--sh-1, 0 1px 2px rgba(11,31,58,.06))",
                     textAlign: "left",
                     transition: "all 0.15s ease",
+                    overflow: "hidden",
                 }}
             >
-                <span style={{ display: "flex", alignItems: "center", gap: "0.6rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                <span style={{ display: "flex", alignItems: "center", gap: "0.5rem", minWidth: 0, overflow: "hidden", flex: 1 }}>
                     {selectedCountry ? (
                         <>
                             <CountryFlag code={selectedCountry.code} size="md" />
-                            <span style={{ fontWeight: 500, color: "var(--text, #0B1F3A)" }}>{selectedCountry.name}</span>
-                            <span style={{ fontSize: "0.8rem", color: "var(--text-muted, #64748B)" }}>({selectedCountry.code})</span>
+                            <span style={{ fontWeight: 500, color: "var(--text, #0B1F3A)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", minWidth: 0 }}>
+                                {selectedCountry.name}
+                            </span>
+                            <span style={{ fontSize: "0.8rem", color: "var(--text-muted, #64748B)", flexShrink: 0 }}>
+                                ({selectedCountry.code})
+                            </span>
                         </>
                     ) : (
-                        <span>{placeholder}</span>
+                        <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{placeholder}</span>
                     )}
                 </span>
-                <ChevronDown size={18} style={{ color: "var(--text-muted, #64748B)", transform: isOpen ? "rotate(180deg)" : "none", transition: "transform 0.2s ease" }} />
+                <ChevronDown size={16} style={{ color: "var(--text-muted, #64748B)", transform: isOpen ? "rotate(180deg)" : "none", transition: "transform 0.2s ease", flexShrink: 0, marginLeft: "0.25rem" }} />
             </button>
 
             {hint && <span className="input-hint">{hint}</span>}
