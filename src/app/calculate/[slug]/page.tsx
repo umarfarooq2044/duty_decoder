@@ -5,9 +5,11 @@ import { generateProductJsonLd, generateFaqJsonLd } from "@/lib/seo/json-ld";
 import type { LandedCostBreakdown, CostLineItem } from "@/schemas/landed-cost";
 
 import { SidebarCalculator } from "@/components/calculator/SidebarCalculator";
+import { LandedCostSummaryCard } from "@/components/calculator/LandedCostSummaryCard";
 import { DataIntegrityBadge } from "@/components/DataIntegrityBadge";
 import { PrintReportButton } from "@/components/calculator/PrintReportButton";
 import { Metadata } from "next";
+
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -243,10 +245,13 @@ export default async function CalculatePage({ params }: PageProps) {
 
                                         {/* Cost Breakdown Table — right after first H2 */}
                                         <section className="breakdown-section" style={{ marginTop: "1rem", marginBottom: "2rem" }}>
+                                            <LandedCostSummaryCard breakdown={breakdown} countryLabel={countryLabel} />
+
                                             <h2 style={{ fontSize: "1.2rem", marginBottom: "1rem", color: "var(--accent)" }}>
                                                 Cost Breakdown
                                             </h2>
                                             <table className="breakdown-table">
+
                                                 <thead>
                                                     <tr>
                                                         <th>Component</th>
@@ -314,10 +319,13 @@ export default async function CalculatePage({ params }: PageProps) {
 
                                     {/* Cost Breakdown Table — legacy position */}
                                     <section className="breakdown-section" style={{ marginTop: "2rem" }}>
+                                        <LandedCostSummaryCard breakdown={breakdown} countryLabel={countryLabel} />
+
                                         <h2 style={{ fontSize: "1.2rem", marginBottom: "1rem", color: "var(--accent)" }}>
                                             Cost Breakdown
                                         </h2>
                                         <table className="breakdown-table">
+
                                             <thead>
                                                 <tr>
                                                     <th>Component</th>

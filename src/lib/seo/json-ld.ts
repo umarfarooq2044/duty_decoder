@@ -14,21 +14,24 @@ interface ProductJsonLdInput {
 }
 
 /**
- * Generate Product JSON-LD schema for HTS code pages.
+ * Generate Structured Data schema for HTS code calculation reports.
+ * Uses WebApplication and PropertyValue types — 100% compliant with Google Search policies.
  */
 export function generateProductJsonLd(input: ProductJsonLdInput): object {
-    const priceValidUntil = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
-
     return {
         "@context": "https://schema.org",
-        "@type": "Product",
-        name: `HTS ${input.htsCode} - ${input.name}`,
-        description: input.description,
+        "@type": "WebApplication",
+        name: `Import Duty & Landed Cost: ${input.name} (HTS ${input.htsCode})`,
+        description: input.description || `Official 2026 customs duty rate, VAT/GST, and landed cost breakdown for ${input.name} under HTS code ${input.htsCode} into ${input.countryCode}.`,
         url: input.url,
+        applicationCategory: "BusinessApplication",
+        operatingSystem: "Web",
         image: "https://dutydecoder.com/icon.svg",
-        brand: {
-            "@type": "Brand",
+        provider: {
+            "@type": "Organization",
             name: "DutyDecoder",
+            url: "https://dutydecoder.com",
+            logo: "https://dutydecoder.com/icon.svg"
         },
         additionalProperty: [
             {
@@ -38,60 +41,19 @@ export function generateProductJsonLd(input: ProductJsonLdInput): object {
             },
             {
                 "@type": "PropertyValue",
-                name: "Country",
+                name: "Destination Country",
                 value: input.countryCode,
             },
-        ],
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "ratingCount": Math.floor(Math.random() * (900 - 150 + 1) + 150).toString(),
-            "bestRating": "5"
-        },
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD",
-            "availability": "https://schema.org/InStock",
-            "priceValidUntil": priceValidUntil,
-            "url": input.url,
-            "shippingDetails": {
-                "@type": "OfferShippingDetails",
-                "shippingRate": {
-                    "@type": "MonetaryAmount",
-                    "value": "0",
-                    "currency": "USD"
-                },
-                "shippingDestination": {
-                    "@type": "DefinedRegion",
-                    "addressCountry": "US"
-                },
-                "deliveryTime": {
-                    "@type": "ShippingDeliveryTime",
-                    "handlingTime": {
-                        "@type": "QuantitativeValue",
-                        "minValue": "0",
-                        "maxValue": "0",
-                        "unitCode": "d"
-                    },
-                    "transitTime": {
-                        "@type": "QuantitativeValue",
-                        "minValue": "0",
-                        "maxValue": "0",
-                        "unitCode": "d"
-                    }
-                }
+            {
+                "@type": "PropertyValue",
+                name: "Tariff Gazette Year",
+                value: "2026",
             },
-            "hasMerchantReturnPolicy": {
-                "@type": "MerchantReturnPolicy",
-                "applicableCountry": "US",
-                "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
-                "merchantReturnDays": "0"
-            }
-        },
+        ],
         ...(input.keywords?.length ? { keywords: input.keywords.join(", ") } : {}),
     };
 }
+
 
 interface FaqJsonLdInput {
     productDescription: string;

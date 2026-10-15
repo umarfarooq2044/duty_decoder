@@ -97,44 +97,6 @@ export default function RootLayout({
                     }}
                 />
 
-                {/* ── Adsterra Popunder — engagement-gated, once-per-session, bot-safe ── */}
-                <Script id="adsterra-popunder-loader" strategy="afterInteractive">
-                    {`
-                    (function(){
-                        /* ── Skip bots & crawlers (protect SEO crawl budget) ── */
-                        if(/bot|crawl|spider|slurp|googlebot|bingbot|yandex|baidu|duckduckbot|facebot|ia_archiver/i.test(navigator.userAgent)){return;}
-
-                        /* ── Once-per-session frequency cap (reduce annoyance, lower bounce) ── */
-                        if(sessionStorage.getItem('_adst_pop')){return;}
-
-                        var fired=false;
-                        function loadPopunder(){
-                            if(fired) return;
-                            fired=true;
-                            sessionStorage.setItem('_adst_pop','1');
-                            var s=document.createElement('script');
-                            s.src='https://pl29455102.profitablecpmratenetwork.com/dd/c7/73/ddc773c84d00997a488c072ccbb3e792.js';
-                            s.async=true;
-                            document.head.appendChild(s);
-                            /* Clean up listeners after firing */
-                            window.removeEventListener('scroll',onEngage);
-                            document.removeEventListener('click',onEngage);
-                        }
-
-                        /* ── Engagement gate: fire only after meaningful user interaction ── */
-                        function onEngage(e){
-                            /* On scroll: require 25% page depth to filter bounced visitors */
-                            if(e.type==='scroll'){
-                                var depth=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight);
-                                if(depth<0.25) return;
-                            }
-                            loadPopunder();
-                        }
-                        window.addEventListener('scroll',onEngage,{passive:true});
-                        document.addEventListener('click',onEngage,{once:true});
-                    })();
-                    `}
-                </Script>
             </head>
             <body className="bg-background text-foreground min-h-screen flex flex-col" suppressHydrationWarning>
                 <Suspense fallback={null}>
@@ -166,21 +128,6 @@ export default function RootLayout({
                     strategy="afterInteractive"
                     crossOrigin="anonymous"
                 />
-
-                {/* ── Adsterra Social Bar — delayed 3s, bot-safe, zero CLS ── */}
-                <Script id="adsterra-social-bar" strategy="afterInteractive">
-                    {`
-                    (function(){
-                        if(/bot|crawl|spider|slurp|googlebot|bingbot|yandex|baidu|duckduckbot|facebot|ia_archiver/i.test(navigator.userAgent)){return;}
-                        setTimeout(function(){
-                            var s=document.createElement('script');
-                            s.src='https://pl29455676.effectivecpmnetwork.com/cf/e4/56/cfe456b0eee57499ada8b3646f79d2d7.js';
-                            s.async=true;
-                            document.body.appendChild(s);
-                        },3000);
-                    })();
-                    `}
-                </Script>
             </body>
         </html>
     );

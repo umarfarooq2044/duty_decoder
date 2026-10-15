@@ -80,7 +80,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         const BATCH = 1000;
         let offset = 0;
 
-        while (true) {
+        const MAX_PAGES = 10000;
+
+        while (offset < MAX_PAGES) {
             const { data: pages, error } = await supabase
                 .from("landed_costs")
                 .select("slug, created_at")
@@ -102,6 +104,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             if (pages.length < BATCH) break;
             offset += BATCH;
         }
+
     } catch {
         // Non-fatal
     }

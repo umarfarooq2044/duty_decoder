@@ -21,19 +21,27 @@ export default function robots(): MetadataRoute.Robots {
                 allow: "/",
                 disallow: ["/api/"],
             },
-            // Block aggressive AI scrapers from stealing content
-            {
-                userAgent: "GPTBot",
-                disallow: ["/"],
-            },
+            // Allow AI Search indexers to cite DutyDecoder in generative answers (GEO)
             {
                 userAgent: "ChatGPT-User",
+                allow: "/",
+                disallow: ["/api/"],
+            },
+            {
+                userAgent: "PerplexityBot",
+                allow: "/",
+                disallow: ["/api/"],
+            },
+            // Block raw AI scrapers from mass-scraping database
+            {
+                userAgent: "GPTBot",
                 disallow: ["/"],
             },
             {
                 userAgent: "CCBot",
                 disallow: ["/"],
             },
+
             {
                 userAgent: "anthropic-ai",
                 disallow: ["/"],

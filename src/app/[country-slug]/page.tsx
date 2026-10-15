@@ -136,8 +136,9 @@ export default async function CountryHubPage({ params }: PageProps) {
                         {[
                             { label: "Currency", value: country.currency, icon: "💱" },
                             { label: `${country.vatLabel} Rate`, value: `${country.vatRate}%`, icon: "📊" },
-                            { label: "Duty Basis", value: "CIF Value", icon: "📦" },
-                            { label: "Calculator", value: "Open →", icon: "🧮", link: `/${slug}/import-duty-calculator` },
+                            { label: "Duty Basis", value: country.dutyBasis ? `${country.dutyBasis} Value` : "CIF Value", icon: "📦" },
+                            { label: "Calculator", value: "Open →", icon: "🧮", link: `/${slug}/import-duty-calculator/` },
+
                         ].map((item) => (
                             <div key={item.label} role="listitem" style={{
                                 background: "rgba(255,255,255,0.05)",

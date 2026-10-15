@@ -114,21 +114,10 @@ export default async function HomePage() {
             "price": "0",
             "priceCurrency": "USD",
             "availability": "https://schema.org/InStock",
-            "priceValidUntil": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
-            "shippingDetails": {
-                "@type": "OfferShippingDetails",
-                "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" },
-                "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" },
-                "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": "0", "maxValue": "0", "unitCode": "d" }, "transitTime": { "@type": "QuantitativeValue", "minValue": "0", "maxValue": "0", "unitCode": "d" } }
-            },
-            "hasMerchantReturnPolicy": {
-                "@type": "MerchantReturnPolicy",
-                "applicableCountry": "US",
-                "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
-                "merchantReturnDays": "0"
-            }
+            "description": "Free online import duty and landed cost calculator"
         }
     };
+
 
     const faqData = [
         { q: "What is landed cost?", a: "Landed cost is the total price of a product once it arrives at the buyer's door. It includes the product price, shipping, insurance, customs duties, import taxes (VAT/GST), brokerage fees, and any handling charges. Knowing your landed cost before shipping helps you price products accurately and avoid surprises." },

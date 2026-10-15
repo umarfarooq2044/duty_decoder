@@ -10,18 +10,20 @@ export interface CountryEntry {
     vatLabel: string;   // "VAT" | "GST" | "Sales Tax" | "Consumption Tax"
     vatRate: number;     // Standard VAT/GST rate as percentage
     region: string;     // Geographic region for grouping
+    dutyBasis?: "FOB" | "CIF"; // Customs valuation base (FOB for US/Canada, CIF for EU/UK/most)
 }
 
 export const COUNTRIES: CountryEntry[] = [
-    { code: "US", name: "United States", slug: "united-states", currency: "USD", vatLabel: "Sales Tax", vatRate: 0, region: "North America" },
-    { code: "CN", name: "China", slug: "china", currency: "CNY", vatLabel: "VAT", vatRate: 13, region: "Asia" },
-    { code: "DE", name: "Germany", slug: "germany", currency: "EUR", vatLabel: "VAT", vatRate: 19, region: "Europe" },
-    { code: "GB", name: "United Kingdom", slug: "united-kingdom", currency: "GBP", vatLabel: "VAT", vatRate: 20, region: "Europe" },
-    { code: "FR", name: "France", slug: "france", currency: "EUR", vatLabel: "VAT", vatRate: 20, region: "Europe" },
-    { code: "JP", name: "Japan", slug: "japan", currency: "JPY", vatLabel: "Consumption Tax", vatRate: 10, region: "Asia" },
-    { code: "NL", name: "Netherlands", slug: "netherlands", currency: "EUR", vatLabel: "VAT", vatRate: 21, region: "Europe" },
-    { code: "IN", name: "India", slug: "india", currency: "INR", vatLabel: "GST", vatRate: 18, region: "Asia" },
-    { code: "CA", name: "Canada", slug: "canada", currency: "CAD", vatLabel: "GST", vatRate: 5, region: "North America" },
+    { code: "US", name: "United States", slug: "united-states", currency: "USD", vatLabel: "Sales Tax", vatRate: 0, region: "North America", dutyBasis: "FOB" },
+    { code: "CN", name: "China", slug: "china", currency: "CNY", vatLabel: "VAT", vatRate: 13, region: "Asia", dutyBasis: "CIF" },
+    { code: "DE", name: "Germany", slug: "germany", currency: "EUR", vatLabel: "VAT", vatRate: 19, region: "Europe", dutyBasis: "CIF" },
+    { code: "GB", name: "United Kingdom", slug: "united-kingdom", currency: "GBP", vatLabel: "VAT", vatRate: 20, region: "Europe", dutyBasis: "CIF" },
+    { code: "FR", name: "France", slug: "france", currency: "EUR", vatLabel: "VAT", vatRate: 20, region: "Europe", dutyBasis: "CIF" },
+    { code: "JP", name: "Japan", slug: "japan", currency: "JPY", vatLabel: "Consumption Tax", vatRate: 10, region: "Asia", dutyBasis: "CIF" },
+    { code: "NL", name: "Netherlands", slug: "netherlands", currency: "EUR", vatLabel: "VAT", vatRate: 21, region: "Europe", dutyBasis: "CIF" },
+    { code: "IN", name: "India", slug: "india", currency: "INR", vatLabel: "GST", vatRate: 18, region: "Asia", dutyBasis: "CIF" },
+    { code: "CA", name: "Canada", slug: "canada", currency: "CAD", vatLabel: "GST", vatRate: 5, region: "North America", dutyBasis: "FOB" },
+
     { code: "KR", name: "South Korea", slug: "south-korea", currency: "KRW", vatLabel: "VAT", vatRate: 10, region: "Asia" },
     { code: "IT", name: "Italy", slug: "italy", currency: "EUR", vatLabel: "VAT", vatRate: 22, region: "Europe" },
     { code: "SG", name: "Singapore", slug: "singapore", currency: "SGD", vatLabel: "GST", vatRate: 9, region: "Asia" },
