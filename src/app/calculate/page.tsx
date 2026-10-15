@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getServerSupabase } from "@/lib/supabase/server";
 import { CalculatorForm } from "@/components/CalculatorForm";
 import type { Metadata } from "next";
+import { Globe, Cpu, BarChart3, CheckCircle2 } from "lucide-react";
 
 export async function generateMetadata(): Promise<Metadata> {
     const supabase = getServerSupabase();
@@ -251,26 +252,14 @@ Every calculation generates a shareable URL, a printer-friendly report, and a pe
             "Real-Time 2026 Duty Rates",
             "Complete Landed Cost Breakdown",
             "Shipping & Insurance Cost Inclusion",
-            `${totalRoutes.toLocaleString()}+ Pre-Calculated Trade Routes`,
+            `${(totalRoutes || 500).toLocaleString()}+ Pre-Calculated Trade Routes`,
         ],
         "offers": {
             "@type": "Offer",
             "price": "0",
             "priceCurrency": "USD",
             "availability": "https://schema.org/InStock",
-            "priceValidUntil": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
-            "shippingDetails": {
-                "@type": "OfferShippingDetails",
-                "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" },
-                "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" },
-                "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": "0", "maxValue": "0", "unitCode": "d" }, "transitTime": { "@type": "QuantitativeValue", "minValue": "0", "maxValue": "0", "unitCode": "d" } }
-            },
-            "hasMerchantReturnPolicy": {
-                "@type": "MerchantReturnPolicy",
-                "applicableCountry": "US",
-                "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
-                "merchantReturnDays": "0"
-            }
+            "priceValidUntil": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]
         }
     };
 
@@ -287,8 +276,8 @@ Every calculation generates a shareable URL, a printer-friendly report, and a pe
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         "name": "Import Duty Calculations Directory",
-        "description": `Browse ${totalRoutes.toLocaleString()}+ import duty and landed cost calculations across 50+ countries.`,
-        "numberOfItems": totalRoutes
+        "description": `Browse ${(totalRoutes || 500).toLocaleString()}+ import duty and landed cost calculations across 50+ countries.`,
+        "numberOfItems": totalRoutes || 500
     };
 
     return (
@@ -323,16 +312,19 @@ Every calculation generates a shareable URL, a printer-friendly report, and a pe
                             </p>
                             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "1.5rem" }}>
                                 {[
-                                    { text: "2026 duty rates for 50+ countries", icon: "🌍" },
-                                    { text: "AI-powered HS code classification", icon: "🤖" },
-                                    { text: `${totalRoutes.toLocaleString()}+ calculations available`, icon: "📊" },
-                                    { text: "No signup required — 100% free", icon: "✅" },
-                                ].map(feat => (
-                                    <div key={feat.text} style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                                        <span style={{ fontSize: "1rem" }} aria-hidden="true">{feat.icon}</span>
-                                        <span style={{ fontSize: "0.95rem", color: "var(--foreground)" }}>{feat.text}</span>
-                                    </div>
-                                ))}
+                                    { text: "2026 duty rates for 50+ countries", icon: Globe },
+                                    { text: "AI-powered HS code classification", icon: Cpu },
+                                    { text: `${(totalRoutes || 500).toLocaleString()}+ trade routes supported`, icon: BarChart3 },
+                                    { text: "No signup required — 100% free", icon: CheckCircle2 },
+                                ].map((feat, idx) => {
+                                    const IconComp = feat.icon;
+                                    return (
+                                        <div key={idx} style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                                            <IconComp size={18} style={{ color: "var(--accent)", flexShrink: 0 }} aria-hidden="true" />
+                                            <span style={{ fontSize: "0.95rem", color: "var(--foreground)" }}>{feat.text}</span>
+                                        </div>
+                                    );
+                                })}
                             </div>
 
                             {/* Trust Bar */}
@@ -503,7 +495,7 @@ Every calculation generates a shareable URL, a printer-friendly report, and a pe
                                 }
                             </h2>
                             <p style={{ fontSize: "1rem", color: "var(--muted-foreground)", margin: 0, maxWidth: "700px" }}>
-                                {totalRoutes.toLocaleString()}+ real import scenarios with verified 2026 duty rates, HS classifications, and full cost breakdowns. Click any route to view the complete landed cost report.
+                                {(totalRoutes || 500).toLocaleString()}+ real import scenarios with verified 2026 duty rates, HS classifications, and full cost breakdowns. Click any route to view the complete landed cost report.
                             </p>
                         </div>
                     </div>
