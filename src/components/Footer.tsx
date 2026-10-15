@@ -129,11 +129,14 @@ export function Footer() {
                     </h4>
                     <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "0.85rem", lineHeight: 2.1 }}>
                         <li><Link href="/about/" style={{ color: "#94A3B8", textDecoration: "none" }}>About DutyDecoder</Link></li>
-                        <li><Link href="/methodology/" style={{ color: "#94A3B8", textDecoration: "none" }}>Tariff Methodology & Sources</Link></li>
-                        <li><Link href="/contact/" style={{ color: "#94A3B8", textDecoration: "none" }}>Contact Compliance Team</Link></li>
+                        <li><Link href="/methodology/" style={{ color: "#94A3B8", textDecoration: "none" }}>Tariff Methodology</Link></li>
+                        <li><Link href="/data-sources/" style={{ color: "#94A3B8", textDecoration: "none" }}>Official Data Sources Register</Link></li>
+                        <li><Link href="/editorial-policy/" style={{ color: "#94A3B8", textDecoration: "none" }}>Editorial Policy &amp; Standards</Link></li>
+                        <li><Link href="/contact/" style={{ color: "#94A3B8", textDecoration: "none" }}>Contact Compliance Desk</Link></li>
                         <li><Link href="/privacy/" style={{ color: "#94A3B8", textDecoration: "none" }}>Privacy Policy</Link></li>
                         <li><Link href="/terms/" style={{ color: "#94A3B8", textDecoration: "none" }}>Terms of Service</Link></li>
                         <li><Link href="/disclaimer/" style={{ color: "#94A3B8", textDecoration: "none" }}>Regulatory Disclaimer</Link></li>
+                        <li><Link href="/sitemap/" style={{ color: "#94A3B8", textDecoration: "none" }}>HTML Sitemap</Link></li>
                     </ul>
                 </div>
             </div>
