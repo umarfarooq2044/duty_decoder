@@ -1,13 +1,14 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getServerSupabase } from "@/lib/supabase/server";
+import { getCachedGlobalPillar } from "@/lib/cache";
 import { CalculatorForm } from "@/components/CalculatorForm";
 import type { Metadata } from "next";
 import { Globe, Cpu, BarChart3, CheckCircle2 } from "lucide-react";
+import { unstable_cache } from "next/cache";
 
 export async function generateMetadata(): Promise<Metadata> {
-    const supabase = getServerSupabase();
-    const { data } = await supabase.from("global_pillars").select("title_tag, meta_description").eq("slug", "calculate").maybeSingle();
+    const data = await getCachedGlobalPillar("calculate");
 
     const title = "AI-Powered Global Landed Cost & Import Duty Calculator";
     const description = "Calculate exact landed cost, HS codes, and import duties in seconds. 2026 trade data for 50+ countries. Zero-error B2B margin forecasting.";
@@ -51,6 +52,37 @@ function categorizeProduct(description: string): string {
     return "other";
 }
 
+const getCachedCalculatePageRoutes = unstable_cache(
+    async (page: number, pageSize: number, categoryFilter: string | null) => {
+        try {
+            const supabase = getServerSupabase();
+            let query = supabase
+                .from("landed_costs")
+                .select("slug, product_description, origin_country, destination_country, seo_title", { count: "estimated" })
+                .not("slug", "is", null)
+                .order("created_at", { ascending: false });
+
+            if (categoryFilter) {
+                const cat = PRODUCT_CATEGORIES.find(c => c.id === categoryFilter);
+                if (cat) {
+                    const patterns = cat.keywords.slice(0, 6).map(kw => `product_description.ilike.%${kw}%`);
+                    query = query.or(patterns.join(","));
+                }
+            }
+
+            const { data, count } = await query.range((page - 1) * pageSize, page * pageSize - 1);
+            return {
+                routes: data || [],
+                totalRoutes: count || 0,
+            };
+        } catch {
+            return { routes: [], totalRoutes: 0 };
+        }
+    },
+    ["calculate-routes-page-cache-v1"],
+    { revalidate: 3600, tags: ["calculate-routes"] }
+);
+
 export default async function CalculateIndexPage({
     searchParams
 }: {
@@ -60,38 +92,13 @@ export default async function CalculateIndexPage({
     const pageStr = typeof params.page === 'string' ? params.page : '1';
     const page = parseInt(pageStr, 10) || 1;
     const categoryFilter = typeof params.category === 'string' ? params.category : null;
-    const pageSize = 100;
+    const pageSize = 40;
 
-    const supabase = getServerSupabase();
+    // 1. Fetch cached Global Pillar SEO Content for "calculate"
+    const pillar = await getCachedGlobalPillar("calculate");
 
-    // 1. Fetch the Global Pillar SEO Content for "calculate"
-    const { data: pillar } = await supabase
-        .from("global_pillars")
-        .select("*")
-        .eq("slug", "calculate")
-        .maybeSingle();
-
-    // 2. Fetch the paginated landed_costs routes — using correct column names
-    let query = supabase
-        .from("landed_costs")
-        .select("slug, product_description, origin_country, destination_country, seo_title", { count: "exact" })
-        .not("slug", "is", null)
-        .order("created_at", { ascending: false });
-
-    // Apply category filter via ilike if requested
-    if (categoryFilter) {
-        const cat = PRODUCT_CATEGORIES.find(c => c.id === categoryFilter);
-        if (cat) {
-            // Build OR filter using keyword patterns
-            const patterns = cat.keywords.slice(0, 6).map(kw => `product_description.ilike.%${kw}%`);
-            query = query.or(patterns.join(","));
-        }
-    }
-
-    const { data: routesData, count } = await query.range((page - 1) * pageSize, page * pageSize - 1);
-
-    const routes = routesData || [];
-    const totalRoutes = count || 0;
+    // 2. Fetch paginated landed_costs routes with caching
+    const { routes, totalRoutes } = await getCachedCalculatePageRoutes(page, pageSize, categoryFilter);
     const totalPages = Math.ceil(totalRoutes / pageSize);
 
     // 3. Group routes by category for the current page

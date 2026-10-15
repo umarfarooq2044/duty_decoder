@@ -104,27 +104,18 @@ export default function RootLayout({
                 <link rel="alternate" hrefLang="en" href="https://dutydecoder.com/" />
                 <link rel="alternate" hrefLang="x-default" href="https://dutydecoder.com/" />
 
+                {/* ── Resource Preconnects for Faster Mobile First Contentful Paint ── */}
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+                <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
                 {/* ── Google Consent Mode v2 Default (denied until user explicit choice) ── */}
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','wait_for_update':500});`,
                     }}
                 />
-
-                {/* ── AdSense Site Verification (plain script to avoid Next.js data-nscript attribute warning) ── */}
-                <script
-                    async
-                    src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "ca-pub-6219371790903754"}`}
-                    crossOrigin="anonymous"
-                />
-
-                {/* ── Prevent hydration error caused by browser extensions injecting bis_skin_checked ── */}
-                <script
-                    dangerouslySetInnerHTML={{
-                        __html: `(function(){try{new MutationObserver(function(e){for(var t=0;t<e.length;t++){var r=e[t];if("attributes"===r.type&&"bis_skin_checked"===r.attributeName&&r.target.removeAttribute("bis_skin_checked"),"childList"===r.type)for(var n=0;n<r.addedNodes.length;n++){var a=r.addedNodes[n];1===a.nodeType&&(a.hasAttribute("bis_skin_checked")&&a.removeAttribute("bis_skin_checked"),a.querySelectorAll&&a.querySelectorAll("[bis_skin_checked]").forEach(function(e){e.removeAttribute("bis_skin_checked")}))}}}).observe(document.documentElement,{attributes:!0,subtree:!0,childList:!0,attributeFilter:["bis_skin_checked"]})}catch(e){}})();`,
-                    }}
-                />
-
             </head>
             <body className="bg-background text-foreground min-h-screen flex flex-col" suppressHydrationWarning>
                 <Suspense fallback={null}>
@@ -142,14 +133,20 @@ export default function RootLayout({
                 <Footer />
                 <CookieConsentBanner />
 
-                {/* ── GA4 — loads after page is interactive (respects Consent Mode v2) ── */}
+                {/* ── GA4 & AdSense — loaded during idle time via lazyOnload so mobile main-thread stays free ── */}
                 <Script
                     src="https://www.googletagmanager.com/gtag/js?id=G-G74QF4WDSL"
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                 />
-                <Script id="gtag-init" strategy="afterInteractive">
+                <Script id="gtag-init" strategy="lazyOnload">
                     {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-G74QF4WDSL');`}
                 </Script>
+                <Script
+                    id="adsense-loader"
+                    src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "ca-pub-6219371790903754"}`}
+                    strategy="lazyOnload"
+                    crossOrigin="anonymous"
+                />
             </body>
         </html>
     );

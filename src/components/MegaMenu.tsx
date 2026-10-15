@@ -122,9 +122,7 @@ export function MegaMenu() {
             left: 0,
             right: 0,
             zIndex: 50,
-            background: "rgba(255, 255, 255, 0.97)",
-            backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
+            background: "#FFFFFF",
             borderBottom: "1px solid var(--border, #E3E8EF)",
         }}>
             <div style={{

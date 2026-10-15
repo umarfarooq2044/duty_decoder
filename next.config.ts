@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+    compress: true,
+    poweredByHeader: false,
     trailingSlash: true,
+    experimental: {
+        optimizePackageImports: ["lucide-react", "decimal.js"],
+    },
     async redirects() {
         return [
             {

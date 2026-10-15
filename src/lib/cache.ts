@@ -131,3 +131,29 @@ export const getCachedLandedCostBySlug = unstable_cache(
         tags: ["landed-costs"],
     }
 );
+
+/**
+ * Cached global pillar content.
+ * 24-hour TTL since pillar guide editorial copy is static.
+ */
+export const getCachedGlobalPillar = unstable_cache(
+    async (slug: string) => {
+        try {
+            const supabase = getServerSupabase();
+            const { data } = await supabase
+                .from("global_pillars")
+                .select("*")
+                .eq("slug", slug)
+                .maybeSingle();
+            return data || null;
+        } catch {
+            return null;
+        }
+    },
+    ["global-pillar-content"],
+    {
+        revalidate: 86400,
+        tags: ["pillars"],
+    }
+);
+

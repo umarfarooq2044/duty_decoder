@@ -72,22 +72,40 @@ const CN: Record<string, string> = {
     ID: "Indonesia", ZA: "South Africa",
 };
 
+import { unstable_cache } from "next/cache";
+
+const getCachedHomeRoutes = unstable_cache(
+    async () => {
+        try {
+            const supabase = getServerSupabase();
+            const [recentRes, featuredRes] = await Promise.all([
+                supabase
+                    .from("landed_costs")
+                    .select("slug, product_description, origin_country, destination_country, created_at")
+                    .not("slug", "is", null)
+                    .order("created_at", { ascending: false })
+                    .limit(12),
+                supabase
+                    .from("landed_costs")
+                    .select("slug, product_description, origin_country, destination_country")
+                    .not("slug", "is", null)
+                    .order("created_at", { ascending: false })
+                    .range(12, 23),
+            ]);
+            return {
+                recentPages: recentRes.data || [],
+                featuredRoutes: featuredRes.data || [],
+            };
+        } catch {
+            return { recentPages: [], featuredRoutes: [] };
+        }
+    },
+    ["homepage-routes-cache-v1"],
+    { revalidate: 3600, tags: ["homepage-routes"] }
+);
+
 export default async function HomePage() {
-    const supabase = getServerSupabase();
-
-    const { data: recentPages } = await supabase
-        .from("landed_costs")
-        .select("slug, product_description, origin_country, destination_country, created_at")
-        .not("slug", "is", null)
-        .order("created_at", { ascending: false })
-        .limit(12);
-
-    const { data: featuredRoutes } = await supabase
-        .from("landed_costs")
-        .select("slug, product_description, origin_country, destination_country")
-        .not("slug", "is", null)
-        .order("created_at", { ascending: false })
-        .range(12, 23);
+    const { recentPages, featuredRoutes } = await getCachedHomeRoutes();
 
     const lastCalcTime = recentPages?.[0]?.created_at
         ? new Date(recentPages[0].created_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit" })
