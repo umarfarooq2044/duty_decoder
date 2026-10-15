@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Script from "next/script";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Manrope, Inter, JetBrains_Mono } from "next/font/google";
 import { MegaMenu } from "@/components/MegaMenu";
 import { Footer } from "@/components/Footer";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -9,19 +9,27 @@ import { NavigationProgress } from "@/components/NavigationProgress";
 import "./globals.css";
 
 /* ── Self-hosted Google Fonts via next/font (eliminates render-blocking CSS) ── */
-const inter = Inter({
+const heading = Manrope({
     subsets: ["latin"],
-    weight: ["400", "500", "600", "700"],
+    weight: ["700", "800"],
     display: "swap",
-    variable: "--font-inter",
+    variable: "--font-heading",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const body = Inter({
     subsets: ["latin"],
-    weight: ["400", "500"],
+    weight: ["400", "500", "600"],
     display: "swap",
-    variable: "--font-jetbrains",
+    variable: "--font-body",
 });
+
+const mono = JetBrains_Mono({
+    subsets: ["latin"],
+    weight: ["500"],
+    display: "swap",
+    variable: "--font-mono",
+});
+
 
 export const metadata: Metadata = {
     metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://dutydecoder.com"),
@@ -83,8 +91,9 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+        <html lang="en" className={`${heading.variable} ${body.variable} ${mono.variable}`} suppressHydrationWarning>
             <head>
+
                 <meta charSet="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="alternate" hrefLang="en" href="https://dutydecoder.com/" />

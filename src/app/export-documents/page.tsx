@@ -96,11 +96,11 @@ export default function ExportDocumentsPage() {
                         <th style="text-align:left;padding:0.75rem;color:var(--foreground);font-weight:700;">Export Requirements</th>
                     </tr></thead>
                     <tbody>
-                        <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;">🇺🇸 United States</td><td style="padding:0.75rem;">AES/EEI filing, Schedule B classification, EAR/ITAR screening, denied party screening, sanctions compliance (OFAC SDN list)</td></tr>
-                        <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;">🇪🇺 European Union</td><td style="padding:0.75rem;">Export declaration via national systems, EU Dual-Use Regulation, EORI number, sanctions screening, phytosanitary certificates for food/agriculture</td></tr>
-                        <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;">🇬🇧 United Kingdom</td><td style="padding:0.75rem;">Export declaration through CHIEF/CDS, UK Strategic Export Controls, OGEL licenses where applicable, UK sanctions list screening</td></tr>
-                        <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;">🇨🇳 China</td><td style="padding:0.75rem;">Export license for restricted technologies, MOFCOM approval for dual-use items, customs declaration through China e-Port</td></tr>
-                        <tr><td style="padding:0.75rem;">🇮🇳 India</td><td style="padding:0.75rem;">Shipping Bill through ICEGATE, IEC (Import Export Code), DGFT approval for restricted items, GST export refund documentation</td></tr>
+                        <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;font-weight:600;">United States</td><td style="padding:0.75rem;">AES/EEI filing, Schedule B classification, EAR/ITAR screening, denied party screening, sanctions compliance (OFAC SDN list)</td></tr>
+                        <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;font-weight:600;">European Union</td><td style="padding:0.75rem;">Export declaration via national systems, EU Dual-Use Regulation, EORI number, sanctions screening, phytosanitary certificates for food/agriculture</td></tr>
+                        <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;font-weight:600;">United Kingdom</td><td style="padding:0.75rem;">Export declaration through CHIEF/CDS, UK Strategic Export Controls, OGEL licenses where applicable, UK sanctions list screening</td></tr>
+                        <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;font-weight:600;">China</td><td style="padding:0.75rem;">Export license for restricted technologies, MOFCOM approval for dual-use items, customs declaration through China e-Port</td></tr>
+                        <tr><td style="padding:0.75rem;font-weight:600;">India</td><td style="padding:0.75rem;">Shipping Bill through ICEGATE, IEC (Import Export Code), DGFT approval for restricted items, GST export refund documentation</td></tr>
                     </tbody>
                 </table>
             </div>`

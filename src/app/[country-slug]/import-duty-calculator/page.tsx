@@ -55,7 +55,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 // Renders when Supabase calculator_page has no sections
 // ============================================================
 
-function getFallbackSections(countryName: string, vatLabel: string, vatRate: number, currency: string, code: string) {
+function getFallbackSections(countryName: string, vatLabel: string, vatRate: number, currency: string, code: string, dutyBasis?: string) {
+    const basisLabel = dutyBasis || "CIF";
+    const basisExplanation = basisLabel === "FOB"
+        ? "FOB value (transaction value excluding international freight and cargo insurance)"
+        : "CIF value (Cost, Insurance, and Freight)";
+
     return [
         {
             id: "how-it-works",
@@ -74,12 +79,12 @@ function getFallbackSections(countryName: string, vatLabel: string, vatRate: num
 <tr><td><strong>Product Value</strong></td><td>FOB price of the goods</td></tr>
 <tr><td><strong>Shipping</strong></td><td>Freight cost to ${countryName}</td></tr>
 <tr><td><strong>Insurance</strong></td><td>Cargo insurance during transit</td></tr>
-<tr><td><strong>CIF Value</strong></td><td>Product + Shipping + Insurance (duty base)</td></tr>
+<tr><td><strong>Customs Base (${basisLabel})</strong></td><td>${basisLabel === "FOB" ? "Product Value (FOB)" : "Product + Shipping + Insurance (CIF)"}</td></tr>
 <tr><td><strong>Customs Duty</strong></td><td>Tariff applied based on HS code classification</td></tr>
-<tr><td><strong>${vatLabel}</strong></td><td>${vatRate > 0 ? `${vatRate}% applied on CIF + Duty` : "Not applicable / varies by state"}</td></tr>
+<tr><td><strong>${vatLabel}</strong></td><td>${vatRate > 0 ? `${vatRate}% applied on duty-inclusive value` : "Not applicable / varies by state"}</td></tr>
 <tr><td><strong>Total Landed Cost</strong></td><td>Sum of all components above</td></tr>
 </tbody></table>
-<p>In ${countryName}, customs duty is typically assessed on the <strong>CIF value</strong> (Cost, Insurance, and Freight). The ${vatLabel} is then calculated on the combined CIF value plus customs duty.</p>`
+<p>In ${countryName}, customs duty is assessed on the <strong>${basisLabel} value</strong> (${basisExplanation}). ${vatLabel} is then applied on the statutory tax base.</p>`
         },
         {
             id: "duty-rates",
@@ -192,7 +197,7 @@ export default async function CountryCalculatorPage({ params }: PageProps) {
     const dbSections: Array<{ id: string; heading: string; content: string }> = calc.sections || [];
     const dbFaqs: Array<{ question: string; answer: string }> = calc.faq || [];
 
-    const fallbackSections = getFallbackSections(country.name, country.vatLabel, country.vatRate, country.currency, country.code);
+    const fallbackSections = getFallbackSections(country.name, country.vatLabel, country.vatRate, country.currency, country.code, country.dutyBasis);
     const fallbackFaqs = getFallbackFaqs(country.name, country.vatLabel, country.vatRate, country.currency);
 
     // Use DB content if it has at least 2 sections, otherwise use fallback
@@ -224,19 +229,7 @@ export default async function CountryCalculatorPage({ params }: PageProps) {
             "price": "0",
             "priceCurrency": "USD",
             "availability": "https://schema.org/InStock",
-            "priceValidUntil": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
-            "shippingDetails": {
-                "@type": "OfferShippingDetails",
-                "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" },
-                "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" },
-                "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": "0", "maxValue": "0", "unitCode": "d" }, "transitTime": { "@type": "QuantitativeValue", "minValue": "0", "maxValue": "0", "unitCode": "d" } }
-            },
-            "hasMerchantReturnPolicy": {
-                "@type": "MerchantReturnPolicy",
-                "applicableCountry": "US",
-                "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
-                "merchantReturnDays": "0"
-            }
+            "description": `Free online ${country.name} import duty and landed cost calculator`
         },
     };
 
@@ -330,7 +323,7 @@ export default async function CountryCalculatorPage({ params }: PageProps) {
                                 {[
                                     { label: "Currency", value: country.currency },
                                     { label: country.vatLabel + " Rate", value: country.vatRate > 0 ? country.vatRate + "%" : "N/A" },
-                                    { label: "Duty Basis", value: "CIF Value" },
+                                    { label: "Duty Basis", value: country.dutyBasis ? `${country.dutyBasis} Value` : "CIF Value" },
                                     { label: "HS System", value: "Harmonized (6-digit)" },
                                     { label: "Region", value: country.region },
                                 ].map((item) => (
@@ -345,17 +338,19 @@ export default async function CountryCalculatorPage({ params }: PageProps) {
                         {/* Hub Link */}
                         <Link href={`/${slug}/` as any} aria-label={`${country.name} full import guide`} style={{
                             display: "block",
-                            background: "linear-gradient(135deg, var(--accent), #6366f1)",
+                            background: "var(--navy-950, #06142B)",
+                            border: "1px solid rgba(255, 255, 255, 0.08)",
                             borderRadius: "12px",
                             padding: "1.25rem",
                             textDecoration: "none",
+                            boxShadow: "0 4px 16px rgba(6, 20, 43, 0.15)",
                         }}>
-                            <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.75)", textTransform: "uppercase", letterSpacing: "0.05em", display: "block" }}>Full Country Guide</span>
-                            <strong style={{ fontSize: "1rem", fontWeight: 700, color: "#fff", marginTop: "0.25rem", display: "block" }}>
+                            <span style={{ fontSize: "0.72rem", color: "var(--teal-300, #5EEAD4)", textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 700, display: "block" }}>Full Country Guide</span>
+                            <strong style={{ fontSize: "1rem", fontWeight: 700, color: "#FFFFFF", marginTop: "0.25rem", display: "block" }}>
                                 {country.name} Import Duty Guide →
                             </strong>
-                            <span style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.7)", marginTop: "0.25rem", display: "block" }}>
-                                Thresholds, documents, restrictions & more
+                            <span style={{ fontSize: "0.8rem", color: "#94A3B8", marginTop: "0.25rem", display: "block" }}>
+                                Thresholds, documents, restrictions & rules
                             </span>
                         </Link>
 

@@ -70,8 +70,6 @@ export default async function CalculateIndexPage({
         .eq("slug", "calculate")
         .maybeSingle();
 
-    if (!pillar) notFound();
-
     // 2. Fetch the paginated landed_costs routes — using correct column names
     let query = supabase
         .from("landed_costs")
@@ -103,8 +101,8 @@ export default async function CalculateIndexPage({
         groupedRoutes[cat].push(route);
     }
 
-    const dbSections = pillar.sections || [];
-    const dbFaqs = pillar.faq || [];
+    const dbSections = pillar?.sections || [];
+    const dbFaqs = pillar?.faq || [];
 
     // ── Rich fallback content when Supabase has no data ──────────────────
     const FALLBACK_SECTIONS = [

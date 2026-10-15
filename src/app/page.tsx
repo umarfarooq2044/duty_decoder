@@ -1,5 +1,6 @@
 import { CalculatorForm } from "@/components/CalculatorForm";
 import { getServerSupabase } from "@/lib/supabase/server";
+import { CountryFlag } from "@/components/ui/CountryFlag";
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
@@ -186,16 +187,16 @@ export default async function HomePage() {
                         </div>
 
                         {/* Trust Bar */}
-                        <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", paddingTop: "1.5rem", borderTop: "1px solid var(--color-border)" }}>
+                        <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", paddingTop: "1.5rem", borderTop: "1px solid var(--border, #E3E8EF)" }}>
                             {[
-                                { label: "Accuracy", value: "99.2%" },
-                                { label: "Countries", value: "50+" },
-                                { label: "Cost", value: "Free" },
+                                { label: "Tariff Sources", value: "US CBP · HMRC · TARIC", href: "/methodology/" },
+                                { label: "Global Coverage", value: "50+ Countries", href: "#popular-countries" },
+                                { label: "No Signup", value: "Free & Instant", href: "#calculator" },
                             ].map(stat => (
-                                <div key={stat.label} style={{ textAlign: "center", flex: "1", minWidth: "60px", padding: "0.5rem 0" }}>
-                                    <strong style={{ display: "block", fontSize: "1.25rem", fontWeight: 800, color: "var(--color-accent-hover)" }}>{stat.value}</strong>
-                                    <span style={{ fontSize: "0.75rem", color: "var(--color-text-secondary)", textTransform: "uppercase", letterSpacing: "0.05em" }}>{stat.label}</span>
-                                </div>
+                                <Link key={stat.label} href={stat.href} style={{ textAlign: "center", flex: "1", minWidth: "90px", padding: "0.5rem 0", textDecoration: "none" }}>
+                                    <strong style={{ display: "block", fontSize: "1.05rem", fontWeight: 800, color: "var(--teal-700, #0F766E)" }}>{stat.value}</strong>
+                                    <span style={{ fontSize: "0.72rem", color: "var(--text-muted, #64748B)", textTransform: "uppercase", letterSpacing: "0.06em", fontWeight: 600 }}>{stat.label}</span>
+                                </Link>
                             ))}
                         </div>
                     </div>
@@ -353,23 +354,24 @@ export default async function HomePage() {
             </section>
 
             {/* ═══ COUNTRY QUICK LINKS ═══ */}
-            <section style={{ marginBottom: "5rem" }}>
+            <section id="popular-countries" style={{ marginBottom: "5rem" }}>
                 <h2 style={{ fontSize: "1.5rem", fontWeight: 700, color: "var(--foreground)", marginBottom: "1.5rem" }}>Popular Country Calculators</h2>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
                     {[
-                        { flag: "🇺🇸", name: "United States", slug: "united-states" },
-                        { flag: "🇬🇧", name: "UK", slug: "united-kingdom" },
-                        { flag: "🇩🇪", name: "Germany", slug: "germany" },
-                        { flag: "🇨🇳", name: "China", slug: "china" },
-                        { flag: "🇮🇳", name: "India", slug: "india" },
-                        { flag: "🇨🇦", name: "Canada", slug: "canada" },
-                        { flag: "🇯🇵", name: "Japan", slug: "japan" },
-                        { flag: "🇦🇺", name: "Australia", slug: "australia" },
-                        { flag: "🇫🇷", name: "France", slug: "france" },
-                        { flag: "🇸🇬", name: "Singapore", slug: "singapore" },
+                        { code: "US", name: "United States", slug: "united-states" },
+                        { code: "GB", name: "United Kingdom", slug: "united-kingdom" },
+                        { code: "DE", name: "Germany", slug: "germany" },
+                        { code: "CN", name: "China", slug: "china" },
+                        { code: "IN", name: "India", slug: "india" },
+                        { code: "CA", name: "Canada", slug: "canada" },
+                        { code: "JP", name: "Japan", slug: "japan" },
+                        { code: "AU", name: "Australia", slug: "australia" },
+                        { code: "FR", name: "France", slug: "france" },
+                        { code: "SG", name: "Singapore", slug: "singapore" },
                     ].map(c => (
                         <Link key={c.slug} href={`/${c.slug}/import-duty-calculator/`} className="country-quick-link">
-                            <span style={{ fontSize: "1.1rem" }}>{c.flag}</span> <span>{c.name}</span>
+                            <CountryFlag code={c.code} style={{ width: "18px", height: "13px" }} />
+                            <span>{c.name}</span>
                         </Link>
                     ))}
                 </div>
@@ -380,7 +382,7 @@ export default async function HomePage() {
                 <section style={{ marginBottom: "5rem" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "1.5rem", flexWrap: "wrap", gap: "0.5rem" }}>
                         <h2 style={{ fontSize: "1.5rem", fontWeight: 700, color: "var(--foreground)", margin: 0 }}>Recent Landed Cost Calculations</h2>
-                        {lastCalcTime && <span style={{ fontSize: "0.75rem", color: "var(--color-text-secondary)" }}>Last updated: {lastCalcTime}</span>}
+                        {lastCalcTime && <span style={{ fontSize: "0.75rem", color: "var(--text-muted, #64748B)" }}>Last updated: {lastCalcTime}</span>}
                     </div>
                     <div className="grid-3col">
                         {recentPages.map((p, i) => (
@@ -388,8 +390,12 @@ export default async function HomePage() {
                                 <p style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--foreground)", margin: "0 0 0.5rem", lineHeight: 1.4 }}>
                                     {(p.product_description?.length ?? 0) > 50 ? p.product_description?.substring(0, 50) + "…" : p.product_description}
                                 </p>
-                                <span style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)", display: "flex", alignItems: "center", gap: "0.25rem" }}>
-                                    <Activity size={12} /> {CN[p.origin_country] || p.origin_country} → {CN[p.destination_country] || p.destination_country}
+                                <span style={{ fontSize: "0.8rem", color: "var(--text-secondary, #475569)", display: "flex", alignItems: "center", gap: "0.35rem" }}>
+                                    <CountryFlag code={p.origin_country} style={{ width: "14px", height: "10px" }} />
+                                    <span>{CN[p.origin_country] || p.origin_country}</span>
+                                    <span style={{ color: "var(--text-muted, #64748B)" }}>→</span>
+                                    <CountryFlag code={p.destination_country} style={{ width: "14px", height: "10px" }} />
+                                    <span>{CN[p.destination_country] || p.destination_country}</span>
                                 </span>
                             </Link>
                         ))}
@@ -407,14 +413,18 @@ export default async function HomePage() {
                                 <p style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--foreground)", margin: "0 0 0.5rem", lineHeight: 1.4 }}>
                                     {(p.product_description?.length ?? 0) > 50 ? p.product_description?.substring(0, 50) + "…" : p.product_description}
                                 </p>
-                                <span style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)", display: "flex", alignItems: "center", gap: "0.25rem" }}>
-                                    <Activity size={12} /> {CN[p.origin_country] || p.origin_country} → {CN[p.destination_country] || p.destination_country}
+                                <span style={{ fontSize: "0.8rem", color: "var(--text-secondary, #475569)", display: "flex", alignItems: "center", gap: "0.35rem" }}>
+                                    <CountryFlag code={p.origin_country} style={{ width: "14px", height: "10px" }} />
+                                    <span>{CN[p.origin_country] || p.origin_country}</span>
+                                    <span style={{ color: "var(--text-muted, #64748B)" }}>→</span>
+                                    <CountryFlag code={p.destination_country} style={{ width: "14px", height: "10px" }} />
+                                    <span>{CN[p.destination_country] || p.destination_country}</span>
                                 </span>
                             </Link>
                         ))}
                     </div>
                     <div style={{ textAlign: "center" }}>
-                        <Link href="/calculate/" style={{ color: "var(--color-accent-hover)", fontWeight: 600, fontSize: "0.95rem", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.25rem" }}>
+                        <Link href="/calculate/" style={{ color: "var(--teal-700, #0F766E)", fontWeight: 600, fontSize: "0.95rem", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.35rem" }}>
                             Browse All Calculations <TrendingUp size={16} />
                         </Link>
                     </div>
@@ -511,15 +521,23 @@ export default async function HomePage() {
             </section>
 
             {/* ═══ FINAL CTA ═══ */}
-            <section style={{ marginBottom: "5rem", textAlign: "center", background: `linear-gradient(135deg, var(--color-accent), #4f46e5)`, borderRadius: "16px", padding: "3.5rem 2rem", boxShadow: "0 10px 30px rgba(99,102,241,0.2)" }}>
-                <h2 style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: 800, color: "#fff", marginBottom: "0.75rem", letterSpacing: "-0.01em" }}>
-                    Know your real import cost before shipping
+            <section style={{
+                marginBottom: "5rem",
+                textAlign: "center",
+                background: "var(--navy-950, #06142B)",
+                border: "1px solid rgba(255, 255, 255, 0.08)",
+                borderRadius: "16px",
+                padding: "3.5rem 2rem",
+                boxShadow: "0 12px 36px rgba(6, 20, 43, 0.2)",
+            }}>
+                <h2 style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)", fontWeight: 800, color: "#FFFFFF", marginBottom: "0.75rem", letterSpacing: "-0.02em" }}>
+                    Know your total landed cost before shipping
                 </h2>
-                <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.85)", marginBottom: "2rem" }}>
-                    Stop guessing. Get a detailed landed cost breakdown in seconds.
+                <p style={{ fontSize: "1.05rem", color: "#94A3B8", maxWidth: "600px", margin: "0 auto 2rem", lineHeight: 1.6 }}>
+                    Stop guessing customs duties. Get a line-by-line breakdown covering tariffs, VAT/GST, and handling fees in seconds.
                 </p>
-                <Link href="/calculate/" className="premium-btn-primary" style={{ background: "#fff", color: "var(--color-accent)" }}>
-                    Start Calculation
+                <Link href="/calculate/" className="premium-btn-primary" style={{ background: "var(--teal-700, #0F766E)", color: "#FFFFFF", padding: "0.85rem 2.25rem" }}>
+                    Calculate Landed Cost
                 </Link>
             </section>
 

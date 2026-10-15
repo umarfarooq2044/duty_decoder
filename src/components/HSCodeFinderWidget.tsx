@@ -29,26 +29,26 @@ export function HSCodeFinderWidget() {
     const handleTurnstileToken = useCallback((token: string) => setTurnstileToken(token), []);
 
     const COUNTRIES = [
-        { code: "US", name: "🇺🇸 United States" },
-        { code: "GB", name: "🇬🇧 United Kingdom" },
-        { code: "EU", name: "🇪🇺 European Union" },
-        { code: "DE", name: "🇩🇪 Germany" },
-        { code: "FR", name: "🇫🇷 France" },
-        { code: "CN", name: "🇨🇳 China" },
-        { code: "JP", name: "🇯🇵 Japan" },
-        { code: "IN", name: "🇮🇳 India" },
-        { code: "CA", name: "🇨🇦 Canada" },
-        { code: "AU", name: "🇦🇺 Australia" },
-        { code: "SG", name: "🇸🇬 Singapore" },
-        { code: "KR", name: "🇰🇷 South Korea" },
-        { code: "BR", name: "🇧🇷 Brazil" },
-        { code: "MX", name: "🇲🇽 Mexico" },
-        { code: "AE", name: "🇦🇪 UAE" },
-        { code: "SA", name: "🇸🇦 Saudi Arabia" },
-        { code: "TR", name: "🇹🇷 Turkey" },
-        { code: "TH", name: "🇹🇭 Thailand" },
-        { code: "VN", name: "🇻🇳 Vietnam" },
-        { code: "PK", name: "🇵🇰 Pakistan" },
+        { code: "US", name: "United States (US)" },
+        { code: "GB", name: "United Kingdom (GB)" },
+        { code: "EU", name: "European Union (EU)" },
+        { code: "DE", name: "Germany (DE)" },
+        { code: "FR", name: "France (FR)" },
+        { code: "CN", name: "China (CN)" },
+        { code: "JP", name: "Japan (JP)" },
+        { code: "IN", name: "India (IN)" },
+        { code: "CA", name: "Canada (CA)" },
+        { code: "AU", name: "Australia (AU)" },
+        { code: "SG", name: "Singapore (SG)" },
+        { code: "KR", name: "South Korea (KR)" },
+        { code: "BR", name: "Brazil (BR)" },
+        { code: "MX", name: "Mexico (MX)" },
+        { code: "AE", name: "United Arab Emirates (AE)" },
+        { code: "SA", name: "Saudi Arabia (SA)" },
+        { code: "TR", name: "Turkey (TR)" },
+        { code: "TH", name: "Thailand (TH)" },
+        { code: "VN", name: "Vietnam (VN)" },
+        { code: "PK", name: "Pakistan (PK)" },
     ];
 
     /**
@@ -202,12 +202,12 @@ export function HSCodeFinderWidget() {
                                 padding: "0.75rem 1rem",
                                 fontSize: "0.95rem",
                                 borderRadius: "8px",
-                                border: "1px solid rgba(255,255,255,0.15)",
-                                background: "#0f172a",
-                                color: "#fff",
+                                border: "1px solid var(--border, #E3E8EF)",
+                                background: "var(--bg, #F7F9FC)",
+                                color: "var(--navy-900, #0B1F3A)",
                                 appearance: "none",
                                 WebkitAppearance: "none",
-                                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 8.825L.35 3.175l.7-.7L6 7.425l4.95-4.95.7.7z'/%3E%3C/svg%3E")`,
+                                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%230B1F3A' d='M6 8.825L.35 3.175l.7-.7L6 7.425l4.95-4.95.7.7z'/%3E%3C/svg%3E")`,
                                 backgroundRepeat: "no-repeat",
                                 backgroundPosition: "right 12px center",
                                 cursor: "pointer",
@@ -215,7 +215,7 @@ export function HSCodeFinderWidget() {
                             }}
                         >
                             {COUNTRIES.map(c => (
-                                <option key={c.code} value={c.code} style={{ background: "#0f172a", color: "#fff" }}>{c.name}</option>
+                                <option key={c.code} value={c.code} style={{ background: "#FFFFFF", color: "#0B1F3A" }}>{c.name}</option>
                             ))}
                         </select>
                     </div>
@@ -230,11 +230,12 @@ export function HSCodeFinderWidget() {
                             borderRadius: "8px",
                             border: "none",
                             cursor: isLoading ? "not-allowed" : "pointer",
-                            background: isLoading ? "var(--muted)" : "linear-gradient(135deg, var(--accent), #6366f1)",
-                            color: "#fff",
+                            background: isLoading ? "var(--muted)" : "var(--teal-700, #0F766E)",
+                            color: "#FFFFFF",
                             whiteSpace: "nowrap",
                             transition: "all 0.2s ease",
                             textAlign: "center",
+                            boxShadow: "0 2px 8px rgba(15, 118, 110, 0.25)",
                         }}
                     >
                         {isLoading ? (

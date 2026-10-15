@@ -90,12 +90,12 @@ export default function ImportDutyPage() {
                         <th style="text-align:left;padding:0.75rem;color:var(--foreground);font-weight:700;">Notes</th>
                     </tr></thead>
                     <tbody>
-                        <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;">🇺🇸 United States</td><td style="padding:0.75rem;"><strong>$800</strong></td><td style="padding:0.75rem;">Highest in the world. Under review for 2026 reform.</td></tr>
-                        <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;">🇬🇧 United Kingdom</td><td style="padding:0.75rem;"><strong>£135</strong></td><td style="padding:0.75rem;">VAT still due on all imports; only duty is waived below threshold.</td></tr>
-                        <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;">🇪🇺 European Union</td><td style="padding:0.75rem;"><strong>€150</strong></td><td style="padding:0.75rem;">VAT applies from €0 since IOSS reform (July 2021).</td></tr>
-                        <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;">🇦🇺 Australia</td><td style="padding:0.75rem;"><strong>A$1,000</strong></td><td style="padding:0.75rem;">One of the highest globally. GST applies from A$0.</td></tr>
-                        <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;">🇨🇦 Canada</td><td style="padding:0.75rem;"><strong>C$150</strong></td><td style="padding:0.75rem;">Recently raised from C$20 under CUSMA implementation.</td></tr>
-                        <tr><td style="padding:0.75rem;">🇵🇰 Pakistan</td><td style="padding:0.75rem;"><strong>$0</strong></td><td style="padding:0.75rem;">No de minimis; duties apply on all imports.</td></tr>
+                        <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;font-weight:600;">United States</td><td style="padding:0.75rem;"><strong>$800</strong></td><td style="padding:0.75rem;">Highest in the world. Under review for 2026 reform.</td></tr>
+                        <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;font-weight:600;">United Kingdom</td><td style="padding:0.75rem;"><strong>£135</strong></td><td style="padding:0.75rem;">VAT still due on all imports; only duty is waived below threshold.</td></tr>
+                        <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;font-weight:600;">European Union</td><td style="padding:0.75rem;"><strong>€150</strong></td><td style="padding:0.75rem;">VAT applies from €0 since IOSS reform (July 2021).</td></tr>
+                        <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;font-weight:600;">Australia</td><td style="padding:0.75rem;"><strong>A$1,000</strong></td><td style="padding:0.75rem;">One of the highest globally. GST applies from A$0.</td></tr>
+                        <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;font-weight:600;">Canada</td><td style="padding:0.75rem;"><strong>C$150</strong></td><td style="padding:0.75rem;">Recently raised from C$20 under CUSMA implementation.</td></tr>
+                        <tr><td style="padding:0.75rem;font-weight:600;">Pakistan</td><td style="padding:0.75rem;"><strong>$0</strong></td><td style="padding:0.75rem;">No de minimis; duties apply on all imports.</td></tr>
                     </tbody>
                 </table>
             </div>`

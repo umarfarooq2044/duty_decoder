@@ -103,7 +103,7 @@ export default function IncotermsPage() {
                         <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;font-weight:600;">Insurance</td><td style="padding:0.75rem;">Buyer arranges</td><td style="padding:0.75rem;">Seller provides (minimum)</td></tr>
                         <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;font-weight:600;">Risk Transfer</td><td style="padding:0.75rem;">When loaded on vessel</td><td style="padding:0.75rem;">When loaded on vessel</td></tr>
                         <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;font-weight:600;">Customs Value</td><td style="padding:0.75rem;"><strong>Lower</strong> (excludes freight/insurance)</td><td style="padding:0.75rem;"><strong>Higher</strong> (includes freight + insurance)</td></tr>
-                        <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;font-weight:600;">Used for Duty Calc</td><td style="padding:0.75rem;">🇺🇸 US uses FOB</td><td style="padding:0.75rem;">🇪🇺🇬🇧🇦🇺 Most countries use CIF</td></tr>
+                        <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.75rem;font-weight:600;">Used for Duty Calc</td><td style="padding:0.75rem;">US & Canada use FOB</td><td style="padding:0.75rem;">EU, UK, Australia & most countries use CIF</td></tr>
                         <tr><td style="padding:0.75rem;font-weight:600;">Best For</td><td style="padding:0.75rem;">Experienced importers with own freight contracts</td><td style="padding:0.75rem;">Beginners or smaller shipments</td></tr>
                     </tbody>
                 </table>

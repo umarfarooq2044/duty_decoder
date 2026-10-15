@@ -240,7 +240,19 @@ export function CountryCalculatorForm({ defaultDestination, countryName }: Count
                 type="submit"
                 disabled={isLoading}
                 className="submit-btn"
-                style={{ width: "100%", padding: "0.9rem", fontSize: "1rem", fontWeight: 700, borderRadius: "8px", border: "none", cursor: isLoading ? "not-allowed" : "pointer", background: isLoading ? "var(--muted)" : "linear-gradient(135deg, var(--accent), #6366f1)", color: "#fff", transition: "all 0.3s ease" }}
+                style={{
+                    width: "100%",
+                    padding: "0.85rem 1.25rem",
+                    fontSize: "0.98rem",
+                    fontWeight: 700,
+                    borderRadius: "8px",
+                    border: "none",
+                    cursor: isLoading ? "not-allowed" : "pointer",
+                    background: isLoading ? "var(--border, #E3E8EF)" : "var(--teal-700, #0F766E)",
+                    color: "#FFFFFF",
+                    transition: "all 0.2s ease",
+                    boxShadow: "0 2px 8px rgba(15, 118, 110, 0.25)",
+                }}
             >
                 {isLoading ? (
                     <span style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem" }}>
@@ -248,9 +260,13 @@ export function CountryCalculatorForm({ defaultDestination, countryName }: Count
                         {getLoadingMessage()}
                     </span>
                 ) : (
-                    `Calculate Import Duty to ${countryName}`
+                    `Calculate Import Duty to ${countryName} →`
                 )}
             </button>
+
+            <div style={{ textAlign: "center", marginTop: "0.75rem", fontSize: "0.78rem", color: "var(--text-muted, #64748B)" }}>
+                Free · No signup required · Uses official 2026 customs tariff data
+            </div>
         </form>
     );
 }

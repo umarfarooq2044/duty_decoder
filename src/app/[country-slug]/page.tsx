@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { COUNTRY_BY_SLUG, ALL_COUNTRY_SLUGS } from "@/lib/countries";
 import { getServerSupabase } from "@/lib/supabase/server";
+import { CountryFlag } from "@/components/ui/CountryFlag";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -107,24 +108,22 @@ export default async function CountryHubPage({ params }: PageProps) {
 
                 {/* ───── Hero Banner ───── */}
                 <header style={{
-                    background: "linear-gradient(135deg, rgba(99,102,241,0.1), rgba(59,130,246,0.06))",
+                    background: "linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%)",
                     border: "1px solid var(--border)",
                     borderRadius: "16px",
                     padding: "clamp(1.5rem, 4vw, 2.5rem)",
                     marginBottom: "2rem",
                     position: "relative",
                     overflow: "hidden",
+                    boxShadow: "0 2px 12px rgba(11, 31, 58, 0.04)",
                 }}>
-                    <div aria-hidden="true" style={{
-                        position: "absolute", top: "-60px", right: "-40px",
-                        width: "200px", height: "200px",
-                        background: "radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%)",
-                        borderRadius: "50%", pointerEvents: "none",
-                    }} />
-                    <span style={{ fontSize: "0.75rem", color: "var(--accent)", textTransform: "uppercase", letterSpacing: "0.1em", fontWeight: 600 }}>
-                        {country.region} • {country.code}
-                    </span>
-                    <h1 style={{ fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 800, margin: "0.5rem 0 0.6rem", color: "var(--foreground)", lineHeight: 1.3 }}>
+                    <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.35rem" }}>
+                        <CountryFlag code={country.code} style={{ width: "20px", height: "14px", borderRadius: "2px" }} />
+                        <span style={{ fontSize: "0.75rem", color: "var(--teal-700, #0F766E)", textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 700 }}>
+                            {country.region} • {country.code}
+                        </span>
+                    </div>
+                    <h1 style={{ fontSize: "clamp(1.5rem, 4vw, 2.15rem)", fontWeight: 800, margin: "0.35rem 0 0.6rem", color: "var(--foreground)", lineHeight: 1.25, letterSpacing: "-0.02em" }}>
                         {hub.seo_h1 || `Import Duty & Customs Guide for ${country.name}`}
                     </h1>
                     <p style={{ fontSize: "0.95rem", color: "var(--muted-foreground)", lineHeight: 1.65, margin: 0, maxWidth: "700px" }}>
@@ -218,22 +217,23 @@ export default async function CountryHubPage({ params }: PageProps) {
                     <aside aria-label="Quick links and navigation" style={{ position: "sticky", top: "100px", display: "flex", flexDirection: "column", gap: "1rem" }}>
 
                         {/* CTA Card */}
-                        <Link href={`/${slug}/import-duty-calculator`} aria-label={`Open ${country.name} import duty calculator`} style={{
+                        <Link href={`/${slug}/import-duty-calculator/` as any} aria-label={`Open ${country.name} import duty calculator`} style={{
                             display: "block",
-                            background: "linear-gradient(135deg, var(--accent), #6366f1)",
+                            background: "var(--navy-950, #06142B)",
+                            border: "1px solid rgba(255, 255, 255, 0.08)",
                             borderRadius: "12px",
                             padding: "1.5rem",
                             textDecoration: "none",
-                            boxShadow: "0 4px 20px rgba(99,102,241,0.25)",
+                            boxShadow: "0 4px 16px rgba(6, 20, 43, 0.15)",
                         }}>
-                            <span style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.7)", textTransform: "uppercase", letterSpacing: "0.08em", display: "block", marginBottom: "0.35rem" }}>
-                                <span aria-hidden="true">🧮</span> Free Calculator
+                            <span style={{ fontSize: "0.72rem", color: "var(--teal-300, #5EEAD4)", textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 700, display: "block", marginBottom: "0.35rem" }}>
+                                Free Live Calculator
                             </span>
-                            <strong style={{ fontSize: "1.1rem", fontWeight: 700, color: "#fff", display: "block", marginBottom: "0.35rem" }}>
+                            <strong style={{ fontSize: "1.1rem", fontWeight: 700, color: "#FFFFFF", display: "block", marginBottom: "0.35rem" }}>
                                 Calculate Duty to {country.name}
                             </strong>
-                            <span style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.75)", display: "block" }}>
-                                Instant {country.vatLabel}, HS codes & landed cost →
+                            <span style={{ fontSize: "0.82rem", color: "#94A3B8", display: "block", lineHeight: 1.4 }}>
+                                Instant {country.vatLabel}, HS codes & landed cost breakdown →
                             </span>
                         </Link>
 

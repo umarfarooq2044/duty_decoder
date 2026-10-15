@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getServerSupabase } from "@/lib/supabase/server";
 import { HSCodeFinderWidget } from "@/components/HSCodeFinderWidget";
+import { CountryFlag } from "@/components/ui/CountryFlag";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -472,11 +473,11 @@ export default async function HSCodeFinderPage() {
                                 Top Import Markets
                             </h3>
                             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                                <li><Link href="/united-states/" style={{ fontSize: "0.9rem", color: "var(--foreground)", textDecoration: "none" }}>🇺🇸 United States</Link></li>
-                                <li><Link href="/united-kingdom/" style={{ fontSize: "0.9rem", color: "var(--foreground)", textDecoration: "none" }}>🇬🇧 United Kingdom</Link></li>
-                                <li><Link href="/canada/" style={{ fontSize: "0.9rem", color: "var(--foreground)", textDecoration: "none" }}>🇨🇦 Canada</Link></li>
-                                <li><Link href="/germany/" style={{ fontSize: "0.9rem", color: "var(--foreground)", textDecoration: "none" }}>🇩🇪 Germany</Link></li>
-                                <li><Link href="/india/" style={{ fontSize: "0.9rem", color: "var(--foreground)", textDecoration: "none" }}>🇮🇳 India</Link></li>
+                                <li><Link href="/united-states/" style={{ fontSize: "0.9rem", color: "var(--foreground)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}><CountryFlag code="US" style={{ width: "16px", height: "12px" }} /> United States</Link></li>
+                                <li><Link href="/united-kingdom/" style={{ fontSize: "0.9rem", color: "var(--foreground)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}><CountryFlag code="GB" style={{ width: "16px", height: "12px" }} /> United Kingdom</Link></li>
+                                <li><Link href="/canada/" style={{ fontSize: "0.9rem", color: "var(--foreground)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}><CountryFlag code="CA" style={{ width: "16px", height: "12px" }} /> Canada</Link></li>
+                                <li><Link href="/germany/" style={{ fontSize: "0.9rem", color: "var(--foreground)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}><CountryFlag code="DE" style={{ width: "16px", height: "12px" }} /> Germany</Link></li>
+                                <li><Link href="/india/" style={{ fontSize: "0.9rem", color: "var(--foreground)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}><CountryFlag code="IN" style={{ width: "16px", height: "12px" }} /> India</Link></li>
                             </ul>
                         </nav>
 
