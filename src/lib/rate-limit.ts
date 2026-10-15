@@ -142,21 +142,18 @@ export function getClientIP(request: Request): string {
  * Returns true if the request looks suspicious.
  */
 export function isSuspiciousRequest(request: Request): boolean {
-    // No user agent → likely a bot
-    const ua = request.headers.get("user-agent");
-    if (!ua || ua.length < 10) return true;
-
-    // Known bot patterns
-    const botPatterns = [
-        /bot\b/i, /crawl/i, /spider/i, /scrape/i,
-        /curl/i, /wget/i, /python-requests/i, /go-http/i,
-        /node-fetch/i, /axios/i, /httpie/i,
+    const ua = request.headers.get("user-agent") || "";
+    // Allow browsers and common mobile user agents; only flag explicit scraper bots
+    const maliciousBotPatterns = [
+        /headlesschrome/i,
+        /phantomjs/i,
+        /selenium/i,
+        /puppeteer/i,
+        /sqlmap/i,
+        /nikto/i,
     ];
-    if (botPatterns.some(p => p.test(ua))) return true;
-
-    // Missing common browser headers
-    const accept = request.headers.get("accept");
-    if (!accept) return true;
+    if (maliciousBotPatterns.some(p => p.test(ua))) return true;
 
     return false;
 }
+
